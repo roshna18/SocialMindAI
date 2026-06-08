@@ -1,0 +1,7 @@
+topic,total_mentions,positive,negative,risk_score,risk_level
+AI Regulation,4,0,4,100.0,HIGH
+Jobs,4,0,4,100.0,HIGH
+Education,1,0,1,100.0,HIGH
+Innovation,50,16,34,68.0,MEDIUM
+Other,25,10,15,60.0,MEDIUM
+Privacy,1,1,0,0.0,LOW
