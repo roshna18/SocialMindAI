@@ -4,7 +4,11 @@ import pandas as pd
 # BBC Technology RSS Feed
 url = "http://feeds.bbci.co.uk/news/technology/rss.xml"
 
-feed = feedparser.parse(url)
+feeds = [
+    "http://feeds.bbci.co.uk/news/technology/rss.xml",
+    "https://feeds.feedburner.com/TechCrunch",
+    "https://www.theverge.com/rss/index.xml"
+]
 
 articles = []
 
