@@ -20,10 +20,13 @@ for topic in df["topic"].unique():
         topic_df[topic_df["sentiment"] == "POSITIVE"]
     )
 
+    volume_weight = min(total / 10, 1)
+
     risk_score = round(
-        (negative / total) * 100,
-        2
-    )
+    ((negative / total) * 100)
+    * volume_weight,
+    2
+)
 
     if risk_score >= 70:
         risk_level = "HIGH"

@@ -57,3 +57,12 @@ result_df.to_csv(
     "data/processed/company_analysis.csv",
     index=False
 )
+top_topic = (
+    company_df["topic"]
+    .value_counts()
+    .idxmax()
+)
+brand_score = round(
+    (positive / mentions) * 100,
+    2
+)
