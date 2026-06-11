@@ -40,7 +40,7 @@ if __name__ == "__main__":
     print(df.head())
 
     df.to_csv(
-        "data/live_company_news.csv",
+        "data/live/news.csv",
         index=False
     )
 
