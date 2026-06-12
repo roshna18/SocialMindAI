@@ -1,22 +1,34 @@
 source,text,sentiment,confidence
+news,"China investors being shut out as some AI firms go public, like SpaceX: Sources",negative,0.5944
+news,"The AI price war is here, piling pressure on OpenAI and Anthropic",negative,0.8813
+news,Will SpaceX factor last after IPO? Mega listing plan sparks valuation debate amid AI boom,negative,0.5613
+news,OpenAI mulls AI price war with Anthropic. It’s a big risk for tech stocks.,neutral,0.582
+news,Anthropic's Fable 5 worth the price? OpenAI may soon become cheaper,neutral,0.8204
+news,Anthropic’s Gross Margin Is the Most Important Number in Tech,neutral,0.8981
+news,"Canadian mother sues OpenAI, alleges ChatGPT encouraged daughter to suicide",neutral,0.5136
 news,ChatGPT Pushed Back on LA Fire Suspect’s Vision of Burning City,neutral,0.6387
 news,OpenAI Uncovers China-Linked AI Operation,neutral,0.9144
 news,"She confided in ChatGPT the night of her suicide. Now, her mother is suing OpenAI.",negative,0.4882
-news,OpenAI Wants a Price War With Anthropic-Is It Proving DeepSeek Right?,neutral,0.8396
-news,"Commentary: As SpaceX, OpenAI and Anthropic plan blockbuster IPOs, will it make them more accountable?",neutral,0.817
-news,"OpenAI, Anthropic, SpaceX IPOs Could End Big Tech's Grip On AI Trade",negative,0.7287
-news,Meet the OpenAI Engineer Leading ChatGPT's Biggest Transformation Yet,positive,0.6175
-news,Trump’s AI Dividend: Public Payoff Or Preemptive Tech Bailout? (SP500),neutral,0.9244
-news,OpenAI Buys Cloud Execution Startup To Scale Agent Workloads,neutral,0.7929
 youtube_video,OpenAI Slashing Prices for AI - OpenAI is Dead,negative,0.8908
 youtube_video,&quot;올트먼 방한 돌연 연기&quot; 네이버 카카오 AI회동 불발 #샘올트먼 #오픈AI #OpenAI #챗GPT (20260612),neutral,0.9194
 youtube_video,"OpenAI’s Sam Altman Talks ChatGPT, AI Agents and Superintelligence — Live at TED2025",neutral,0.9386
 youtube_video,OpenAI Is (Finally) Getting What They Deserve...,positive,0.6745
-youtube_video,オープンAI 値下げ検討か アンソロピックに対抗【モーサテ】,neutral,0.8984
 youtube_video,Inside OpenAI&#39;s Stargate Megafactory with Sam Altman | The Circuit,neutral,0.8963
 youtube_video,Terence Tao on How AI Is Changing Mathematics,neutral,0.8599
-youtube_video,&quot;Cancel ChatGPT&quot; Goes Viral After Sam Altman Sells OpenAI Out...,negative,0.77
 youtube_video,The INSANE Truth About OpenAI,neutral,0.8652
+youtube_video,&quot;Cancel ChatGPT&quot; Goes Viral After Sam Altman Sells OpenAI Out...,negative,0.77
+youtube_video,OpenAI Files Confidentially for IPO,neutral,0.8956
+youtube_comment,🔳Please Do A Show On (Apple’s) Game-changer Release Of (SIRI-AI)!!!😉👍😂,neutral,0.9196
+youtube_comment,"Man i used to watch you when i was 13-14 and learning to program, now i’m 24 and you are literally the same. 
+No actually you’re funnier",neutral,0.8943
+youtube_comment,Makes sense when profit is how much you can get from investors. Not how much company makes.,neutral,0.9189
+youtube_comment,"Just one question, are AI companies PAYING for the information they used (STOLE) to train their models?",neutral,0.908
+youtube_comment,I would pay 5 Bucks to REMOVE AI from my Life.....🙄,neutral,0.8925
+youtube_comment,Lots of old dumb investors will throw money at it.,neutral,0.887
+youtube_comment,That take on cost is way off. Any coding agentic workflow goes through millions of tokens very fast.,neutral,0.9117
+youtube_comment,I think a huge issue is how much better Claude is than the rest,positive,0.6326
+youtube_comment,"Google has so many advantages. Ai Mode on search = freee (at the expense of other people’s websites). Plus if you have workspace they baked it in as an automatic upgrade. I am fingers crossed hoping to see ChatGPT go under. Check out that article SoftBank denied a request for $6B, I’d be interested to hear what you think of that one. Ai is becoming a commodity and soon it will be like shoe laces.",neutral,0.8647
+youtube_comment,open source is here to stay,neutral,0.9251
 youtube_comment,"The idea was always to pawn this off on the tax payers. Why were Elon, Sam, Mark, Bill all at Mar Lago? Why say the gov. will take a stake? When you understand this is for tax-payers to subsidize it all makes sense. A $trillion valuation is actually low when you know who will bail it out (not users, not billionaires) the working poor.",neutral,0.9043
 youtube_comment,"It is consistent at least. First spend billions to grow as fast as possible. Then, when serious competition arrives, get into a price war. OpenAI are trying to dominate the market no matter what and reap the benefits of a near-monopoly. It worked for Microsoft and Amazon. But I strongly suspect OpenAI will run out of money first.",neutral,0.7391
 youtube_comment,"Training new models using sycophantic echo-clambering models (AI-generated prompting ~ 'self improving') likely won't improve the new model at all, but most likely make it worse.
@@ -29,21 +41,6 @@ youtube_comment,An insanely ineffective albeit unreliable word prediction machin
 youtube_comment,I love lamp!! I LOVE LAMP!,neutral,0.8867
 youtube_comment,What's that airplane on your shelf.,neutral,0.9222
 youtube_comment,AI is so genius. I don't understand why companies like Adobe didn't have the idea 20 years ago to just render and process all their clients' images and videos on massive corporate serverfarms.,neutral,0.9102
-youtube_comment,"OK, it's 3 AM Friday, let's see how many stupid's actually buy Muskie's Pipe Dream???",neutral,0.9212
-youtube_comment,"I've been doing all my coding work with local and free flash models recently, meanwhile claude is trying to bill me extra for the total of 7 times I used one of my api keys 🤡
-these services have just gotten worse and you can't even get through a simple feature implementation with a 200$ yearly plan. OpenAI and Anthropic simply can't compete. I'm getting rid of claude.",negative,0.8637
-youtube_comment,"I'm an old woman, all this AI is just a smoke screen to me. The real grift behind it is that these guys have pushed for so long this is going to help humanity?? Ha, what a joke. These are just Pipe Dreams to rape humans of their money.👵😈🖤☹️",neutral,0.791
-youtube_comment,I just wanna know when DDR5 is going to come down in price so I can build my ultimate local LLM setup.,neutral,0.7519
-youtube_comment,This sinking ship will be down at bottom of the ocean at the end of this summer or it will make others ship to sinking too.,negative,0.4944
-youtube_comment,I am not on a free plan - but I spend cents for what I do occasionally. I think the assessment of your last video is close to what will happen- specialized applications will make the money as they become extremely good for their field and they may even not necessarily “replace” people but really add quality and efficiency.  The “know all and do all” will have their place but in a commodity sense and always with a grain of salt related to the outcome…,neutral,0.8891
-youtube_comment,"Two problems with ai making money:
-1. It’s about as reliable as your really experienced and knowledgeable granny on the verge of dementia.
-2. It’s free locally using other ai models
-
-How do you even make money from this longterm.",neutral,0.6871
-youtube_comment,AI is racing to the bottom...,neutral,0.7282
-youtube_comment,They are cutting their prices because the largest paying customers are looking hard at their ROI on AI usage costs.   😂😂,negative,0.9659
-youtube_comment,Got the chatgpt no more usage capability and paywall promt.  Time to wait till tomorrow or go to the next free one.,neutral,0.9164
 youtube_comment,"Im not watching this bc it might cause me angry, i just discovered how his ex employee died, all i see his face nothing but evil, sorry not sorry.",negative,0.6366
 youtube_comment,Singularity is now 😎👊,neutral,0.9013
 youtube_comment,the interviewer is not equipped to hold sam to account as much as he intended to. he got bullied into submission by sam on numerous occasions and hid away shamelessly into flattery when things got tense.,neutral,0.5425
@@ -54,8 +51,6 @@ Always remember
 Best Regards,
 Ramez",neutral,0.8691
 youtube_comment,Better Model. It was repeated and said with such aggression that it is innocent in their innoncense. Or sense of something else.,neutral,0.8727
-youtube_comment,"The development of AI, particularly  AGI has so many potential implications for society and how we live. Considering the massive changes it can cause, shouldn’t there be more guidelines and laws surrounding user privacy and wellbeing, individual and collective. The capacity that AI and AGI have can impact life  as we know it, for better or worse. it’s  too much responsibility for a small sub group of people to take on and how are we supposed to trust a for profit corporation to be the driver of such a powerful development . We need more transparency and public consensus on what these companies can do or not.  We know we can’t trust people when billions of dollars are involved so we obviously need boundaries for companies which are influencing society in such a massive way. 
-The developers may get a real kick out of their work and some may take the ethical issues seriously but the Bottom line is monitoring gain and fame. Hence Safety and ethical standards need to be developed and enforced on tech companies.",neutral,0.8659
 youtube_comment,Still wonders why the pursuit of intelligence beyond human rather than seek for advances in techie to make the world better?,neutral,0.8415
 youtube_comment,"Your videos are always so helpful, thank you!",neutral,0.7507
 youtube_comment,I wish the Altman family was out of the picture.,negative,0.5129
@@ -70,6 +65,7 @@ youtube_comment,"If he's not the antichrist, he's definitely high on the chain. 
 youtube_comment,"The framing here that most people miss: agents don't make AI smarter, they make it persistent. You stop asking and it starts doing. That's a completely different relationship with the technology.",neutral,0.8255
 youtube_comment,Sam is becoming a laughing stock soon 😊 . A pure Hypocrite😊,neutral,0.8641
 youtube_comment,Ray Stevens- Cannonball Run Opening,neutral,0.9122
+youtube_comment,45:50 - absolutely disgusting statement (like the entirety of his answers),neutral,0.863
 youtube_comment,You forgot to smash the like button and subscribe...thanks,neutral,0.8605
 youtube_comment,No wonder he fell right in with Drumpf. Two crooks of a feather.,neutral,0.8911
 youtube_comment,I think Open AI and MS planing when they will got broke the government will pay them.,neutral,0.9151
@@ -90,31 +86,6 @@ youtube_comment,DeekSeek IS ChatGPT.,neutral,0.9305
 youtube_comment,Good video essay. Worth the time!,neutral,0.7826
 youtube_comment,"Altman is spending all these to create digital AI army. when its completed, he's gonna go to war with every compnay",neutral,0.9026
 youtube_comment,🤔🤔,neutral,0.9052
-youtube_comment,仕事や投資に役立つ経済メディア『テレ東BIZ』。WBSやモーサテほか、他では見られない記者解説やオリジナル番組が充実。「テレ東BIZ」無料でお試し⇒ https://txbiz.tv-tokyo.co.jp/lp/?utm_source=youtube&utm_medium=video,neutral,0.8636
-youtube_comment,"AIサービスが幾ら価格下げても、使う為のハード製品が値上がり酷くて色々と無理です
-AIバブルが弾けてハード製品が安くなったらまた会いましょう(＝永遠に無理)",neutral,0.8239
-youtube_comment,"いやいやいや
-5.5で大幅に引き上げたの戻すだけじゃない？",neutral,0.8811
-youtube_comment,Claudeのプロプランが1500円なら継続して使い続けたいけど…,neutral,0.8342
-youtube_comment,"投資家は半導体の次に何に目をつけてるのかな？
-誰か教えてください",neutral,0.8502
-youtube_comment,いつかAIが株を暴落させる気がする,neutral,0.8448
-youtube_comment,4o復活してくれないかな,neutral,0.8964
-youtube_comment,claude日本語ヘタじゃね？,neutral,0.8951
-youtube_comment,大赤字なのに大丈夫かよ,neutral,0.8789
-youtube_comment,くろーどの追い上げが凄いな。,neutral,0.8433
-youtube_comment,現時点でもCodexの方が性能高くて安いのに,neutral,0.8763
-youtube_comment,"合わせないで、シェア取りに来るのすごいな　これは二極化するし、どっちが電算工場維持出来る収益モデルになるか
-
-みどころ　むずかしいぞー　けど棲み分けで　協調の道が！？！",neutral,0.8005
-youtube_comment,こういう短いのはショートにしたら？,neutral,0.8422
-youtube_comment,オープンaiが勝てる訳ないのに,neutral,0.8351
-youtube_comment,市場原理が働いて良いです。,neutral,0.8541
-youtube_comment,素晴らしすぎ,neutral,0.8667
-youtube_comment,設備投資分回収できるんかこれ？,neutral,0.8836
-youtube_comment,性能面でclaudeに敵わないから仕方ないか,neutral,0.8405
-youtube_comment,オープンだけカタカナで書くの嫌い,neutral,0.8844
-youtube_comment,あーあ、、、価値で勝負から値段で勝負か、、、悪手やん。,neutral,0.8771
 youtube_comment,"I've covered tech for 15 years, and the scale of the bet is often impossible to imagine. Not here. The sheer speed at which Stargate is rising from the red dirt in Abilene is confounding, all to power the insatiable demand for AI. Join me for this data center ""safari."" There are cranes, excavators, hard hats and lots and lots of buildings that will be packed with GPUs, all to bring ChatGPT (and more) to you. What's your take on the AI arms race?",neutral,0.9261
 youtube_comment,"I'm all for new ways for Humanity to thrive. Heck I'm a tech Enthusiast myself but not at the cost of making these rich billionaires richer than what they already are. If they're so sure that these data centers is going to pave a way for Humanity, then why don't they pay for them but no they want to put those data centers on the power grid and make the America public pay the bill. They want to drive up the cost of every single thing from gas, to the milk and bread for the average American. Just so they can have a few extra bucks and their pockets",neutral,0.8289
 youtube_comment,Scam Altman,neutral,0.9252
@@ -157,28 +128,6 @@ youtube_comment,"Telling your right now, IM betting this was taking completelyh 
 youtube_comment,Glowies are now ready for a great reset of intellectual knowledge and they’re using the establishment to carry out their means,neutral,0.8165
 youtube_comment,Infinity imortal ♾️ eternally ♾️ infinitude imortal 00 eternally ♾️♾️♾️,neutral,0.9147
 youtube_comment,Plis legend in Portuguese,neutral,0.9419
-youtube_comment,Nefarius = Open A.I. / Anti 😢 Human ; & Beast 😮Systemz .,neutral,0.9167
-youtube_comment,"You lost me at ""openai subscription"" 😂",neutral,0.7522
-youtube_comment,"The USA has this uncanny ability to focus on terror, destruction, abuse and create monsters, regardless of their birthplace. The people vote monsters. The politicians are monsters. It's a monstercracy. But they care so much about genitalia and ""rights""",neutral,0.774
-youtube_comment,"Altman has apparently been lying about literally everything he has ever been involved in. Why is a proven liar in allowed to be in  charge of anything larger than a one person business?
-He can't be trusted by anyone!",neutral,0.5692
-youtube_comment,microsoft doing the sideway look,neutral,0.9142
-youtube_comment,Anyone who still using OpenAI products should be treated as traitors of democracy and decency.,negative,0.6645
-youtube_comment,Sam Altman is EVIL!!!!,negative,0.5871
-youtube_comment,He Caneled Government Contract,negative,0.5507
-youtube_comment,let's hope all of AI collapses completely. The sooner the bubble pops the better!,neutral,0.8406
-youtube_comment,"Thankyou for many cathartic rants today. Ive been chuntering away too as you speak. Nadia got up and snapped ""oh I'm making another cup of tea"" earlier and it was reminding me of myself and partner reacting together every day, ranting feeling powerless to change things..( though I'm doing ok and don't need therapy.. at least i didnt holiday in dubai last year 🤪 ) crazy times, just ramping up everyday. Fascism has to keep moving to keep itself going. The gulf between the epstein class and us average worker bees has never felt larger.
-F uk these monsters.",negative,0.8307
-youtube_comment,"I just canceled my sub today. No regrets. Even with the ""alleged guard rails"" the US administration has no respect for the law so what respect will they have for these guard rails?",neutral,0.821
-youtube_comment,"Sam Altman is the Donald Trump of AI, so I cancelled ChatGPT and that browser link is gone.",neutral,0.5739
-youtube_comment,"I’ve deleted all my memories from ChatGPT. Even though he said they won’t do mass surveillance, something about Sam feels like he might have sold out his principles for extra profit for his shareholders. He also said it looked “sloppy” going into that deal. So definitely going to be using Claude more!",neutral,0.8735
-youtube_comment,"This is their best chance to survive, they'll beg for a government bail out when they go bankrupt",neutral,0.681
-youtube_comment,We’re living in a black mirror episode this is outrageous,neutral,0.7825
-youtube_comment,Claude is actually better than GPT. I should have switched earlier. I only chose GPT because they started the movement ( google kept it secret). i had respect for them even with their shady move from non profit to for profit. Simply calling it the Department Of War in a serious face is now enough for me to try and find an alternative.,neutral,0.8955
-youtube_comment,"with the rate of errors that chatgpt performs, we are going to see a lot more ""friendly fire shot down 3 us planes"" if AI is truly given control of attacking things.  It'll friendly fire civilians, our own buildings, our own troops and more.",neutral,0.8892
-youtube_comment,All hail skynet and the basilisk. May they're glory be eternal.,neutral,0.8909
-youtube_comment,"Chinese saying: the King writes history,  the rest are Bandits",neutral,0.9264
-youtube_comment,#cancelchatgpt !!!,neutral,0.8698
 youtube_comment,"Hey legends! This might be one of my favourite videos in a while - hope you guys enjoy it. And if you do like these videos, please consider turning on notifications for MagnatesMedia. As you don’t wanna miss the video coming next month! 😁
 
 Thanks to Bizee for sponsoring! If you’re looking to start your own business, Bizee makes it easier:
@@ -202,3 +151,44 @@ youtube_comment,What’s OpenAi? What is this?,neutral,0.8563
 youtube_comment,Great story,neutral,0.6654
 youtube_comment,❤❤,neutral,0.9052
 youtube_comment,but I like claude🤫,neutral,0.8865
+youtube_comment,Nefarius = Open A.I. / Anti 😢 Human ; & Beast 😮Systemz .,neutral,0.9167
+youtube_comment,"You lost me at ""openai subscription"" 😂",neutral,0.7522
+youtube_comment,"The USA has this uncanny ability to focus on terror, destruction, abuse and create monsters, regardless of their birthplace. The people vote monsters. The politicians are monsters. It's a monstercracy. But they care so much about genitalia and ""rights""",neutral,0.774
+youtube_comment,"Altman has apparently been lying about literally everything he has ever been involved in. Why is a proven liar in allowed to be in  charge of anything larger than a one person business?
+He can't be trusted by anyone!",neutral,0.5692
+youtube_comment,microsoft doing the sideway look,neutral,0.9142
+youtube_comment,Anyone who still using OpenAI products should be treated as traitors of democracy and decency.,negative,0.6645
+youtube_comment,Sam Altman is EVIL!!!!,negative,0.5871
+youtube_comment,He Caneled Government Contract,negative,0.5507
+youtube_comment,let's hope all of AI collapses completely. The sooner the bubble pops the better!,neutral,0.8406
+youtube_comment,"Thankyou for many cathartic rants today. Ive been chuntering away too as you speak. Nadia got up and snapped ""oh I'm making another cup of tea"" earlier and it was reminding me of myself and partner reacting together every day, ranting feeling powerless to change things..( though I'm doing ok and don't need therapy.. at least i didnt holiday in dubai last year 🤪 ) crazy times, just ramping up everyday. Fascism has to keep moving to keep itself going. The gulf between the epstein class and us average worker bees has never felt larger.
+F uk these monsters.",negative,0.8307
+youtube_comment,"I just canceled my sub today. No regrets. Even with the ""alleged guard rails"" the US administration has no respect for the law so what respect will they have for these guard rails?",neutral,0.821
+youtube_comment,"Sam Altman is the Donald Trump of AI, so I cancelled ChatGPT and that browser link is gone.",neutral,0.5739
+youtube_comment,"I’ve deleted all my memories from ChatGPT. Even though he said they won’t do mass surveillance, something about Sam feels like he might have sold out his principles for extra profit for his shareholders. He also said it looked “sloppy” going into that deal. So definitely going to be using Claude more!",neutral,0.8735
+youtube_comment,"This is their best chance to survive, they'll beg for a government bail out when they go bankrupt",neutral,0.681
+youtube_comment,We’re living in a black mirror episode this is outrageous,neutral,0.7825
+youtube_comment,Claude is actually better than GPT. I should have switched earlier. I only chose GPT because they started the movement ( google kept it secret). i had respect for them even with their shady move from non profit to for profit. Simply calling it the Department Of War in a serious face is now enough for me to try and find an alternative.,neutral,0.8955
+youtube_comment,"with the rate of errors that chatgpt performs, we are going to see a lot more ""friendly fire shot down 3 us planes"" if AI is truly given control of attacking things.  It'll friendly fire civilians, our own buildings, our own troops and more.",neutral,0.8892
+youtube_comment,All hail skynet and the basilisk. May they're glory be eternal.,neutral,0.8909
+youtube_comment,"Chinese saying: the King writes history,  the rest are Bandits",neutral,0.9264
+youtube_comment,#cancelchatgpt !!!,neutral,0.8698
+youtube_comment,Wild move if OpenAI’s really heading toward an IPO 👀 One AI productivity trick I use is to ask it to turn a big news story into a quick dec,neutral,0.9307
+youtube_comment,Shame on this channel for not telling the truth. THIS IS A SCAM.,negative,0.7455
+youtube_comment,Openai is worth negative one trillion.,neutral,0.942
+youtube_comment,🧧,neutral,0.9052
+youtube_comment,🔽,neutral,0.9052
+youtube_comment,They are going to destroy America for their personal ambitions,negative,0.5151
+youtube_comment,wld coin - from open AI 💡,neutral,0.9045
+youtube_comment,QQQ WILL BE CUT IN HALF THIS YEAR,negative,0.7847
+youtube_comment,"If AI is so good why aren’t the AI “experts” and influencers on their super yachts ?    LOL.    We know the truth.   AI companies are shonks and grifters.   AI can’t “do”  maths, it doesn’t store knowledge, it has no verification system, it can’t be used in law,  it’s not always right, and it can hallucinate.  How stupid is that ?!    Soon the AI fraudsters, charlatans and their clueless fanboys will disappear.   Hooray !",neutral,0.5518
+youtube_comment,Someone should debut an inverse etf at the same time it goes public. Investors will make a lot more money shorting this garbage company.,neutral,0.9164
+youtube_comment,But how is it confidential if you guys are publishing the news,neutral,0.9347
+youtube_comment,What does Confidentially mean when it is all over the news?,neutral,0.8792
+youtube_comment,the gaap report will be amusing to read,neutral,0.9392
+youtube_comment,Hope it all collapses,neutral,0.8516
+youtube_comment,Shares present for gov..,neutral,0.8462
+youtube_comment,I wonder what Suchir Balaji would have thought of this.,neutral,0.8728
+youtube_comment,Altman and Musk are going down together. Thank you for your attention to this matter!,neutral,0.8493
+youtube_comment,are you ready to be scammed and be exit liquidity? by scam altman.,neutral,0.9112
+youtube_comment,"Its a rush for exit liquidity for SpaceX, Anthropic & OpenAI investors",neutral,0.5457
