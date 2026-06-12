@@ -1,13 +1,29 @@
 import subprocess
+from pathlib import Path
 
 print("=" * 60)
 print("SOCIALMIND AI")
 print("COMPANY REPUTATION ANALYZER")
 print("=" * 60)
 
+
 company = input(
     "\nEnter Company Name: "
 )
+files = [
+    "data/live/news.csv",
+    "data/live/youtube_comments.csv",
+    "data/live/youtube_videos.csv",
+    "data/live/company_dataset.csv",
+    "data/live/reputation_analysis.csv",
+    "data/live/reputation_summary.csv",
+    "data/live/issue_summary.csv"
+]
+
+for file in files:
+
+    if Path(file).exists():
+        Path(file).unlink()
 
 # ==========================
 # NEWS

@@ -206,13 +206,18 @@ neutral = len(
 
 total = len(df)
 
-reputation_score = round(
-    (
-        positive +
-        (neutral * 0.5)
-    ) / total * 100,
-    2
-)
+if (positive + negative) > 0:
+
+    reputation_score = round(
+        positive /
+        (positive + negative)
+        * 100,
+        2
+    )
+
+else:
+
+    reputation_score = 50
 
 # ==========================
 # GRADE

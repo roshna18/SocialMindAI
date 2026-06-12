@@ -9,6 +9,7 @@ youtube = build(
     developerKey=API_KEY
 )
 
+
 def fetch_youtube(company):
 
     print(f"\nSearching YouTube for {company}...\n")
@@ -22,16 +23,36 @@ def fetch_youtube(company):
 
     response = request.execute()
 
+    print(
+        f"Results returned: {len(response.get('items', []))}"
+    )
+
+    if not response.get("items"):
+
+        print(
+            f"No YouTube results found for {company}"
+        )
+
+        return (
+            pd.DataFrame(),
+            pd.DataFrame()
+        )
+
     videos = []
     comments = []
 
-    for item in response["items"]:
+    for idx, item in enumerate(response["items"]):
+
+        print(
+            f"Processing video {idx+1}/{len(response['items'])}"
+        )
+
+        if "videoId" not in item["id"]:
+            continue
 
         video_id = item["id"]["videoId"]
 
         title = item["snippet"]["title"]
-
-        description = item["snippet"]["description"]
 
         videos.append({
             "source": "youtube_video",
@@ -65,8 +86,11 @@ def fetch_youtube(company):
                     "video_id": video_id
                 })
 
-        except:
-            pass
+        except Exception as e:
+
+            print(
+                f"Comment fetch failed for {video_id}: {e}"
+            )
 
     videos_df = pd.DataFrame(videos)
 
