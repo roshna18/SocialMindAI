@@ -18,15 +18,15 @@ The platform collects information from public sources, evaluates stakeholder sen
 
 ![Executive Dashboard](images/2.png)
 
-### Reputation Analytics
+### Crisis Radar
 
 ![Crisis Radar](images/3.png)
 
-### Executive Briefing
+### Competitors
 
 ![Competitors](images/4.png)
 
-### Risk Monitoring & Trend Analysis
+### Executive Briefing
 
 ![Executive Briefing](images/5.png)
 
