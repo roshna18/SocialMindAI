@@ -393,6 +393,18 @@ def make_velocity_history(score, seed):
     base  = max(20, 120 - score)
     dates = [(datetime.now() - timedelta(days=29-i)).strftime("%b %d") for i in range(30)]
     vals  = [max(5, base + rng.randint(-20,40)) for _ in range(30)]
+
+    # Inject 1-2 guaranteed anomalies so the feature has something to show.
+    # Real news-driven mention data naturally has spikes; smooth synthetic
+    # noise often doesn't cross the z-score threshold on its own.
+    spike_day = rng.randint(18, 27)
+    vals[spike_day] = int(base * rng.uniform(2.8, 4.0))  # clear spike
+
+    if risk_allows_drop := rng.random() < 0.6:
+        drop_day = rng.randint(5, 14)
+        if drop_day != spike_day:
+            vals[drop_day] = max(2, int(base * rng.uniform(0.1, 0.3)))  # clear drop
+
     return pd.DataFrame({"date": dates, "mentions": vals})
 
 def derive_crisis_data(risk, top_issue):
@@ -898,7 +910,7 @@ if st.session_state.analyzed and st.session_state.company_name:
         st.markdown("<br>", unsafe_allow_html=True)
         lbl("Mention velocity — 30 days (with anomaly markers)")
         st.plotly_chart(anomaly_chart(velocity_df, col="mentions", line_color=vel_col),
-                        use_container_width=True,key="anomaly_chart_anomalies")
+                        use_container_width=True,key="anomaly_chart2")
         if anomaly_events:
             st.markdown(
                 f'<div style="font-size:12px;color:#E2504A;margin-top:-6px;margin-bottom:12px;">'
@@ -927,7 +939,7 @@ if st.session_state.analyzed and st.session_state.company_name:
         st.markdown("<br>", unsafe_allow_html=True)
         lbl("Reputation score — 90-day history")
         st.plotly_chart(timeline_chart(timeline_df, timeline_events, company),
-                        use_container_width=True)
+                        use_container_width=True,key="source_chart")
         st.markdown("<hr>", unsafe_allow_html=True)
         ev_col, info_col = st.columns(2, gap="large")
         with ev_col:
@@ -975,7 +987,7 @@ if st.session_state.analyzed and st.session_state.company_name:
         st.markdown("<hr>", unsafe_allow_html=True)
         lbl("Mention volume with anomaly markers")
         st.plotly_chart(anomaly_chart(velocity_df, col="mentions", line_color=vel_col),
-                        use_container_width=True,key="anomaly_chart_crisis")
+                        use_container_width=True,key="anomaly_chart1")
         st.markdown(
             '<div style="display:flex;gap:20px;font-size:12px;color:#3A4F6E;margin-top:-8px;margin-bottom:16px;">'
             '<span>▲ <span style="color:#E2504A;">Red</span> = spike (z≥2.0)</span>'
@@ -1002,7 +1014,7 @@ if st.session_state.analyzed and st.session_state.company_name:
             zf.add_hline(y=-2.0, line_dash="dot", line_color="#F0A030",
                          annotation_text="drop", annotation_font_color="#F0A030")
             zf.update_layout(**CHART_LAYOUT, legend=_LEGEND, height=300, yaxis_title="z-score", showlegend=False)
-            st.plotly_chart(zf, use_container_width=True,key="zscore_chart")
+            st.plotly_chart(zf, use_container_width=True,key="confidence_chart")
 
     # ════════════ TAB 5 — COMPETITORS ════════════
     with tab5:
@@ -1016,7 +1028,7 @@ if st.session_state.analyzed and st.session_state.company_name:
                            color_discrete_sequence=PALETTE, title="Reputation score comparison", text="Score")
             fig_b.update_traces(marker_line_width=0, textposition="outside", textfont=dict(color="#64748B",size=11))
             fig_b.update_layout(**CHART_LAYOUT, legend=_LEGEND, height=320, showlegend=False)
-            st.plotly_chart(fig_b, use_container_width=True,key="competitor_bar")
+            st.plotly_chart(fig_b, use_container_width=True)
             st.markdown("<hr>", unsafe_allow_html=True)
             lbl("Dimension radar")
             dims  = ["Products","Leadership","Workplace","ESG","Financials"]
@@ -1040,7 +1052,7 @@ if st.session_state.analyzed and st.session_state.company_name:
                                             tickfont=dict(color="#94A3B8"))),
                 legend=dict(bgcolor="rgba(0,0,0,0)",font=dict(color="#94A3B8")),
                 margin=dict(l=40,r=40,t=30,b=30))
-            st.plotly_chart(fig_r, use_container_width=True, key="competitor_radar")
+            st.plotly_chart(fig_r, use_container_width=True,key="comparison_chart")
 
     # ════════════ TAB 6 — CEO MEMO ════════════
     with tab6:
