@@ -1,3 +1,4 @@
+import json
 import streamlit as st
 import streamlit.components.v1 as components
 import subprocess
@@ -8,7 +9,7 @@ from pathlib import Path
 import io, base64, hashlib
 from datetime import datetime, timedelta
 
-# ── Page config ───────────────────────────────────────────────────────────────
+# ── Page config ───────────────────────────────────────────────
 st.set_page_config(
     page_title="SocialMind AI",
     page_icon="🧠",
@@ -16,7 +17,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# ── Global styles ─────────────────────────────────────────────────────────────
+# ── Global styles ─────────────────────────────────────────────
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
@@ -79,10 +80,7 @@ hr { border:none; border-top:1px solid #131E34 !important; margin:2rem 0 !import
 </style>
 """, unsafe_allow_html=True)
 
-
-# ── Chart constants ───────────────────────────────────────────────────────────
-# FIX 1: CHART_LAYOUT must NOT include 'legend' — charts that need custom
-# legend config pass it separately to avoid "multiple values" TypeError.
+# ── Chart constants ───────────────────────────────────────────
 CHART_LAYOUT = dict(
     paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
     font=dict(family="Inter", color="#64748B", size=12),
@@ -90,13 +88,10 @@ CHART_LAYOUT = dict(
     xaxis=dict(gridcolor="#131E34", linecolor="#131E34", tickfont=dict(color="#64748B")),
     yaxis=dict(gridcolor="#131E34", linecolor="#131E34", tickfont=dict(color="#64748B")),
 )
-# Separate default legend config — merge manually where needed
 _LEGEND = dict(bgcolor="rgba(0,0,0,0)", font=dict(color="#64748B"))
-
 PALETTE = ["#5B52C8","#1DAD85","#F0A030","#E2504A","#9B8FEE","#4EC9A0","#60A5FA"]
 
 
-# ── iframe head (fonts via <link>, not @import) ───────────────────────────────
 def _head():
     return (
         '<link rel="preconnect" href="https://fonts.googleapis.com">'
@@ -107,7 +102,7 @@ def _head():
     )
 
 
-# ── Chart helpers ─────────────────────────────────────────────────────────────
+# ── Chart helpers ─────────────────────────────────────────────
 def styled_bar(df, x, y, orientation="v", title=""):
     fig = px.bar(df, x=x, y=y, orientation=orientation,
                  text=x if orientation=="h" else y,
@@ -139,7 +134,6 @@ def donut_chart(pos, neu, neg):
     return fig
 
 
-# ── Section label ─────────────────────────────────────────────────────────────
 def lbl(text):
     st.markdown(
         f'<div style="font-size:11px;font-weight:700;letter-spacing:.14em;color:#2E3D58;'
@@ -148,7 +142,7 @@ def lbl(text):
     )
 
 
-# ── HTML component builders ───────────────────────────────────────────────────
+# ── HTML component builders ───────────────────────────────────
 def score_ring_html(score, company, grade, g_bg, g_col, risk, r_bg, r_col, topic):
     pct  = max(0, min(score/100, 1))
     circ = 2*3.14159*34
@@ -279,17 +273,259 @@ def memo_html(score, grade, risk, top_issue, company):
   </div>
 </div>"""
 
-def competitor_cards_html(companies_data):
+
+# ── COMPETITORS — full redesign ───────────────────────────────
+# Each competitor entry now includes dimension scores + strength reasons
+COMPETITOR_DB = {
+    "tesla": {
+        "peers": [
+            {
+                "name": "Tesla", "score": 72, "grade": "Good", "risk": "Low",
+                "dims": {"Brand":85,"Innovation":90,"Leadership":48,"ESG":60,"Customer":65},
+                "strengths": ["First-mover EV brand recognition", "Supercharger network moat", "FSD technology lead"],
+                "weaknesses": ["CEO controversy drags leadership score","Inconsistent build quality complaints"],
+            },
+            {
+                "name": "Rivian", "score": 58, "grade": "Fair", "risk": "Medium",
+                "dims": {"Brand":55,"Innovation":70,"Leadership":65,"ESG":75,"Customer":50},
+                "strengths": ["Strong ESG narrative","Adventure/outdoor brand appeal","Amazon partnership"],
+                "weaknesses": ["Production ramp struggles","Limited charging network","Burning cash"],
+            },
+            {
+                "name": "Lucid", "score": 49, "grade": "Fair", "risk": "Medium",
+                "dims": {"Brand":45,"Innovation":72,"Leadership":52,"ESG":60,"Customer":42},
+                "strengths": ["Best-in-class range specs","Luxury positioning","Saudi Aramco backing"],
+                "weaknesses": ["Very low production volumes","Low brand awareness","Profitability concerns"],
+            },
+            {
+                "name": "Ford EV", "score": 54, "grade": "Fair", "risk": "Medium",
+                "dims": {"Brand":70,"Innovation":55,"Leadership":60,"ESG":55,"Customer":58},
+                "strengths": ["F-150 Lightning brand trust","Established dealer network","Manufacturing scale"],
+                "weaknesses": ["Late EV entrant","Software experience behind Tesla","EV division losses"],
+            },
+        ]
+    },
+    "openai": {
+        "peers": [
+            {
+                "name": "OpenAI", "score": 68, "grade": "Good", "risk": "Medium",
+                "dims": {"Brand":90,"Innovation":88,"Leadership":55,"ESG":50,"Customer":65},
+                "strengths": ["ChatGPT — world's most recognised AI product","GPT-4 benchmark leader","Enterprise API dominance"],
+                "weaknesses": ["Leadership instability (Altman saga)","Safety criticism from researchers","Profit vs mission tension"],
+            },
+            {
+                "name": "Anthropic", "score": 74, "grade": "Good", "risk": "Low",
+                "dims": {"Brand":65,"Innovation":82,"Leadership":85,"ESG":80,"Customer":68},
+                "strengths": ["Claude scores highest on safety benchmarks","Strong Constitutional AI research","Trusted by regulated industries"],
+                "weaknesses": ["Lower brand recognition vs ChatGPT","Smaller developer ecosystem","Less media presence"],
+            },
+            {
+                "name": "Google DeepMind", "score": 65, "grade": "Good", "risk": "Medium",
+                "dims": {"Brand":80,"Innovation":85,"Leadership":70,"ESG":65,"Customer":55},
+                "strengths": ["Gemini integrated across Google products","Massive research budget","AlphaFold credibility"],
+                "weaknesses": ["Gemini launch perception issues","Privacy concerns tied to Google","Slow enterprise adoption"],
+            },
+            {
+                "name": "Mistral", "score": 60, "grade": "Fair", "risk": "Medium",
+                "dims": {"Brand":45,"Innovation":75,"Leadership":72,"ESG":60,"Customer":50},
+                "strengths": ["Open-source model reputation","European AI champion narrative","Lean & efficient models"],
+                "weaknesses": ["Much smaller scale than US rivals","Limited enterprise support","Brand still building"],
+            },
+        ]
+    },
+    "anthropic": {
+        "peers": [
+            {
+                "name": "Anthropic", "score": 74, "grade": "Good", "risk": "Low",
+                "dims": {"Brand":65,"Innovation":82,"Leadership":85,"ESG":80,"Customer":68},
+                "strengths": ["Claude rated most trustworthy AI assistant","Constitutional AI safety leadership","Preferred in healthcare & legal sectors"],
+                "weaknesses": ["ChatGPT has 10x more brand recognition","Smaller plugin/integration ecosystem","Lower consumer awareness"],
+            },
+            {
+                "name": "OpenAI", "score": 68, "grade": "Good", "risk": "Medium",
+                "dims": {"Brand":90,"Innovation":88,"Leadership":55,"ESG":50,"Customer":65},
+                "strengths": ["ChatGPT brand is synonymous with AI","Largest developer community","Most 3rd-party integrations"],
+                "weaknesses": ["Safety controversy hurts trust score","CEO drama hurt leadership perception","Microsoft dependency"],
+            },
+            {
+                "name": "Google DeepMind", "score": 65, "grade": "Good", "risk": "Medium",
+                "dims": {"Brand":80,"Innovation":85,"Leadership":70,"ESG":65,"Customer":55},
+                "strengths": ["Distribution via Google Search & Workspace","Best multimodal research","Unlimited compute budget"],
+                "weaknesses": ["Privacy baggage from Google brand","Slower product iteration","Gemini launch credibility gap"],
+            },
+        ]
+    },
+    "nvidia": {
+        "peers": [
+            {
+                "name": "Nvidia", "score": 80, "grade": "Excellent", "risk": "Low",
+                "dims": {"Brand":85,"Innovation":92,"Leadership":88,"ESG":65,"Customer":78},
+                "strengths": ["H100/H200 GPU monopoly for AI training","CUDA ecosystem lock-in","Jensen Huang seen as visionary CEO"],
+                "weaknesses": ["Export control risks to China","Single-product revenue concentration","Supply constraints"],
+            },
+            {
+                "name": "AMD", "score": 67, "grade": "Good", "risk": "Low",
+                "dims": {"Brand":72,"Innovation":78,"Leadership":74,"ESG":68,"Customer":70},
+                "strengths": ["ROCm open-source alternative to CUDA","Strong CPU+GPU combined roadmap","MI300X competitive on price"],
+                "weaknesses": ["Software ecosystem trails Nvidia","Lower AI mindshare","Smaller data centre footprint"],
+            },
+            {
+                "name": "Intel", "score": 54, "grade": "Fair", "risk": "Medium",
+                "dims": {"Brand":70,"Innovation":58,"Leadership":55,"ESG":65,"Customer":55},
+                "strengths": ["Gaudi3 AI accelerator gaining traction","x86 installed base advantage","US manufacturing credibility"],
+                "weaknesses": ["Years behind in GPU performance","Gaudi ecosystem very early","Multiple execution stumbles"],
+            },
+        ]
+    },
+    "apple": {
+        "peers": [
+            {
+                "name": "Apple", "score": 85, "grade": "Excellent", "risk": "Low",
+                "dims": {"Brand":98,"Innovation":82,"Leadership":88,"ESG":80,"Customer":90},
+                "strengths": ["Strongest consumer brand on earth","iPhone ecosystem lock-in","Premium pricing power"],
+                "weaknesses": ["AI features perceived as behind Google/OpenAI","China manufacturing dependency","App Store antitrust pressure"],
+            },
+            {
+                "name": "Samsung", "score": 72, "grade": "Good", "risk": "Low",
+                "dims": {"Brand":78,"Innovation":80,"Leadership":70,"ESG":68,"Customer":72},
+                "strengths": ["Galaxy AI features ahead in Android space","Semiconductor vertical integration","#1 display technology"],
+                "weaknesses": ["Software experience trails Apple","Brand less premium in West","Foldable reliability concerns"],
+            },
+            {
+                "name": "Google", "score": 78, "grade": "Good", "risk": "Low",
+                "dims": {"Brand":85,"Innovation":88,"Leadership":78,"ESG":72,"Customer":68},
+                "strengths": ["Android controls 72% of global smartphones","Tensor chip AI integration","Google Assistant + Gemini"],
+                "weaknesses": ["Pixel hardware brand still niche","Privacy perception issues","Hardware profitability low"],
+            },
+            {
+                "name": "Microsoft", "score": 82, "grade": "Excellent", "risk": "Low",
+                "dims": {"Brand":88,"Innovation":84,"Leadership":90,"ESG":82,"Customer":75},
+                "strengths": ["Satya Nadella seen as best Big Tech CEO","Copilot AI integration across Office","Azure cloud dominance"],
+                "weaknesses": ["Consumer brand less exciting than Apple","Teams still trails Slack in NPS","Gaming strategy mixed"],
+            },
+        ]
+    },
+    "microsoft": {
+        "peers": [
+            {
+                "name": "Microsoft", "score": 82, "grade": "Excellent", "risk": "Low",
+                "dims": {"Brand":88,"Innovation":84,"Leadership":90,"ESG":82,"Customer":75},
+                "strengths": ["Satya Nadella rated best Big Tech CEO","Copilot AI across entire product suite","Azure is #2 cloud with fastest growth"],
+                "weaknesses": ["Activision integration still uncertain","Teams NPS trails Slack","Windows update frustration a perennial issue"],
+            },
+            {
+                "name": "Google", "score": 78, "grade": "Good", "risk": "Low",
+                "dims": {"Brand":85,"Innovation":88,"Leadership":78,"ESG":72,"Customer":68},
+                "strengths": ["Workspace dominant in education","Gemini AI integration speed","Search monopoly cash engine"],
+                "weaknesses": ["Cloud trails Azure & AWS","Antitrust pressure mounting","Workspace enterprise sales complex"],
+            },
+            {
+                "name": "Amazon", "score": 69, "grade": "Good", "risk": "Low",
+                "dims": {"Brand":80,"Innovation":75,"Leadership":70,"ESG":58,"Customer":72},
+                "strengths": ["AWS is #1 cloud provider by revenue","Prime ecosystem loyalty","Bedrock AI platform growing fast"],
+                "weaknesses": ["ESG/worker treatment controversy","Alexa AI behind competitors","Retail margins thin"],
+            },
+        ]
+    },
+    "google": {
+        "peers": [
+            {
+                "name": "Google", "score": 78, "grade": "Good", "risk": "Low",
+                "dims": {"Brand":85,"Innovation":88,"Leadership":78,"ESG":72,"Customer":68},
+                "strengths": ["Search + YouTube = unmatched distribution","Gemini Ultra leading multimodal","DeepMind research credibility"],
+                "weaknesses": ["Privacy concerns persistent","Antitrust cases in US & EU","Gemini launch optics hurt AI narrative"],
+            },
+            {
+                "name": "Microsoft", "score": 82, "grade": "Excellent", "risk": "Low",
+                "dims": {"Brand":88,"Innovation":84,"Leadership":90,"ESG":82,"Customer":75},
+                "strengths": ["CEO perception best in Big Tech","OpenAI investment first-mover","Enterprise AI rollout fastest"],
+                "weaknesses": ["Bing AI market share still small","Consumer excitement lower","Gaming bet uncertain"],
+            },
+            {
+                "name": "Meta", "score": 55, "grade": "Fair", "risk": "Medium",
+                "dims": {"Brand":60,"Innovation":75,"Leadership":55,"ESG":42,"Customer":50},
+                "strengths": ["Llama open-source AI developer love","WhatsApp 2B+ users","Threads growing fast"],
+                "weaknesses": ["Privacy scandal legacy still hurts","Metaverse pivot scepticism","Youth trust deficit"],
+            },
+        ]
+    },
+    "meta": {
+        "peers": [
+            {
+                "name": "Meta", "score": 55, "grade": "Fair", "risk": "Medium",
+                "dims": {"Brand":60,"Innovation":75,"Leadership":55,"ESG":42,"Customer":50},
+                "strengths": ["3B+ daily users across apps","Llama 3 best open-source model","Instagram Reels monetisation"],
+                "weaknesses": ["Zuckerberg trust score lowest in Big Tech","Teen mental health controversy","Metaverse $40B write-off perception"],
+            },
+            {
+                "name": "Snap", "score": 50, "grade": "Fair", "risk": "High",
+                "dims": {"Brand":55,"Innovation":65,"Leadership":48,"ESG":55,"Customer":52},
+                "strengths": ["AR lenses innovation leader","Gen Z engagement strong","Spotlight growing"],
+                "weaknesses": ["Revenue growth stalled","Advertiser confidence low","Daily active user plateau"],
+            },
+            {
+                "name": "TikTok", "score": 52, "grade": "Fair", "risk": "High",
+                "dims": {"Brand":72,"Innovation":80,"Leadership":40,"ESG":38,"Customer":65},
+                "strengths": ["Highest engagement rates of any platform","Algorithm best in class","Creator economy leader"],
+                "weaknesses": ["US/EU ban risk (ByteDance)","Data privacy controversy","Brand safety concerns for advertisers"],
+            },
+        ]
+    },
+    "amazon": {
+        "peers": [
+            {
+                "name": "Amazon", "score": 69, "grade": "Good", "risk": "Low",
+                "dims": {"Brand":82,"Innovation":78,"Leadership":70,"ESG":55,"Customer":72},
+                "strengths": ["AWS #1 cloud by revenue & mindshare","Prime loyalty unmatched in e-commerce","Bedrock AI growing enterprise traction"],
+                "weaknesses": ["Worker treatment ESG controversy","Alexa falling behind in AI race","Retail business margin pressure"],
+            },
+            {
+                "name": "Microsoft", "score": 82, "grade": "Excellent", "risk": "Low",
+                "dims": {"Brand":88,"Innovation":84,"Leadership":90,"ESG":82,"Customer":75},
+                "strengths": ["Azure AI fastest enterprise rollout","CEO trusted most in Big Tech","GitHub Copilot developer love"],
+                "weaknesses": ["Cloud #2 behind AWS in revenue","Consumer product excitement lower","Activision ROI uncertain"],
+            },
+            {
+                "name": "Shopify", "score": 65, "grade": "Good", "risk": "Low",
+                "dims": {"Brand":65,"Innovation":72,"Leadership":75,"ESG":65,"Customer":80},
+                "strengths": ["Merchant NPS highest in e-commerce","SMB brand champion","AI commerce tools leading"],
+                "weaknesses": ["Much smaller scale than Amazon","Enterprise tier still building","Logistics network nascent"],
+            },
+        ]
+    },
+}
+
+def get_competitor_data(company_name: str) -> list:
+    key = company_name.strip().lower()
+    for k, v in COMPETITOR_DB.items():
+        if k in key or key in k:
+            return v["peers"]
+    # Fallback generic
+    import random; rng = random.Random(_seed_from(company_name) + 2)
+    base = rng.randint(50, 82)
+    return [{
+        "name": company_name.title(), "score": base,
+        "grade": "Good" if base>=70 else "Fair", "risk": "Low" if base>=70 else "Medium",
+        "dims": {"Brand":base,"Innovation":base+5,"Leadership":base-5,"ESG":base-10,"Customer":base+8},
+        "strengths": ["Market presence", "Product innovation", "Customer loyalty"],
+        "weaknesses": ["Brand awareness", "Competition pressure"],
+    }]
+
+
+# ── Competitor HTML components ────────────────────────────────
+def competitor_cards_html(peers):
     cards = ""
-    for i, (name, score, grade, risk) in enumerate(companies_data):
+    for i, p in enumerate(peers):
+        score    = p["score"]
         ring_col = "#1DAD85" if score>=70 else "#F0A030" if score>=45 else "#E2504A"
-        pct  = max(0, min(score/100, 1))
-        circ = 2*3.14159*22
+        pct      = max(0, min(score/100, 1))
+        circ     = 2*3.14159*22
         dash, gap = pct*circ, (1-pct)*circ
-        border = "#5B52C8" if i==0 else "#182030"
-        badge  = "<div style='font-size:9px;font-weight:700;letter-spacing:.1em;color:#5B52C8;text-transform:uppercase;margin-bottom:6px;'>PRIMARY</div>" if i==0 else ""
+        border   = "#5B52C8" if i==0 else "#182030"
+        badge    = ("<div style='font-size:9px;font-weight:700;letter-spacing:.1em;"
+                    "color:#5B52C8;text-transform:uppercase;margin-bottom:6px;'>PRIMARY</div>") if i==0 else ""
         cards += f"""
-        <div style="flex:1;min-width:140px;background:#0C1120;border:1px solid {border};
+        <div style="flex:1;min-width:150px;background:#0C1120;border:1px solid {border};
              border-radius:14px;padding:18px 20px;">
           {badge}
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
@@ -302,16 +538,93 @@ def competitor_cards_html(companies_data):
                 fill="#E8EEFF" font-family="DM Mono,monospace">{score}</text>
             </svg>
             <div>
-              <div style="font-size:14px;font-weight:700;color:#E8EEFF;">{name}</div>
-              <div style="font-size:11px;color:#2E3D58;margin-top:2px;">{grade} · {risk} risk</div>
+              <div style="font-size:14px;font-weight:700;color:#E8EEFF;">{p['name']}</div>
+              <div style="font-size:11px;color:#2E3D58;margin-top:2px;">{p['grade']} · {p['risk']} risk</div>
             </div>
           </div>
           <div style="height:3px;background:#182030;border-radius:2px;overflow:hidden;">
             <div style="height:100%;width:{score}%;background:{ring_col};border-radius:2px;"></div>
           </div>
         </div>"""
-    return f"""{_head()}
-<div style="display:flex;gap:12px;flex-wrap:wrap;">{cards}</div>"""
+    return f"""{_head()}<div style="display:flex;gap:12px;flex-wrap:wrap;">{cards}</div>"""
+
+
+def competitor_detail_html(peers):
+    """Why competitors score the way they do — strengths & weaknesses per company."""
+    dims_order = ["Brand","Innovation","Leadership","ESG","Customer"]
+    cards = ""
+    for i, p in enumerate(peers):
+        is_primary = i == 0
+        border_left = "border-left:3px solid #5B52C8;" if is_primary else ""
+        score    = p["score"]
+        ring_col = "#1DAD85" if score>=70 else "#F0A030" if score>=45 else "#E2504A"
+
+        # Dimension bars
+        dim_rows = ""
+        for dim in dims_order:
+            v  = p["dims"].get(dim, score)
+            dc = "#1DAD85" if v>=70 else "#F0A030" if v>=45 else "#E2504A"
+            dim_rows += f"""
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:7px;">
+              <div style="font-size:11px;color:#3A4F6E;width:72px;flex-shrink:0;">{dim}</div>
+              <div style="flex:1;height:4px;background:#182030;border-radius:2px;overflow:hidden;">
+                <div style="height:100%;width:{v}%;background:{dc};border-radius:2px;"></div>
+              </div>
+              <div style="font-size:11px;color:#E8EEFF;width:24px;text-align:right;
+                   font-family:DM Mono,monospace;">{v}</div>
+            </div>"""
+
+        # Strengths
+        str_items = "".join(
+            f"<div style='display:flex;gap:8px;margin-bottom:5px;font-size:12px;color:#94A3B8;line-height:1.5;'>"
+            f"<span style='color:#1DAD85;margin-top:2px;flex-shrink:0;'>✓</span><span>{s}</span></div>"
+            for s in p.get("strengths", [])
+        )
+        # Weaknesses
+        weak_items = "".join(
+            f"<div style='display:flex;gap:8px;margin-bottom:5px;font-size:12px;color:#94A3B8;line-height:1.5;'>"
+            f"<span style='color:#E2504A;margin-top:2px;flex-shrink:0;'>✗</span><span>{w}</span></div>"
+            for w in p.get("weaknesses", [])
+        )
+
+        primary_tag = ("<span style='font-size:9px;font-weight:700;letter-spacing:.1em;"
+                       "color:#5B52C8;text-transform:uppercase;background:rgba(91,82,200,0.12);"
+                       "padding:2px 8px;border-radius:10px;margin-left:8px;'>PRIMARY</span>") if is_primary else ""
+
+        cards += f"""
+        <div style="background:#0C1120;border:1px solid #182030;{border_left}
+             border-radius:16px;padding:22px 24px;margin-bottom:14px;">
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;">
+            <svg width="44" height="44" viewBox="0 0 50 50" style="flex-shrink:0">
+              <circle cx="25" cy="25" r="22" fill="none" stroke="#182030" stroke-width="4"/>
+              <circle cx="25" cy="25" r="22" fill="none" stroke="{ring_col}" stroke-width="4"
+                stroke-dasharray="{min(score,100)/100*2*3.14159*22:.1f} 999"
+                stroke-linecap="round" transform="rotate(-90 25 25)"/>
+              <text x="25" y="30" text-anchor="middle" font-size="12" font-weight="700"
+                fill="#E8EEFF" font-family="DM Mono,monospace">{score}</text>
+            </svg>
+            <div>
+              <div style="font-size:16px;font-weight:700;color:#E8EEFF;">{p['name']}{primary_tag}</div>
+              <div style="font-size:11px;color:#2E3D58;margin-top:3px;">{p['grade']} grade · {p['risk']} risk</div>
+            </div>
+          </div>
+          <div style="margin-bottom:16px;">{dim_rows}</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div>
+              <div style="font-size:10px;font-weight:700;letter-spacing:.12em;color:#1DAD85;
+                   text-transform:uppercase;margin-bottom:8px;">Why they score well</div>
+              {str_items}
+            </div>
+            <div>
+              <div style="font-size:10px;font-weight:700;letter-spacing:.12em;color:#E2504A;
+                   text-transform:uppercase;margin-bottom:8px;">Where they fall short</div>
+              {weak_items}
+            </div>
+          </div>
+        </div>"""
+
+    return f"""{_head()}<div>{cards}</div>"""
+
 
 def anomaly_alert_html(events):
     if not events:
@@ -331,9 +644,9 @@ def anomaly_alert_html(events):
              background:{bg};border:1px solid {bc};color:#94A3B8;">
           <div style="width:7px;height:7px;border-radius:50%;background:{dot};margin-top:5px;flex-shrink:0;"></div>
           <div>
-            <strong style="color:{col};">{arrow} {label} — {e["date"]}</strong><br>
-            {e["value"]:,} mentions &nbsp;·&nbsp; {e["pct_dev"]}% above normal &nbsp;·&nbsp;
-            z-score <span style="font-family:DM Mono,monospace;">{e["z"]}</span>
+            <strong style="color:{col};">{arrow} {label} — {e['date']}</strong><br>
+            {e['value']:,} mentions &nbsp;·&nbsp; {e['pct_dev']}% above normal &nbsp;·&nbsp;
+            z-score <span style="font-family:DM Mono,monospace;">{e['z']}</span>
           </div>
         </div>"""
     return f"""{_head()}
@@ -359,11 +672,11 @@ def timeline_events_html(events):
             <div style="flex:1;width:1px;background:#182030;margin-top:4px;"></div>
           </div>
           <div style="flex:1;padding-bottom:4px;">
-            <div style="font-size:11px;color:#3A4F6E;margin-bottom:3px;">{e["date"]}</div>
-            <div style="font-size:13px;color:#E8EEFF;font-weight:600;">{e["label"]}</div>
+            <div style="font-size:11px;color:#3A4F6E;margin-bottom:3px;">{e['date']}</div>
+            <div style="font-size:13px;color:#E8EEFF;font-weight:600;">{e['label']}</div>
             <div style="font-size:12px;color:{dlt_col};margin-top:2px;">
-              {arrow} {abs(e["delta"])} pts &nbsp;·&nbsp;
-              Score: <span style="font-family:DM Mono,monospace;">{e["score"]}</span>
+              {arrow} {abs(e['delta'])} pts &nbsp;·&nbsp;
+              Score: <span style="font-family:DM Mono,monospace;">{e['score']}</span>
             </div>
           </div>
         </div>"""
@@ -375,7 +688,7 @@ def timeline_events_html(events):
 </div>"""
 
 
-# ── Synthetic / derived data helpers ─────────────────────────────────────────
+# ── Synthetic data helpers ────────────────────────────────────
 def _seed_from(name):
     return int(hashlib.md5(name.lower().encode()).hexdigest()[:8], 16)
 
@@ -393,40 +706,8 @@ def make_velocity_history(score, seed):
     base  = max(20, 120 - score)
     dates = [(datetime.now() - timedelta(days=29-i)).strftime("%b %d") for i in range(30)]
     vals  = [max(5, base + rng.randint(-20,40)) for _ in range(30)]
-
-    # Inject 1-2 guaranteed anomalies so the feature has something to show.
-    # Real news-driven mention data naturally has spikes; smooth synthetic
-    # noise often doesn't cross the z-score threshold on its own.
-    spike_day = rng.randint(18, 27)
-    vals[spike_day] = int(base * rng.uniform(2.8, 4.0))  # clear spike
-
-    if risk_allows_drop := rng.random() < 0.6:
-        drop_day = rng.randint(5, 14)
-        if drop_day != spike_day:
-            vals[drop_day] = max(2, int(base * rng.uniform(0.1, 0.3)))  # clear drop
-
     return pd.DataFrame({"date": dates, "mentions": vals})
 
-def derive_crisis_data(risk, top_issue):
-    if risk.upper() == "HIGH":
-        return "High", [
-            {"level":"critical","text":f"<strong style='color:#E8EEFF;'>Critical:</strong> {top_issue} mentions spiked 3× baseline in last 6 hours"},
-            {"level":"warning", "text":"Negative conversation volume above threshold — media pickup detected"},
-            {"level":"warning", "text":"Investor-sentiment keywords trending downward on financial forums"},
-        ]
-    elif risk.upper() == "MEDIUM":
-        return "Medium", [
-            {"level":"warning","text":f"<strong style='color:#E8EEFF;'>Watch:</strong> Elevated discussion around {top_issue}"},
-            {"level":"info",   "text":"Innovation and product sentiment holding steady"},
-        ]
-    else:
-        return "Low", [
-            {"level":"info","text":"Mention velocity within normal range — no immediate action required"},
-            {"level":"info","text":"Innovation sentiment remains strong across all monitored channels"},
-        ]
-
-
-# ── Anomaly detection ─────────────────────────────────────────────────────────
 def detect_anomalies(df, col="mentions", window=7, z_thresh=2.0):
     df = df.copy()
     df["rolling_mean"] = df[col].rolling(window, min_periods=1).mean()
@@ -450,9 +731,7 @@ def anomaly_summary(df):
         })
     return sorted(events, key=lambda x: -abs(x["z"]))
 
-def anomaly_chart(df, col="mentions", line_color="#5B52C8"):
-    # FIX 1: don't pass legend inside update_layout alongside **CHART_LAYOUT
-    # because CHART_LAYOUT no longer contains 'legend' this is now safe.
+def anomaly_chart(df, col="mentions", line_color="#5B52C8", key="anomaly"):
     spikes = df[df["anomaly_dir"] == "spike"]
     drops  = df[df["anomaly_dir"] == "drop"]
     fig = go.Figure()
@@ -481,8 +760,6 @@ def anomaly_chart(df, col="mentions", line_color="#5B52C8"):
     )
     return fig
 
-
-# ── Historical timeline ───────────────────────────────────────────────────────
 def build_timeline(company_name, current_score, seed):
     hist_path = Path("data/history/reputation_history.csv")
     if hist_path.exists():
@@ -490,8 +767,7 @@ def build_timeline(company_name, current_score, seed):
         if len(df) >= 7 and "reputation_score" in df.columns:
             df = df.tail(90).copy()
             if "date" not in df.columns:
-                df["date"] = pd.date_range(end=datetime.now(), periods=len(df),
-                                           freq="D").strftime("%b %d")
+                df["date"] = pd.date_range(end=datetime.now(), periods=len(df), freq="D").strftime("%b %d")
             df["delta"] = df["reputation_score"].diff().fillna(0)
             events = []
             for _, row in df[df["delta"].abs() >= 5].iterrows():
@@ -555,33 +831,7 @@ def timeline_chart(df, events, company):
     return fig
 
 
-# ── Competitor data ───────────────────────────────────────────────────────────
-COMPETITOR_PAIRS = {
-    "tesla":     [("Tesla",72,"Good","Low"),("Rivian",58,"Fair","Medium"),("Lucid",49,"Fair","Medium"),("Ford EV",54,"Fair","Medium")],
-    "rivian":    [("Rivian",58,"Fair","Medium"),("Tesla",72,"Good","Low"),("Lucid",49,"Fair","Medium")],
-    "openai":    [("OpenAI",68,"Good","Medium"),("Anthropic",74,"Good","Low"),("Google DeepMind",65,"Good","Medium"),("Mistral",60,"Fair","Medium")],
-    "anthropic": [("Anthropic",74,"Good","Low"),("OpenAI",68,"Good","Medium"),("Google DeepMind",65,"Good","Medium")],
-    "nvidia":    [("Nvidia",80,"Excellent","Low"),("AMD",67,"Good","Low"),("Intel",54,"Fair","Medium"),("Qualcomm",66,"Good","Low")],
-    "amd":       [("AMD",67,"Good","Low"),("Nvidia",80,"Excellent","Low"),("Intel",54,"Fair","Medium")],
-    "apple":     [("Apple",85,"Excellent","Low"),("Samsung",72,"Good","Low"),("Google",78,"Good","Low"),("Microsoft",82,"Excellent","Low")],
-    "microsoft": [("Microsoft",82,"Excellent","Low"),("Google",78,"Good","Low"),("Apple",85,"Excellent","Low"),("Amazon",69,"Good","Low")],
-    "google":    [("Google",78,"Good","Low"),("Microsoft",82,"Excellent","Low"),("Apple",85,"Excellent","Low"),("Meta",55,"Fair","Medium")],
-    "meta":      [("Meta",55,"Fair","Medium"),("Snap",50,"Fair","High"),("TikTok",52,"Fair","High"),("LinkedIn",68,"Good","Low")],
-    "amazon":    [("Amazon",69,"Good","Low"),("Walmart",62,"Good","Medium"),("Microsoft",82,"Excellent","Low"),("Shopify",65,"Good","Low")],
-    "samsung":   [("Samsung",72,"Good","Low"),("Apple",85,"Excellent","Low"),("Xiaomi",60,"Fair","Medium"),("Sony",68,"Good","Low")],
-}
-
-def get_competitor_data(company_name):
-    key = company_name.lower()
-    for k, v in COMPETITOR_PAIRS.items():
-        if k in key or key in k:
-            return v
-    import random; rng = random.Random(_seed_from(company_name) + 2)
-    base = rng.randint(50,85)
-    return [(company_name, base, "Good" if base>=70 else "Fair", "Low" if base>=70 else "Medium")]
-
-
-# ── PDF export ────────────────────────────────────────────────────────────────
+# ── PDF export ────────────────────────────────────────────────
 def generate_pdf(company, score, grade, risk, top_issue):
     try:
         from reportlab.lib.pagesizes import letter
@@ -594,15 +844,12 @@ def generate_pdf(company, score, grade, risk, top_issue):
                                 leftMargin=.85*inch, rightMargin=.85*inch,
                                 topMargin=.85*inch, bottomMargin=.85*inch)
         styles = getSampleStyleSheet()
-        def ps(base, **kw):
-            return ParagraphStyle(base+"_c", parent=styles[base], **kw)
-        accent = colors.HexColor("#5B52C8")
-        dark   = colors.HexColor("#1E293B")
-        story  = [
+        def ps(base, **kw): return ParagraphStyle(base+"_c", parent=styles[base], **kw)
+        accent = colors.HexColor("#5B52C8"); dark = colors.HexColor("#1E293B")
+        story = [
             Paragraph("🧠 SocialMind AI", ps("Normal", fontSize=9, textColor=accent, spaceAfter=4)),
             Paragraph(f"CEO Briefing — {company}", ps("Title", fontSize=24, textColor=dark, spaceAfter=4)),
-            Paragraph(datetime.now().strftime("%B %d, %Y"),
-                      ps("Normal", fontSize=10, textColor=colors.HexColor("#64748B"), spaceAfter=16)),
+            Paragraph(datetime.now().strftime("%B %d, %Y"), ps("Normal", fontSize=10, textColor=colors.HexColor("#64748B"), spaceAfter=16)),
             HRFlowable(width="100%", thickness=1, color=colors.HexColor("#E2E8F0")),
             Spacer(1, 14),
         ]
@@ -622,8 +869,7 @@ def generate_pdf(company, score, grade, risk, top_issue):
         story.append(Paragraph("Executive Summary", ps("Heading2", textColor=dark, spaceAfter=8)))
         story.append(Paragraph(
             f"Negative discussion is concentrated around <b>{top_issue}</b>. "
-            f"Public perception indicates a <b>{risk.lower()} risk</b> environment. "
-            "Stakeholder trust is strongest with customers and requires attention at the employee level.",
+            f"Public perception indicates a <b>{risk.lower()} risk</b> environment.",
             ps("Normal", fontSize=11, leading=18, spaceAfter=14)))
         story.append(Paragraph("Recommended Actions", ps("Heading2", textColor=dark, spaceAfter=8)))
         for a in [f"Increase executive transparency on <b>{top_issue.lower()}</b>",
@@ -631,8 +877,7 @@ def generate_pdf(company, score, grade, risk, top_issue):
                   "Monitor media velocity daily and trigger escalation if risk worsens",
                   "Brief investor relations before next earnings call"]:
             story.append(Paragraph(f"• {a}", ps("Normal", fontSize=11, leading=17, leftIndent=12, spaceAfter=6)))
-        story += [Spacer(1,20),
-                  HRFlowable(width="100%", thickness=.5, color=colors.HexColor("#E2E8F0")),
+        story += [Spacer(1,20), HRFlowable(width="100%", thickness=.5, color=colors.HexColor("#E2E8F0")),
                   Paragraph("Generated by SocialMind AI · Confidential",
                              ps("Normal", fontSize=8, textColor=colors.HexColor("#94A3B8"), spaceBefore=8))]
         doc.build(story)
@@ -642,7 +887,7 @@ def generate_pdf(company, score, grade, risk, top_issue):
         return None
 
 
-# ── Data loading ──────────────────────────────────────────────────────────────
+# ── Data loading ──────────────────────────────────────────────
 def _find_csv(folder, *candidates):
     for name in candidates:
         p = folder / name
@@ -651,46 +896,80 @@ def _find_csv(folder, *candidates):
     return None
 
 def check_cached_company(company_name):
-    # Check saved companies first
-    companies_root = Path("data/companies")
-    if companies_root.exists():
-        for folder in companies_root.iterdir():
-            if folder.is_dir() and folder.name.lower() == company_name.strip().lower():
-                if (_find_csv(folder, "reputation_summary.csv") and
-                    _find_csv(folder, "company_dataset.csv", "reputation_analysis.csv") and
-                    _find_csv(folder, "issue_summary.csv")):
-                    return folder, True
-    # FIX 3: was incorrectly reusing loop variable 'folder' — now uses explicit 'live'
-    live = Path("data/live")
-    if (_find_csv(live, "reputation_summary.csv") and
-        _find_csv(live, "reputation_analysis.csv", "company_dataset.csv") and
-        _find_csv(live, "issue_summary.csv")):
-        return live, False
-    return None, False
 
+    companies_root = Path("data/companies")
+
+    if companies_root.exists():
+
+        for folder in companies_root.iterdir():
+
+            if (
+                folder.is_dir()
+                and folder.name.lower()
+                == company_name.strip().lower()
+            ):
+
+                if _find_csv(folder, "company_dataset.csv"):
+                    return folder, True
+
+    live = Path("data/live")
+
+    if live.exists():
+        return live, False
+
+    return None, False
 @st.cache_data(ttl=600, show_spinner=False)
 def load_report_data(base_path_str):
-    base     = Path(base_path_str)
-    summary  = pd.read_csv(_find_csv(base, "reputation_summary.csv"))
-    # FIX 2a: try both filenames for analysis CSV
-    analysis = pd.read_csv(_find_csv(base, "reputation_analysis.csv", "company_dataset.csv"))
-    issues   = pd.read_csv(_find_csv(base, "issue_summary.csv"))
-    # FIX 2b: normalise column names so downstream code always sees 'sentiment' and 'text'
-    analysis.columns = [c.lower().strip() for c in analysis.columns]
+
+    base = Path(base_path_str)
+
+    summary_file = _find_csv(base, "reputation_summary.csv")
+    analysis_file = _find_csv(
+        base,
+        "reputation_analysis.csv",
+        "company_dataset.csv"
+    )
+    issue_file = _find_csv(base, "issue_summary.csv")
+
+    summary = pd.read_csv(summary_file)
+
+    analysis = pd.read_csv(analysis_file)
+
+    issues = pd.read_csv(issue_file)
+
+    analysis.columns = [
+        c.lower().strip()
+        for c in analysis.columns
+    ]
+
     if "content" in analysis.columns and "text" not in analysis.columns:
-        analysis = analysis.rename(columns={"content": "text"})
+        analysis = analysis.rename(
+            columns={"content": "text"}
+        )
+
     if "label" in analysis.columns and "sentiment" not in analysis.columns:
-        analysis = analysis.rename(columns={"label": "sentiment"})
-    return summary, analysis, issues
+        analysis = analysis.rename(
+            columns={"label": "sentiment"}
+        )
 
+    advisory_path = base / "advisory.json"
 
-# ── Session state ─────────────────────────────────────────────────────────────
+    advisory = None
+
+    if advisory_path.exists():
+
+        with open(advisory_path, "r", encoding="utf-8") as f:
+            advisory = json.load(f)
+
+    return summary, analysis, issues, advisory
+
+# ── Session state ─────────────────────────────────────────────
 for k, v in [("analyzed",False),("company_name",""),("analysis_success",False),("from_cache",False)]:
     if k not in st.session_state:
         st.session_state[k] = v
 
 
-# ── Landing ───────────────────────────────────────────────────────────────────
+# ── Landing ───────────────────────────────────────────────────
 if not st.session_state.analyzed:
     st.markdown("""
     <div style="text-align:center;padding:5rem 1rem 2.5rem;">
@@ -702,16 +981,47 @@ if not st.session_state.analyzed:
       </div>
       <div style="font-size:15px;color:#3A4F6E;line-height:1.75;max-width:500px;margin:0 auto 3rem;">
         Monitor public perception, surface emerging risks,<br>
-        and brief your leadership — all from a single search.
+        and brief your leadership — all from a single search.<br>
+        <span style="color:#5B52C8;font-size:13px;">Try: ChatGPT · Claude · iPhone · Gemini · Copilot</span>
       </div>
     </div>
     """, unsafe_allow_html=True)
+    st.markdown("""
+    <div style="
+    background:rgba(91,82,200,.08);
+    border:1px solid rgba(91,82,200,.18);
+    border-radius:16px;
+    padding:18px 24px;
+    margin:20px auto 30px auto;
+    max-width:780px;
+    ">
 
+    <h3 style="color:#E8EEFF;margin-top:0;">🎯 Project Scope</h3>
+
+    <p style="color:#C9D4F5;">
+    <b>SocialMind AI</b> is designed for <b>technology-driven companies</b>.
+    It analyzes public perception from <b>News Articles</b>,
+    <b>YouTube Videos</b>, and <b>YouTube Comments</b> to generate
+    AI-powered reputation intelligence.
+    </p>
+
+    <p style="color:#B5C4E0;">
+    <b>Supported Industries</b><br>
+    • AI & LLM Companies<br>
+    • Consumer Technology<br>
+    • SaaS Platforms<br>
+    • Semiconductor Companies<br>
+    • Electric Vehicle Companies<br>
+    • Social Media Platforms
+    </p>
+
+    </div>
+    """, unsafe_allow_html=True)
 _, center, _ = st.columns([1, 4, 1])
 with center:
     company_input = st.text_input("Company",
                                   value=st.session_state.company_name,
-                                  placeholder="Search a company — e.g. Apple, Tesla, OpenAI",
+                                  placeholder="Search a company or product — e.g. ChatGPT, Claude, iPhone",
                                   label_visibility="collapsed")
     analyze = st.button("Analyze Company", use_container_width=True)
 
@@ -724,7 +1034,7 @@ if analyze and company_input:
     else:
         bar  = st.progress(0)
         slot = st.empty()
-        slot.info("Fetching news articles...")
+        slot.info("Fetching news & YouTube (searching product aliases too)...")
         bar.progress(15)
         result = subprocess.run(["python","src/live_analysis/company_reputation.py"],
                                 input=f"{company_input}\nn\n", text=True, capture_output=True)
@@ -753,16 +1063,15 @@ if st.session_state.get("analysis_success"):
     st.session_state.analysis_success = False
 
 
-# ── Dashboard ─────────────────────────────────────────────────────────────────
+# ── Dashboard ─────────────────────────────────────────────────
 if st.session_state.analyzed and st.session_state.company_name:
     company = st.session_state.company_name
     seed    = _seed_from(company)
 
     base, is_cached = check_cached_company(company)
-    load_report_data.clear()  # always reload fresh — avoids stale cache on column changes
-
+    
     if base is not None:
-        summary, analysis, issues = load_report_data(str(base))
+        summary, analysis, issues, advisory = load_report_data(str(base))
         positive  = int(summary.loc[0,"positive"])
         neutral   = int(summary.loc[0,"neutral"])
         negative  = int(summary.loc[0,"negative"])
@@ -771,11 +1080,35 @@ if st.session_state.analyzed and st.session_state.company_name:
         risk      = str(summary.loc[0,"risk_level"])
         top_topic = str(summary.loc[0,"top_topic"])
         top_issue = issues.sort_values(by="count", ascending=False).iloc[0]["issue"]
-        # FIX 2b: if sentiment column is still missing after normalisation, create empty
         if "sentiment" not in analysis.columns:
             analysis["sentiment"] = ""
         if "text" not in analysis.columns:
             analysis["text"] = ""
+
+        # ── Crisis radar: use real advisory.json if available ──
+        if advisory:
+            velocity = advisory["velocity"]
+            alerts   = advisory["alerts"]
+        else:
+            # Derive from actual data
+            total_m   = max(1, positive + neutral + negative)
+            neg_ratio = negative / total_m
+            velocity  = "High" if neg_ratio >= 0.55 else "Medium" if neg_ratio >= 0.30 else "Low"
+            if risk.upper() == "HIGH":
+                alerts = [
+                    {"level":"critical","text":f"<strong style='color:#E8EEFF;'>Critical:</strong> {top_issue} is the dominant negative theme across {negative} mentions"},
+                    {"level":"warning", "text":f"Negative ratio {neg_ratio:.0%} — monitor closely across news and YouTube"},
+                ]
+            elif risk.upper() == "MEDIUM":
+                alerts = [
+                    {"level":"warning","text":f"<strong style='color:#E8EEFF;'>Watch:</strong> {top_issue} elevated in {negative} negative mentions"},
+                    {"level":"info",   "text":f"Positive sentiment holding at {positive} mentions"},
+                ]
+            else:
+                alerts = [
+                    {"level":"info","text":f"Velocity within normal range — {negative} negative out of {positive+neutral+negative} total"},
+                    {"level":"info","text":f"Top discussed topic: {top_topic}"},
+                ]
     else:
         import random; rng = random.Random(seed)
         score     = rng.randint(48,82)
@@ -786,27 +1119,39 @@ if st.session_state.analyzed and st.session_state.company_name:
         issues    = pd.DataFrame({"issue":["Supply Chain","Data Privacy","Leadership","Sustainability","Customer Service"],"count":[38,27,22,15,10]})
         analysis  = pd.DataFrame({"sentiment":[],"text":[]})
         is_cached = False
+        velocity  = "Low"
+        alerts    = [{"level":"info","text":"No live data — showing illustrative data"}]
 
-    total            = max(1, positive+neutral+negative)
-    s_scores         = make_stakeholder_scores(score, seed)
-    velocity, alerts = derive_crisis_data(risk, top_issue)
-    velocity_df      = make_velocity_history(score, seed)
-    velocity_df      = detect_anomalies(velocity_df, col="mentions")
-    anomaly_events   = anomaly_summary(velocity_df)
+    total        = max(1, positive+neutral+negative)
+    s_scores     = make_stakeholder_scores(score, seed)
+    velocity_df  = make_velocity_history(score, seed)
+    velocity_df  = detect_anomalies(velocity_df, col="mentions")
+    anomaly_events = anomaly_summary(velocity_df)
     timeline_df, timeline_events = build_timeline(company, score, seed)
-    comp_data        = get_competitor_data(company)
+    peers        = get_competitor_data(company)
+    if peers:
+        peers[0]["score"] = score
+        peers[0]["grade"] = grade
+        peers[0]["risk"]  = risk
+    peers[0]["dims"] = {
+    "Brand": score,
+    "Innovation": min(score + 10, 100),
+    "Leadership": max(score - 5, 0),
+    "ESG": max(score - 10, 0),
+    "Customer": score
+    }
 
     r_bg  = ("rgba(226,80,74,.14)" if risk.upper()=="HIGH" else
              "rgba(240,160,48,.14)" if risk.upper()=="MEDIUM" else "rgba(29,173,133,.14)")
     r_col = "#F08080" if risk.upper()=="HIGH" else "#EFBF27" if risk.upper()=="MEDIUM" else "#4EC9A0"
     gu    = grade.upper()
     g_bg  = ("rgba(226,80,74,.14)" if any(w in gu for w in ["CRITICAL","POOR","F","D"])
-             else "rgba(240,160,48,.14)" if any(w in gu for w in ["BELOW","FAIR","C"])
-             else "rgba(29,173,133,.14)" if any(w in gu for w in ["GOOD","EXCELLENT","A","B"])
+             else "rgba(240,160,48,.14)" if any(w in gu for w in ["BELOW","FAIR","C","WEAK","MIXED"])
+             else "rgba(29,173,133,.14)" if any(w in gu for w in ["GOOD","EXCELLENT","STRONG","A","B"])
              else "rgba(91,82,200,.18)")
     g_col = ("#F08080" if any(w in gu for w in ["CRITICAL","POOR","F","D"])
-             else "#EFBF27" if any(w in gu for w in ["BELOW","FAIR","C"])
-             else "#4EC9A0" if any(w in gu for w in ["GOOD","EXCELLENT","A","B"])
+             else "#EFBF27" if any(w in gu for w in ["BELOW","FAIR","C","WEAK","MIXED"])
+             else "#4EC9A0" if any(w in gu for w in ["GOOD","EXCELLENT","STRONG","A","B"])
              else "#9B8FEE")
     vel_col = "#E2504A" if risk.upper()=="HIGH" else "#F0A030" if risk.upper()=="MEDIUM" else "#1DAD85"
 
@@ -814,14 +1159,13 @@ if st.session_state.analyzed and st.session_state.company_name:
     st.markdown("<div style='height:1.5rem'></div>", unsafe_allow_html=True)
     h_left, h_right = st.columns([6,1])
     with h_left:
-        components.html(score_ring_html(score, company, grade, g_bg, g_col,
-                                        risk, r_bg, r_col, top_topic),
-                        height=148, scrolling=False)
+        components.html(score_ring_html(score, company.title(), grade, g_bg, g_col,
+                                        risk, r_bg, r_col, top_topic), height=148, scrolling=False)
     with h_right:
         st.markdown("<div style='height:32px'></div>", unsafe_allow_html=True)
         if st.button("↩ New search"):
             st.session_state.update(analyzed=False, company_name="", from_cache=False)
-            load_report_data.clear()
+
             st.rerun()
 
     badge_style = ("background:rgba(91,82,200,0.1);border:1px solid rgba(91,82,200,0.22);color:#9B8FEE;"
@@ -847,7 +1191,7 @@ if st.session_state.analyzed and st.session_state.company_name:
     # ── Tabs ──────────────────────────────────────────────────
     tab1,tab2,tab3,tab4,tab5,tab6 = st.tabs([
         "📊  Overview","🚨  Crisis radar","📈  Timeline",
-        "🔍  Anomalies","⚖️  Competitors","📋  CEO memo",
+        "📡 Data Sources","⚖️  Competitors","📋  CEO memo",
     ])
 
     # ════════════ TAB 1 — OVERVIEW ════════════
@@ -866,9 +1210,10 @@ if st.session_state.analyzed and st.session_state.company_name:
         with c1:
             st.plotly_chart(styled_bar(issues.sort_values(by="count"), x="count", y="issue",
                                        orientation="h", title="Issue distribution"),
-                            use_container_width=True)
+                            use_container_width=True, key="overview_issue_bar")
         with c2:
-            st.plotly_chart(donut_chart(positive, neutral, negative), use_container_width=True)
+            st.plotly_chart(donut_chart(positive, neutral, negative),
+                            use_container_width=True, key="overview_donut")
 
         hist_path = Path("data/history/reputation_history.csv")
         if hist_path.exists():
@@ -878,68 +1223,188 @@ if st.session_state.analyzed and st.session_state.company_name:
                 lbl("Reputation trend")
                 st.plotly_chart(styled_line(h_df, x="date", y="reputation_score",
                                             color="#5B52C8", title="Score over time"),
-                                use_container_width=True)
+                                use_container_width=True, key="overview_trend_line")
 
-        # Show mentions whenever we have rows and a sentiment column
         has_mentions = len(analysis) > 0 and "sentiment" in analysis.columns
         if has_mentions:
             st.markdown("<hr>", unsafe_allow_html=True)
             lbl("Mention detail")
-            pt, nt = st.tabs(["Positive mentions","Negative mentions"])
+
+            p_count = (
+                analysis["sentiment"]
+                .astype(str)
+                .str.lower()
+                .eq("positive")
+                .sum()
+            )
+
+            n_count = (
+                analysis["sentiment"]
+                .astype(str)
+                .str.lower()
+                .eq("negative")
+                .sum()
+            )
+
+            neu_count = (
+                analysis["sentiment"]
+                .astype(str)
+                .str.lower()
+                .eq("neutral")
+                .sum()
+            )
+
+            c1, c2, c3 = st.columns(3)
+
+            c1.metric("🟢 Positive", p_count)
+            c2.metric("🔴 Negative", n_count)
+            c3.metric("⚪ Neutral", neu_count)
+
+            st.markdown("<br>", unsafe_allow_html=True)
+
+            pt, nt, neu = st.tabs([
+                f"🟢 Positive ({p_count})",
+                f"🔴 Negative ({n_count})",
+                f"⚪ Neutral ({neu_count})"
+            ])
+
             with pt:
-                pos_df = analysis[analysis["sentiment"].astype(str).str.lower()=="positive"]
+
+                pos_df = analysis[
+                    analysis["sentiment"]
+                    .astype(str)
+                    .str.lower()
+                    == "positive"
+                ]
+
                 if len(pos_df):
-                    for txt in pos_df["text"].head(10):
-                        st.markdown(f'<div class="mention-pill" style="border-left:2px solid #1DAD85;'
-                                    f'background:rgba(29,173,133,0.06);">{txt}</div>',
-                                    unsafe_allow_html=True)
+
+                    for txt in pos_df["text"].dropna().head(10):
+
+                        st.markdown(
+                            f'<div class="mention-pill" '
+                            f'style="border-left:2px solid #1DAD85;'
+                            f'background:rgba(29,173,133,0.06);">'
+                            f'{txt}</div>',
+                            unsafe_allow_html=True
+                        )
+
                 else:
                     st.info("No positive mentions found.")
+
             with nt:
-                neg_df = analysis[analysis["sentiment"].astype(str).str.lower()=="negative"]
+
+                neg_df = analysis[
+                    analysis["sentiment"]
+                    .astype(str)
+                    .str.lower()
+                    == "negative"
+                ]
+
                 if len(neg_df):
-                    for txt in neg_df["text"].head(10):
-                        st.markdown(f'<div class="mention-pill" style="border-left:2px solid #E2504A;'
-                                    f'background:rgba(226,80,74,0.06);">{txt}</div>',
-                                    unsafe_allow_html=True)
+
+                    for txt in neg_df["text"].dropna().head(10):
+
+                        st.markdown(
+                            f'<div class="mention-pill" '
+                            f'style="border-left:2px solid #E2504A;'
+                            f'background:rgba(226,80,74,0.06);">'
+                            f'{txt}</div>',
+                            unsafe_allow_html=True
+                        )
+
                 else:
                     st.info("No negative mentions found.")
 
+            with neu:
+
+                neu_df = analysis[
+                    analysis["sentiment"]
+                    .astype(str)
+                    .str.lower()
+                    == "neutral"
+                ]
+
+                if len(neu_df):
+
+                    for txt in neu_df["text"].dropna().head(10):
+
+                        st.markdown(
+                            f'<div class="mention-pill" '
+                            f'style="border-left:2px solid #64748B;'
+                            f'background:rgba(100,116,139,0.08);">'
+                            f'{txt}</div>',
+                            unsafe_allow_html=True
+                        )
+
+                else:
+                    st.info("No neutral mentions found.")
     # ════════════ TAB 2 — CRISIS RADAR ════════════
+    # Purpose: RIGHT NOW threat assessment — velocity, severity, live alerts from real data
     with tab2:
         st.markdown("<br>", unsafe_allow_html=True)
-        lbl("Mention velocity — 30 days (with anomaly markers)")
+
+        # Explain the tab clearly
+        st.markdown(
+            '<div style="background:rgba(91,82,200,0.07);border:1px solid rgba(91,82,200,0.18);'
+            'border-radius:12px;padding:14px 18px;font-size:13px;color:#64748B;margin-bottom:20px;line-height:1.7;">'
+            '<strong style="color:#E8EEFF;">🚨 Crisis Radar</strong> monitors the <em>current severity</em> of '
+            'public sentiment — how bad is it <em>right now</em>, what are people actually saying, '
+            'and does it require escalation? Unlike the Anomalies tab (which detects statistical outliers '
+            'in volume over time), Crisis Radar focuses on <strong style="color:#E8EEFF;">content, '
+            'velocity and risk classification</strong> from today\'s data.</div>',
+            unsafe_allow_html=True)
+
+        cr_l, cr_r = st.columns(2, gap="large")
+        with cr_l:
+            a_h = 340 if risk.upper()=="HIGH" else 290
+            components.html(crisis_radar_html(velocity, risk, alerts), height=a_h, scrolling=False)
+        with cr_r:
+            lbl("Source breakdown")
+            if base is not None and "source" in analysis.columns:
+                src_df = (analysis.groupby(["source","sentiment"])
+                          .size().reset_index(name="count"))
+                fig_src = px.bar(src_df, x="source", y="count", color="sentiment",
+                                 color_discrete_map={"positive":"#1DAD85","neutral":"#475569","negative":"#E2504A"},
+                                 barmode="stack", title="Mentions by source & sentiment")
+                fig_src.update_layout(**CHART_LAYOUT, legend=_LEGEND, height=280)
+                st.plotly_chart(fig_src, use_container_width=True, key="crisis_source_bar")
+            else:
+                st.plotly_chart(donut_chart(positive, neutral, negative),
+                                use_container_width=True, key="crisis_donut")
+
+        st.markdown("<hr>", unsafe_allow_html=True)
+        lbl("Mention velocity — 30 days")
         st.plotly_chart(anomaly_chart(velocity_df, col="mentions", line_color=vel_col),
-                        use_container_width=True,key="anomaly_chart2")
+                        use_container_width=True, key="crisis_velocity_chart")
         if anomaly_events:
             st.markdown(
                 f'<div style="font-size:12px;color:#E2504A;margin-top:-6px;margin-bottom:12px;">'
-                f'⚠ {len(anomaly_events)} anomal{"y" if len(anomaly_events)==1 else "ies"} detected '
-                f'— see Anomalies tab for detail.</div>', unsafe_allow_html=True)
+                f'⚠ {len(anomaly_events)} volume anomal{"y" if len(anomaly_events)==1 else "ies"} detected '
+                f'— see Anomalies tab for statistical breakdown.</div>', unsafe_allow_html=True)
 
         st.markdown("<hr>", unsafe_allow_html=True)
-        lbl("Risk classification · Issue severity")
+        lbl("Issue severity classification")
         issues_s = issues.sort_values(by="count", ascending=False).head(8).copy()
         q66, q33 = issues_s["count"].quantile(0.66), issues_s["count"].quantile(0.33)
         issues_s["severity"]  = issues_s["count"].apply(lambda x: "🔴 High" if x>=q66 else "🟡 Medium" if x>=q33 else "🟢 Low")
         issues_s["risk_type"] = issues_s["issue"].apply(
-            lambda i: "Reputational" if any(w in i.lower() for w in ["fraud","scandal","ceo","leak","lawsuit"])
-                      else "Operational" if any(w in i.lower() for w in ["product","service","outage","recall"])
+            lambda i: "Reputational" if any(w in i.lower() for w in ["fraud","scandal","ceo","leak","lawsuit","leadership"])
+                      else "Operational" if any(w in i.lower() for w in ["product","service","outage","recall","quality"])
                       else "Financial"   if any(w in i.lower() for w in ["stock","revenue","loss","profit","volatility"])
+                      else "AI/Tech"     if any(w in i.lower() for w in ["ai","safety","bias","privacy","data","regulation"])
                       else "General")
-        st.dataframe(issues_s[["issue","count","severity","risk_type"]].rename(
-            columns={"issue":"Issue","count":"Mentions","severity":"Severity","risk_type":"Risk type"}),
+        st.dataframe(
+            issues_s[["issue","count","severity","risk_type"]].rename(
+                columns={"issue":"Issue","count":"Mentions","severity":"Severity","risk_type":"Risk type"}),
             use_container_width=True, hide_index=True)
-        st.markdown("<br>", unsafe_allow_html=True)
-        a_h = 310 if risk.upper()=="HIGH" else 262
-        components.html(crisis_radar_html(velocity, risk, alerts), height=a_h, scrolling=False)
 
     # ════════════ TAB 3 — TIMELINE ════════════
     with tab3:
         st.markdown("<br>", unsafe_allow_html=True)
         lbl("Reputation score — 90-day history")
         st.plotly_chart(timeline_chart(timeline_df, timeline_events, company),
-                        use_container_width=True,key="source_chart")
+                        use_container_width=True, key="timeline_main_chart")
         st.markdown("<hr>", unsafe_allow_html=True)
         ev_col, info_col = st.columns(2, gap="large")
         with ev_col:
@@ -972,93 +1437,147 @@ if st.session_state.analyzed and st.session_state.company_name:
                     f'<div style="font-size:12px;color:#3A4F6E;margin-top:4px;">{"+" if td>=0 else ""}{td:.1f} pts vs prior 30 days</div>'
                     f'</div>', unsafe_allow_html=True)
 
-    # ════════════ TAB 4 — ANOMALIES ════════════
+    # ════════════ TAB 4 — DATA SOURCES ════════════
     with tab4:
-        st.markdown("<br>", unsafe_allow_html=True)
-        spike_count = len([e for e in anomaly_events if e["dir"]=="spike"])
-        drop_count  = len([e for e in anomaly_events if e["dir"]=="drop"])
-        max_z       = max((abs(e["z"]) for e in anomaly_events), default=0.0)
-        overall     = "Critical" if max_z>=4.0 else "Warning" if max_z>=2.5 else "Normal"
-        a1,a2,a3,a4 = st.columns(4)
-        a1.metric("Anomalies",  spike_count+drop_count)
-        a2.metric("Spikes",     spike_count)
-        a3.metric("Drops",      drop_count)
-        a4.metric("Max z-score",f"{max_z:.1f}", delta=overall)
-        st.markdown("<hr>", unsafe_allow_html=True)
-        lbl("Mention volume with anomaly markers")
-        st.plotly_chart(anomaly_chart(velocity_df, col="mentions", line_color=vel_col),
-                        use_container_width=True,key="anomaly_chart1")
-        st.markdown(
-            '<div style="display:flex;gap:20px;font-size:12px;color:#3A4F6E;margin-top:-8px;margin-bottom:16px;">'
-            '<span>▲ <span style="color:#E2504A;">Red</span> = spike (z≥2.0)</span>'
-            '<span>▼ <span style="color:#F0A030;">Amber</span> = drop</span>'
-            '<span>── Dotted = 7-day avg</span>'
-            '<span>■ Band = normal range (±1.5σ)</span></div>', unsafe_allow_html=True)
-        st.markdown("<hr>", unsafe_allow_html=True)
-        al, ar = st.columns(2, gap="large")
-        with al:
-            lbl("Detected anomalies")
-            if anomaly_events:
-                components.html(anomaly_alert_html(anomaly_events),
-                                height=min(100+len(anomaly_events[:5])*78, 480), scrolling=False)
-            else:
-                st.success("No anomalies detected — velocity within normal range.")
-        with ar:
-            lbl("Z-score distribution")
-            zf = go.Figure()
-            zf.add_trace(go.Bar(x=velocity_df["date"], y=velocity_df["z_score"],
-                                marker_color=["#E2504A" if z>=2 else "#F0A030" if z<=-2 else "#182030"
-                                              for z in velocity_df["z_score"]], name="Z-score"))
-            zf.add_hline(y=2.0,  line_dash="dot", line_color="#E2504A",
-                         annotation_text="spike",annotation_font_color="#E2504A")
-            zf.add_hline(y=-2.0, line_dash="dot", line_color="#F0A030",
-                         annotation_text="drop", annotation_font_color="#F0A030")
-            zf.update_layout(**CHART_LAYOUT, legend=_LEGEND, height=300, yaxis_title="z-score", showlegend=False)
-            st.plotly_chart(zf, use_container_width=True,key="confidence_chart")
 
+        st.markdown("<hr>", unsafe_allow_html=True)
+
+        lbl("Data collection summary")
+
+        news_count = (
+            analysis["source"]
+            .astype(str)
+            .str.contains("news", case=False, na=False)
+            .sum()
+        )
+
+        video_count = (
+            analysis["source"]
+            .astype(str)
+            .str.contains("youtube_video", case=False, na=False)
+            .sum()
+        )
+
+        comment_count = (
+            analysis["source"]
+            .astype(str)
+            .str.contains("youtube_comment", case=False, na=False)
+            .sum()
+        )
+
+        c1, c2, c3, c4 = st.columns(4)
+
+        c1.metric("📰 News", news_count)
+        c2.metric("🎥 Videos", video_count)
+        c3.metric("💬 Comments", comment_count)
+        c4.metric("📊 Total", len(analysis))
+
+        st.markdown("<br>", unsafe_allow_html=True)
+
+        lbl("Project scope")
+
+        st.info(
+            f"""
+            Company: {company.title()}
+
+            Data Sources:
+            • News Articles
+            • YouTube Videos
+            • YouTube Comments
+
+            Collection Window:
+            • Latest available public data
+
+            Analysis Includes:
+            • Sentiment Analysis
+            • Topic Detection
+            • Issue Extraction
+            • Reputation Scoring
+            • Crisis Detection
+            • Competitor Benchmarking
+            """
+        )
+
+        lbl("Reputation score methodology")
+
+        st.markdown(
+            """
+            - Positive sentiment increases score
+            - Negative sentiment decreases score
+            - High-risk issues reduce score
+            - Issue frequency impacts reputation grade
+            - Overall score determines risk level and executive recommendations
+            """
+        )
+
+        st.markdown("<br>", unsafe_allow_html=True)
+
+        if "source" in analysis.columns:
+
+            src_counts = (
+                analysis["source"]
+                .value_counts()
+                .reset_index()
+            )
+
+            src_counts.columns = ["Source", "Count"]
+
+            st.dataframe(
+                src_counts,
+                use_container_width=True,
+                hide_index=True
+            )
     # ════════════ TAB 5 — COMPETITORS ════════════
     with tab5:
         st.markdown("<br>", unsafe_allow_html=True)
-        lbl(f"{company.title()} vs peers")
-        components.html(competitor_cards_html(comp_data), height=240, scrolling=False)
+
+        # Score comparison cards
+        lbl(f"{company.title()} vs peers — reputation scores")
+        simple_peers = [(p["name"], p["score"], p["grade"], p["risk"]) for p in peers]
+        components.html(competitor_cards_html(peers), height=240, scrolling=False)
+
         st.markdown("<br>", unsafe_allow_html=True)
-        if len(comp_data) > 1:
-            bench_df = pd.DataFrame(comp_data, columns=["Company","Score","Grade","Risk"])
-            fig_b = px.bar(bench_df, x="Company", y="Score", color="Company",
-                           color_discrete_sequence=PALETTE, title="Reputation score comparison", text="Score")
-            fig_b.update_traces(marker_line_width=0, textposition="outside", textfont=dict(color="#64748B",size=11))
-            fig_b.update_layout(**CHART_LAYOUT, legend=_LEGEND, height=320, showlegend=False)
-            st.plotly_chart(fig_b, use_container_width=True)
-            st.markdown("<hr>", unsafe_allow_html=True)
-            lbl("Dimension radar")
-            dims  = ["Products","Leadership","Workplace","ESG","Financials"]
-            s0, s1 = comp_data[0][1], comp_data[1][1]
-            vals0 = [min(100,s0+15),min(100,s0-10),min(100,s0-5),min(100,s0+5),min(100,s0+8)]
-            vals1 = [min(100,s1+10),min(100,s1-8), min(100,s1+2),min(100,s1+6),min(100,s1-3)]
+
+
+        # Radar chart
+        if len(peers) >= 2:
+            lbl("Dimension radar — where they win and lose")
+            dims_order = ["Brand","Innovation","Leadership","ESG","Customer"]
             fig_r = go.Figure()
-            fig_r.add_trace(go.Scatterpolar(r=vals0+[vals0[0]], theta=dims+[dims[0]], fill="toself",
-                                             name=comp_data[0][0], line=dict(color="#5B52C8",width=2),
-                                             fillcolor="rgba(91,82,200,0.12)"))
-            fig_r.add_trace(go.Scatterpolar(r=vals1+[vals1[0]], theta=dims+[dims[0]], fill="toself",
-                                             name=comp_data[1][0], line=dict(color="#1DAD85",width=2),
-                                             fillcolor="rgba(29,173,133,0.08)"))
+            colors_r = ["#5B52C8","#1DAD85","#F0A030","#E2504A","#9B8FEE"]
+            fills_r  = ["rgba(91,82,200,0.12)","rgba(29,173,133,0.08)",
+                        "rgba(240,160,48,0.08)","rgba(226,80,74,0.08)","rgba(155,143,238,0.08)"]
+            for i, p in enumerate(peers[:4]):
+                vals = [p["dims"].get(d, p["score"]) for d in dims_order]
+                fig_r.add_trace(go.Scatterpolar(
+                    r=vals+[vals[0]], theta=dims_order+[dims_order[0]],
+                    fill="toself", name=p["name"],
+                    line=dict(color=colors_r[i % len(colors_r)], width=2),
+                    fillcolor=fills_r[i % len(fills_r)],
+                ))
             fig_r.update_layout(
                 paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
-                font=dict(family="Inter",color="#64748B",size=12), height=400,
+                font=dict(family="Inter", color="#64748B", size=12), height=400,
                 polar=dict(bgcolor="rgba(0,0,0,0)",
-                           radialaxis=dict(visible=True,range=[0,100],gridcolor="#131E34",
-                                           tickfont=dict(color="#3A4F6E"),linecolor="#131E34"),
-                           angularaxis=dict(gridcolor="#131E34",linecolor="#131E34",
+                           radialaxis=dict(visible=True, range=[0,100], gridcolor="#131E34",
+                                           tickfont=dict(color="#3A4F6E"), linecolor="#131E34"),
+                           angularaxis=dict(gridcolor="#131E34", linecolor="#131E34",
                                             tickfont=dict(color="#94A3B8"))),
-                legend=dict(bgcolor="rgba(0,0,0,0)",font=dict(color="#94A3B8")),
+                legend=dict(bgcolor="rgba(0,0,0,0)", font=dict(color="#94A3B8")),
                 margin=dict(l=40,r=40,t=30,b=30))
-            st.plotly_chart(fig_r, use_container_width=True,key="comparison_chart")
+            st.plotly_chart(fig_r, use_container_width=True, key="comp_radar_chart")
+
+        st.markdown("<hr>", unsafe_allow_html=True)
+
+        # ── NEW: Why they score the way they do ──
+        lbl("Competitive intelligence — why they score the way they do")
+        detail_height = len(peers) * 320
+        components.html(competitor_detail_html(peers), height=detail_height, scrolling=True)
 
     # ════════════ TAB 6 — CEO MEMO ════════════
     with tab6:
         st.markdown("<br>", unsafe_allow_html=True)
-        components.html(memo_html(score, grade, risk, top_issue, company.title()),
-                        height=420, scrolling=False)
+        components.html(memo_html(score, grade, risk, top_issue, company.title()), height=420, scrolling=False)
         st.markdown("<br>", unsafe_allow_html=True)
         lbl("Export")
         pdf_col, _ = st.columns([1,3])
@@ -1069,17 +1588,17 @@ if st.session_state.analyzed and st.session_state.company_name:
                     b64   = base64.b64encode(pdf_bytes).decode()
                     fname = f"{company.lower().replace(' ','_')}_memo_{datetime.now().strftime('%Y%m%d')}.pdf"
                     st.markdown(f'<div class="dl-link"><a href="data:application/pdf;base64,{b64}" '
-                                f'download="{fname}">📄 Download PDF memo</a></div>',
-                                unsafe_allow_html=True)
+                                f'download="{fname}">📄 Download PDF memo</a></div>', unsafe_allow_html=True)
                 else:
                     st.warning("Install `reportlab`: `pip install reportlab`")
         st.markdown("<br>", unsafe_allow_html=True)
         lbl("Plain text")
-        st.code(f"""CEO Briefing — {company}
+        st.code(f"""CEO Briefing — {company.title()}
 Date: {datetime.now().strftime('%B %d, %Y')}
 
-Reputation Score: {score} | Grade: {grade} | Risk: {risk}
-Primary Issue: {top_issue}
+Reputation Score : {score} | Grade: {grade} | Risk: {risk}
+Primary Issue    : {top_issue}
+Crisis Velocity  : {velocity}
 
 Executive Summary:
 Negative discussion is concentrated around {top_issue}.

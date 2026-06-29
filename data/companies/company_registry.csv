@@ -1,5 +1,7 @@
 company,score,grade,risk
 Microsoft,44.0,Weak,MEDIUM
 Samsung,36.84,Weak,HIGH
-Tesla,45.45,Weak,MEDIUM
 OpenAI,14.29,Critical,HIGH
+Anthropic,34.62,Critical,HIGH
+Tesla,34.88,Critical,HIGH
+Apple,29.63,Critical,HIGH

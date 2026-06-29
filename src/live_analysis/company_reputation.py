@@ -165,6 +165,27 @@ subprocess.run(
 )
 
 # ===================================
+# VERIFY OUTPUTS
+# ===================================
+
+from pathlib import Path
+
+required = [
+    "data/live/company_dataset.csv",
+    "data/live/reputation_analysis.csv",
+    "data/live/reputation_summary.csv",
+    "data/live/issue_summary.csv"
+]
+
+for file in required:
+
+    if not Path(file).exists():
+
+        print(f"\nERROR: Missing file -> {file}")
+        input("\nPress Enter to exit...")
+        quit()
+
+# ===================================
 # SAVE CACHE
 # ===================================
 

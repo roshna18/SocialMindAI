@@ -1,0 +1,20 @@
+{
+  "velocity": "Low",
+  "alerts": [
+    {
+      "level": "critical",
+      "text": "<strong style='color:#E8EEFF;'>Critical:</strong> Brand Criticism is the dominant negative theme across 19 mentions"
+    },
+    {
+      "level": "critical",
+      "text": "Sample: \"Texas Grandma Killed by Tesla Crashing into Home, Driver Claims 'Autopilot' Active...\""
+    },
+    {
+      "level": "warning",
+      "text": "Negative ratio 10% \u2014 above danger threshold. News: 7 articles \u00b7 YouTube: 189 items"
+    }
+  ],
+  "neg_ratio": 0.097,
+  "news_count": 7,
+  "yt_count": 189
+}

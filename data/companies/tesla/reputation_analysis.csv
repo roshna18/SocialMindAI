@@ -1,256 +1,276 @@
 source,text,sentiment,confidence
-news,SpaceX IPO lifts Elon Musk into $1 trillion net worth territory,neutral,0.5081
-news,"Quote of the day by futurist Nikola Tesla: 'We are just waves in time and space, changing continuously, and the illusion of individuality is produced through...' Is individuality real or just an illus",neutral,0.8654
-news,"Binance Lists Circle, Nvidia, & Tesla bStocks Trading Pairs, Is SpaceX Next?",neutral,0.9322
-news,Elon Musk: Zack Polanski is ‘a scumbag and traitor’,negative,0.5372
-news,Tesla’s robotaxi falls short with long waits and stalled rides,negative,0.9278
-news,I Am Buying Tesla Before The Market Fully Prices The SpaceX Effect,neutral,0.8979
-news,Tesla stock short volume ratio soars to two-week highs signalling SpaceX IPO turmoil,positive,0.8964
-news,Iran includes Elon Musk's Middle East companies as military targets,neutral,0.9386
-news,Musk’s Net Worth Down More Than $50 Billion Ahead Of SpaceX IPO,negative,0.9707
-news,From working as a cleaner to buying a Tesla and a million-dollar home: Indian-origin man's journey has the internet in tears,neutral,0.8954
-youtube_video,"Tesla Stock Price Analysis | Top $TSLA Levels To Watch for June 12th, 2026",neutral,0.9453
-youtube_video,Something BIG Just Got LEAKED About Tesla Optimus,neutral,0.9187
-youtube_video,Why I Choose Tesla over SpaceX Stock,neutral,0.9281
-youtube_video,NEW TESLA UPDATE??,neutral,0.9114
-youtube_video,Tesla FSD 14.3.4 Update Is Here... First Impressions,neutral,0.9425
-youtube_video,Tesla Gives Every Owner FSD For Free!,neutral,0.9332
-youtube_video,Denmark Gets FSD - Tesla Optimus V3 Production Just Started - BYD Aiming to Be #1 in 5 Years,positive,0.8476
-youtube_video,Tesla App Update 4.57.5: Kommende Mega Features wurden entdeckt!,neutral,0.9091
-youtube_video,Which car has the best hands free tailgate? Tesla vs Merc 🏁 #tesla #mercedes #heysiri,neutral,0.9129
-youtube_video,10 Tesla BASICS That New Owners Must Know (Beginner&#39;s Guide),neutral,0.9311
-youtube_comment,Hopefully we see $415 tomorrow morning,positive,0.7811
-youtube_comment,"I bought at 383, did good for the day. Thank you.",positive,0.5568
-youtube_comment,Ty Sir.,neutral,0.9254
-youtube_comment,Day traders and swing traders are killing Tesla stock price. Not letting it climb higher.,negative,0.6906
-youtube_comment,"Soon Caduun $CDN token will moon, 200x in my opinion",neutral,0.9128
-youtube_comment,"Caduun caught my eye today—very early stage, very interesting.",neutral,0.8198
-youtube_comment,It’s funny how everyone ignores projects like Caduun until they’re already 20x’d.,neutral,0.5779
-youtube_comment,Just stumbled upon something wild in the AI + DeFi space… search “Caduun” and see for yourself.,neutral,0.9191
-youtube_comment,I would expect Tesla to be up tomorrow (Friday) on the coat tails of the SpaceX IPO.,neutral,0.8873
-youtube_comment,I've been a Tesla shareholder since day one my hope is that yes go to the Moon Boris rolled into SpaceX and I get you know fair value for my Tesla shares converted into SpaceX shares the hope is real,neutral,0.883
-youtube_comment,"There is room for other players in the humanoid robot market.  No worries.    If Tesla has a head start, they will be able to initially sell for higher, so that is helpful but not essentail.",neutral,0.5013
-youtube_comment,Tesla stock price is running on ventilator for the last 5 years.,neutral,0.886
-youtube_comment,Understand that it is easier to scale Optimus than it is the cybercab network. You will see that they will scale in parallel not one after the other that so many people are mistaken about.,neutral,0.8963
-youtube_comment,Tesla is no more Elon favourite child. Space X is his “ Apple of the eye “ right now.,neutral,0.9335
-youtube_comment,They don’t want to give up all the intellectual property to China….,neutral,0.9452
-youtube_comment,"sounds like a shill, looks like a shill ... neither whales nor minnows are buying TSLA, abandoning it for SPCX, rumors and propaganda. Nuts is right.",neutral,0.8789
-youtube_comment,"Buy more guys. Greed is good for the heart and the soul, NOT!",neutral,0.8767
-youtube_comment,Trashy channel,neutral,0.7479
-youtube_comment,"If you didn’t understand opportunity cost, owning Tesla will help with that.",neutral,0.9189
-youtube_comment,A little too quite huh? Explains why $tsla is a POS. 💩,neutral,0.9231
-youtube_comment,Seeing TSLA under $400 is hurting my heart because my wallet is currently closed to buying any more shares... so I have to sit this dip out.,negative,0.9268
-youtube_comment,"The more good news, the more it tanks! LOLOLOL! I swear, you can't make this shit up! Still the same price as 5 years ago! Elon is the GOAT! LOL!",neutral,0.8082
-youtube_comment,where is the roadster launch ..,neutral,0.9368
-youtube_comment,🤖=💰,neutral,0.8911
-youtube_comment,Imagine telling the current state of Tesla to someone in 2021,neutral,0.9322
-youtube_comment,"This isn’t innovation anymore — it’s a slow‑motion collapse disguised as genius.
-The common thread across Tesla, SpaceX, xAI, and every Musk‑run company is simple: they are burning more money than they make, overpromising what they can’t deliver, and hiding operational chaos behind PR stunts. Tesla alone is projected to spend far more than it earns this year — a complete reversal from the “hyper‑profitable” narrative. SpaceX is drowning in costs, xAI is a money pit with no revenue model, and Twitter/X is losing cash at a rate that would get any other CEO fired instantly.
+news,Tesla Crash Into Home Kills Woman - Driver-Assist At Fault? Elon Musk Refutes Claim,negative,0.672
+news,OPEN CEO Takes $1 Salary As $741 Million Tesla-Style Pay Package Bets On A Housing Market Turnaround,negative,0.5651
+news,"India's Tata Electronics hit by cyber breach claiming to expose Apple, Tesla trade secrets",negative,0.9477
+news,"Why is Elon Musk calling Ro Khanna 'Ro the Robber', and how the US congressman hit back",neutral,0.6228
+news,"Apple cyber team probes Tata Electronics data breach incident, may recommend security changes",neutral,0.8753
+news,"NatPower, Tesla reach deal on first phase of $5 billion battery storage plan",positive,0.8572
+news,Why Tata Electronics' cyber breach could be a concern for Apple and Tesla,negative,0.5104
+news,Tata Electronics Confirms Cyber Breach; Apple & Tesla Sensitive Trade Data Allegedly Exposed,negative,0.8793
+news,Elon Musk And Tesla AI Chief Fire Back At Reports Linking FSD To Fatal Texas Crash,negative,0.9177
+youtube_video,Tödlicher Unfall: Tesla Autopilot unter Verdacht – aber die Daten erzählen etwas anderes,neutral,0.8535
+youtube_video,"Tesla Optimus, Model Y L, and MegaPod Details You Need to Know",neutral,0.9408
+youtube_video,This Tesla Crash Just Changed the FSD Debate,neutral,0.6295
+youtube_video,TESLA DETECTA ESPÍRITOS? O TESTE MAIS ASSUSTADOR DO TCAR!,neutral,0.8526
+youtube_video,Fatal crash involving Tesla allegedly using driver assist now under federal investigation,negative,0.6662
+youtube_video,Tesla Just Quietly Won the Quarter - Something Big Is Happening - Model Y Review You Didn&#39;t Expect!,neutral,0.8408
+youtube_video,ESSAI TESLA MODEL 3 PROPULSION 2026 : la référence au juste prix,neutral,0.9237
+youtube_video,Tesla Autopilot Takes the Hit to Avoid Pedestrian,neutral,0.7923
+youtube_video,"Tesla Model Y L Specs, Range &amp; Pricing Leaked for the United States",neutral,0.9197
+youtube_video,Why Is Tesla Stock DROPPING Today?,negative,0.9062
+youtube_comment,"In Wirklichkeit war es noch viel schlimmer, was der Tesla gemacht hat. https://youtu.be/CaV8hmrffqw",neutral,0.9264
+youtube_comment,"Wie wäre es dann mal mit dieser Schlagzeile: ""Jährlich fast 3000 Tote durch Autounfälle ohne TESLA-Beteiligung""",neutral,0.7129
+youtube_comment,Wie komt tesla so snell an die daten? Hallo data shutz .. 😂 oder kann tesla jede schrit folgn wie VW da mals 😂,neutral,0.8965
+youtube_comment,"die Schwurbel-News-Leute wissen genau was sie Anrichten,.. in der EU ja gerade alles auf krankhafter Maximal-FSD-Beobachtung,..",neutral,0.8878
+youtube_comment,Macht doch ein gegen-fake-video . . . Wurde der Fahrer von den rückständigen deutschen Autoherstellern bezahlt ?,neutral,0.8979
+youtube_comment,"Tesla kann mit Klagen gegen Fake-News bestimmt viel Geld verdienen,..",neutral,0.9052
+youtube_comment,"Also beim Autopilot wäre es meiner Erfahrung möglich wenn er falsche Daten über die Google Map bekommt so wie bei mir wo er die Geschwindigkeit nach wie vor  sobald ich durch ein Bestimmtes Dorf in Niederösterreich fahre der AP die Geschwindigkeit auf 100kmh beschleunigen würde wenn ich in nicht deaktivieren würde,  deshalb deaktiviere ich immer den AP in diesem Dorf oder reduziere die max  Geschw. manuel  auf 50kmH . Leider noch immer falsche Daten in der Navigation.",neutral,0.8688
+youtube_comment,Danke für die Veröffentlichung und Aufklärung. Das die deutsche Presse unrichtige  Informationen verbreitet gehört zur Lobby Arbeit der Autoindustrie. Es ist unfassbar.,neutral,0.9134
+youtube_comment,"Ich glaube auch nicht, dass die berichten wenn neue Erkenntnisse auftauchen.",neutral,0.9062
+youtube_comment,"Übel mit der unschuldigen Frau, aber krass wie wenig dem Fahrer passiert ist. Unfassbar wie sicher diese Autos sind... Aber der wird sich jetzt wegen Totschlags zu verantworten haben und das weiß er, drum versucht er es ja auch dem Auto in die Schuhe zu schieben",neutral,0.8636
+youtube_comment,Besser über statt unter Belichtet,neutral,0.9025
+youtube_comment,"Der Mensch soll das System kontrollieren, das klang die ganzen Jahre natürlich ganz anders. Elon bekommt nur ein Mini FSD hin, der Ruf aufgrund der unzähligen Probleme u d Elons Weissagungen ist so ramponiert, dass man natürlich sofort mutmaßt, dass Tesla schuld ist. So bleibt nur, dass Tesla-Fahrer vermehrt zum Suizid neigen?",neutral,0.7982
+youtube_comment,wenn es gegen Elon Musk geht sind sich die Links grünen Schweine alle einig,neutral,0.9033
+youtube_comment,"wäre der Unfall am SpaceX IPO passiert, wär es zum komplett Disaster gekommen",neutral,0.8863
+youtube_comment,Man fährt keine 120 an Haus vorbei war es auf der Autobahn?,neutral,0.8761
+youtube_comment,Remember Terminator 2 ? 😅,neutral,0.9122
+youtube_comment,"Aber bitte alle Tesla fanboyś seid doch ehrlich wenn ich nur  mit  Tempomat fahre bekomme ich schon das blanke gruseln. Das Fahrzeug bremst einfach so,wenn jemand die Autobahn Auffahrt hoch kommt bremst das Auto voll. In einer Stadt wo rechts  Autos parken ,hält das Auto einfach an. Dann stellt der Tempomat einfach die Geschwindigkeit herunter auf 60 und bremst ( wer das nicht glaubt kann es gerne testen ,a95 Höhe Abfahrt schäftlarn. Passiert bei 2 unterschiedlichen Model 3). Ich kann mir nicht vorstellen das dieses System alleine fahren kann.",neutral,0.8785
+youtube_comment,Vielleicht hat ja ein Schuh das Gaspedal blockiert,neutral,0.8859
+youtube_comment,"Ja, das ist sehr wahrscheinlich der Hauptgrund für den heutigen Kursrückgang bei Tesla.
+Was passiert ist:
+	•	Am Freitagabend (19./20. Juni 2026) ist in Katy, Texas (bei Houston) ein Tesla Model 3 mit hoher Geschwindigkeit von der Straße abgekommen und frontal in ein Wohnhaus gekracht. Eine 76-jährige Frau im Haus wurde getötet.33
+	•	Der Fahrer hat den Behörden gegenüber angegeben, dass er ein „automated driving assistance system“ (also Autopilot oder ähnlich) genutzt habe.0
+	•	Die Nachricht hat am Wochenende und heute starke Medienpräsenz bekommen, inklusive Berichten über eine laufende NHTSA-Untersuchung (US-Verkehrsbehörde).44
+Auswirkungen auf den Aktienkurs:
+	•	Tesla (TSLA) ist heute um ca. 5–6 % gefallen (von ~405 $ auf ~380–381 $).45
+	•	Solche Unfälle mit Autopilot/FSD in den Schlagzeilen wecken immer wieder alte Bedenken zur Sicherheit der Technologie, regulatorische Risiken und Haftungsfragen – auch wenn Tesla betont, dass der Fahrer offenbar stark beschleunigt und das System manuell übersteuert habe (laut Tesla-Daten bis 73 mph in einem Wohngebiet).36
+SpaceX-Kontext:
+SpaceX ist mittlerweile börsennotiert (Ticker z. B. SPCX) und hat in letzter Zeit starke Kursgewinne verzeichnet (Valuation im Bereich 2+ Billionen $ nach IPO). Der leichte Anstieg heute passt zu einer Gegenbewegung oder allgemeiner Tech-/Musk-Sentiment-Dynamik, ist aber unabhängig vom Tesla-Unfall.15
+Zusammengefasst: Ja, der Unfall mit der Autopilot-Erwähnung in den Überschriften ist der klare Auslöser für den heutigen Tesla-Kursrückgang. Solche Ereignisse führen regelmäßig zu kurzfristigem Verkaufsdruck, auch wenn die langfristige Entwicklung von FSD/Robotaxi für Tesla entscheidend bleibt. Tesla selbst wehrt sich gegen die Narrative und verweist auf die Fahrer-Daten. Die Untersuchung läuft noch.",neutral,0.8642
+youtube_comment,"Willst du auch mal darüber berichten, das Tesla eine Beschönigung der Unfallstatistik vorgeworfen wird...?",neutral,0.8873
+youtube_comment,"Great discussion of what the companies are all doing - product, services, buildouts, etc. versus some videos that are all about stock price speculations which I personally don't care about as no one knows for sure and the stock price will follow the product and services that the companies offer.",neutral,0.9029
+youtube_comment,GREAT analysis from Brian today... very informed. A+,positive,0.8371
+youtube_comment,"Brian's point re: Optimus taking real time photos and traceable work completion is huge.
 
-And the promises? They’re a decade old and still undelivered.
-Full Self‑Driving was promised in 2016. It’s 2026. It still doesn’t exist.  
-Not in the way it was sold. Not even close. People paid thousands for a feature that never arrived, and instead got a beta system that has triggered investigations, lawsuits, and fatal crashes. Families are suing because loved ones died. Employees are suing because of unsafe working conditions, discrimination, and retaliation. The list grows every month.
+We see a direct correlation with the tragic crash last week. The driver lied about FSD and Tesla responded in real time. 
 
-Meanwhile, Tesla’s product quality is going backwards.
-Cars that used to have 14 speakers now have 7.
-Cars that used to have ultrasonic sensors now have none.
-Cars that used to have basic interior components now ship stripped down.
-And somehow the price goes up, not down.
-That’s not innovation — that’s desperation.
+Tesla will ""have the receipts"" and squash complaints/lawsuits in a way that simply can't be done with human employees.",neutral,0.8526
+youtube_comment,"Yes       ,  so i  brought Scottish Mortgage Investment Trust plc (SMT) as they are heavily invested in Space  X  so will benefit greatly from the  ipo",positive,0.8633
+youtube_comment,Randy another great call for tesla,neutral,0.6429
+youtube_comment,Wallpapered in QCodes. Excellent.,positive,0.6468
+youtube_comment,Optimus reveals are like and old movie character. I would argue Edward G Robinson comes to mind. Always 3 steps ahead.,neutral,0.9175
+youtube_comment,"Why not discuss the elephant in the room, the crash?",neutral,0.791
+youtube_comment,"Well, that didn’t take long
+SpaceX traded today lower than the Day-1 close
+And of course TSLA is trading where it was 4 years ago - no growth
 
-Battery degradation is another dirty secret.
-Three years in and many owners are already down to 85% of their original range, and it only gets worse from there. Combine that with the reality of charging — 40 minutes on a “fast” charger if you’re lucky — and the ownership experience becomes a chore, not a breakthrough. The resale value collapse after every surprise price cut only adds insult to injury.
+This does not look good to this TSLA owner who could have bought SpaceX today
+But I bet I can get it at a hearty discount shortly
 
-And the management?
-It’s chaos.
-No stable strategy. No accountability. No discipline.
-One week Tesla is a car company.
-The next week it’s an AI company.
-Then a robotics company.
-Then a robotaxi company.
-Then a humanoid robot company.
-Then a data company.
-Then a subscription company.
-It’s a roulette wheel, not a roadmap.
+Too much hype, and of course, “Just you wait a few years” never does any good for the price today",negative,0.86
+youtube_comment,Crank windows have been around for ever Brian.Power Windows have not.I have worked on both.When was the last time you worked on them!,neutral,0.9142
+youtube_comment,So what ever happened  to the cyber truck? All that hype then nothing.Elon's personal toy isn't selling like a lot of his ideas,neutral,0.8334
+youtube_comment,Thanks all,neutral,0.7982
+youtube_comment,"4.5 years of buying opportunities for you fanboys,  lets hope you all get another 4.5 to 45 more years of buying opportunities.",positive,0.6968
+youtube_comment,When?,neutral,0.8317
+youtube_comment,Get Brian up to 100k subscribers so he can buy a YL,neutral,0.8872
+youtube_comment,Wow! Just wow! Amazing content from two TSLA experts! I'm all in! Incredible buying opportunity!,positive,0.8058
+youtube_comment,tesla is so dam frustrating. How about tesla getting field dressed,neutral,0.9076
+youtube_comment,Get 5% off your Jowua order: https://www.jowua-life.com/special_deals_by_drknow,neutral,0.9184
+youtube_comment,"You should review the Air France fatal crash of an A330 in the South Atlantic on June 1, 2009.
 
-If any other CEO behaved like this — missing deadlines by years, torching cash, gutting product quality, facing waves of lawsuits, and making impulsive decisions that wipe out billions in shareholder value — they’d be removed immediately. Boards would intervene. Investors would revolt. Employees would walk.
+The commercial aviation world is complicated by the existence of two sets of human controls and two humans potentially using them. Furthermore, there is a seniority relationship that officially exists (Pilot / Copilot), which can be partially overridden by consent to give equal opportunity for gaining experience (Pilot Flying / Pilot Monitoring). Boeing has taken a leading role in developing the management practice of Crew Resource Management (CRW) that addresses this complex world.
 
-But here, somehow, the chaos is treated like genius.
+Boeing and Airbus technology also differs in that Boeing physically links the two sets of controls, while Airbus does not! This actually contributed to the Airbus accident, since the senior pilot was off the flight deck resting, and his (left) seat was occupied by the crew with 3rd seniority, while the Pilot Flying was in the right seat. The proximate cause of the crash was conflicting control inputs that neither pilot sensed, and were only detected when the senior captain returned to the flight deck and observed it... too late for a recovery from the dive! Apparently the left controls take priority in conflicts, but the right seat thought he was flying! The senior captain's last recorded words were to the effect that ""You two idiots have killed us all!""
 
-The truth is simple:
-Everything is not okay. Everything is not stable. Everything is not sustainable.  
-The cracks are showing across every company, every product line, every financial statement, and every broken promise. At some point, the hype runs out — and reality takes over. TESLA IS USELESS",negative,0.6325
-youtube_comment,Is it possible that Elon doesn’t want to show Optimus because the Tesla share price would increase significantly skewing a merger with SpaceX? Retail shareholders are getting screwed.,negative,0.8805
-youtube_comment,TSLA drop’n like a rock 🪨 350 inbound,neutral,0.7713
-youtube_comment,Elon screwed Tesla retail Investors!,neutral,0.889
-youtube_comment,"As usual, well thought out and makes a lot of sense. Thank you!",positive,0.6143
-youtube_comment,"Jo, I am with you. I keep buying TSLA and eventually Elon will have to give me free Space X when he forces a merger!",neutral,0.9117
-youtube_comment,The main thing is that starship is still in testing mode.,neutral,0.7623
-youtube_comment,"Excellent coverage
+As if all this is not bad enough, the whole incident was precipitated by an instrument failure, loss of pitot tube heat, pitot freezing, and consequent loss of airspeed inputs, and finally autopilot disconnection!
 
-Very honest and realistic",neutral,0.6683
-youtube_comment,"SpaceX will have to be included in index and ETF. This will happen months after they go public. So this will boost the stock for several months. So there should be some sort of Cell off in my mind, after a few months or a year. The problem also is SpaceX is sucking all the capital out of other markets and out of other thoughts like Nvidia. Since they get included in these, all other tech stocks will get paid and downsize so they can balance ETFs and index.  So, might be a good time just to put cash away while all this craziness happens. Then come in both SpaceX, in stock like NVDIA later on.",neutral,0.7114
-youtube_comment,"JO, you are preaching about lack of revenue....as you promote Tesla with a 300+ pe (both trade on a high premium of being an Elon company)",neutral,0.6463
-youtube_comment,"Hi Jo, I agreed with your Air pocket and Rain re Space X share price later this year.   Regardless I ordered my one Space X share as per Elons looking after the Tesla retail shareholders.   Instead of 135 I offered $144. for my one share offer, as I am a long term retail Tesla investor.  But I'm confused if the Space X share price is $135 or so and Tesla is $380 today that  2.7 x that of Question, how is it your stating that Space X is more expensive than Tesla? 
-Never the less having been a retail Tesla share holder for a few years I don't trade other stocks. 
-I wanted to go to Mars as a kid, yes I am a romance now age 80 I hope with my one historical share to be part of the greatest show on earth starting  Space X!",neutral,0.9184
-youtube_comment,"100% agree there is a 95% probability stock will be far cheaper in the next two years, it will be difficult to maintain the hype with no growth (although the claude and google deals will be good make up for the books for 12 months)",neutral,0.6646
-youtube_comment,"So for fun, I reserved 35 shares in the ipo , be interesting to see if I get some, if not, I’m definitely agree with your thesis on this.",neutral,0.7684
-youtube_comment,"Great job again Jo.
-I was going to put in a pretty healthy market order at IPO, but WHY take a hit on capital even if I know I’d not be selling SPCX or trading it?
-Especially with ROBOTAXI & SEMI both converging FINALLY.
-Hope you are doing well!!!
+These facts have obvious implications for the issue of human-machine interaction!",neutral,0.9234
+youtube_comment,"Condolences to M. Avila, but any vehicle has the potential to be a lethal weapon, it's all in the hands of the driver. That's like blaming the gum in the hands of a criminal who pee-pews somebody. It's all very sad, but people don't address the potential lethality of vehicles. Such as a Tear – wrist driving a 4000 pound van into a crowd of people. Would we blame the Van? By the way I hate having to talk like a baby because YouTube might see my actual words and ban them. They are as bad, if not worse, as this conversation",negative,0.731
+youtube_comment,Could it be a hacker? Maybe the telemetry just tells if the accelerator was at 100% and not if it was physically pressed,neutral,0.9109
+youtube_comment,"By computer restrictions we can eliminate inadvertent press of accelerator, inadvertent selection of drive/reverse mode etc. Keeping the options fully free in manual mode.",neutral,0.9444
+youtube_comment,Computer restrictions in FSD should be perfect. Our freedom to be fully ensured if the drive is taken over to manual mode.,neutral,0.8572
+youtube_comment,Robots should never disobey the human operator. You never know when you'll need to break the law in the case of an emergency.,neutral,0.5711
+youtube_comment,The stupidity of others will always bring Tesla down in the short term.,negative,0.7749
+youtube_comment,"Very interesting. I might vote for really good, smart machines. Humans so often fail at this driving task and allowing well tested FSD to stop a driver from accidentally or even deliberately doing something very harmful would be desirable. I vote yes.",neutral,0.8217
+youtube_comment,Ashok can not complain about media FUD when Tesla continues to fail in educating the public.,negative,0.6767
+youtube_comment,Great video.,neutral,0.7641
+youtube_comment,was it autopilot or fsd?,neutral,0.8934
+youtube_comment,It is clear that the DRIVER was pressing on the accelerator.  Cannot blame the car when the driver is crazy.,negative,0.5426
+youtube_comment,You can design out the stupidy of certain humans.,neutral,0.8615
+youtube_comment,You are as bad as the main press with your title.,negative,0.84
+youtube_comment,"I wanna know if the driver stores their purse below them or any objects in the area directly below the seat in the front part where there’s a little cubby there. Also, I wanna know if they’re wearing shoes at the scene of the accident.",neutral,0.904
+youtube_comment,Don’t new cars next year need to monitor the driver and refuse to obey if it thinks that the driver is impaired?,negative,0.5415
+youtube_comment,"There's always another layer you can add to this discussion. What if someone is dying in the car? What if someone is chasing you in another car trying to kill you? You really wanting the car limiting how fast you want to go?
 
-Enjoy this IPO ❤",positive,0.7726
-youtube_comment,"I'll just wait for SpaceX to drop when institutions hedge 90 days post IPO lol. If history has taught us anything (Amazon, Tesla), both went through huge drawdowns (-90%, -70%) after IPO.",negative,0.9225
-youtube_comment,"Sober analysis, Johannes, much appreciated. Investing , quite a delicate dance between hard facts and dreams.",neutral,0.9121
-youtube_comment,Jo is in denial. He got fcked up repeatedly with his tesla trades and now he is a bagholder like 90 % of tesla shareholders.,neutral,0.5649
-youtube_comment,100% correct all around Jo. Also I think Space X will not be able to ride out the time scale of civilisational crashes that the Age of AGI will bring,neutral,0.6573
-youtube_comment,"SpaceX Way overpriced, early investors will benefit even at $15.- share price. Retail investors will not see a reward for years. Too many pies in the sky.",neutral,0.8263
-youtube_comment,You should've chosen Bitcoin over both.,neutral,0.9031
-youtube_comment,i concure,neutral,0.9374
-youtube_comment,"Why do you think cursor, with its miniscule share of the enterprise coding market (relative to Anthropic and Codex), based on open source Chinese models, will propel the moribund Grok to the head of that market?",neutral,0.7098
-youtube_comment,"I’m with you 100% as a long-term Tesla investor, I am just hanging tight, the SpaceX selloff  is gonna be huge down the road,",neutral,0.7766
-youtube_comment,"How insecure is this guy? How many times per video does he need to say “I was right” “I predicted this before anyone”
-Having said that, aside from his complete narcissism I do value his analysis.",neutral,0.8695
-youtube_comment,Ur not fooling anyone little girl,neutral,0.8883
-youtube_comment,21 MILLION VIEWS😱😱,neutral,0.9322
-youtube_comment,Amazing,neutral,0.8584
-youtube_comment,Her voice sounds like the most boyish girl you ever met,neutral,0.8908
-youtube_comment,Change to ur favorite color anytime.,neutral,0.9204
-youtube_comment,Change to your favorite color anytime,neutral,0.9236
-youtube_comment,Good car,positive,0.7037
-youtube_comment,Change to your favorite color anytime.,neutral,0.9181
-youtube_comment,Very good,neutral,0.5984
-youtube_comment,👌👌👏👏🙏🙏,neutral,0.9052
-youtube_comment,Change it to your favorite color!,neutral,0.9297
-youtube_comment,Change to hot pink.,neutral,0.8837
-youtube_comment,"First, nice",neutral,0.9112
-youtube_comment,4,neutral,0.8964
-youtube_comment,"I think ""pull over"" is a better description of a drop-off kind of situation than ""curbside"" because ""curbside"" can also be confused with curbside parking, which is something different.",neutral,0.8591
-youtube_comment,4 :D,neutral,0.9125
-youtube_comment,Very cool version of FSD. I am most interested in Highway and normal roads driving. How is FSD choosing lanes now on highways? Here in Europe you are not driving too much in cities. We have public transport for that. We have very small and old garages here too. 4,neutral,0.9305
-youtube_comment,the number is 4. Thanks for the video. Tomorrow i will do a FSD Testdrive in Denmark. I myselfe am still waiting for FSD in Germany. Greetings,neutral,0.9054
-youtube_comment,"HEY TESLA, WHERE IS THE SOFTWARE for H3, X, and even Y that we paid $90K and $60K for?
+Wjat they put in FSD, they'll put in every car.",neutral,0.8591
+youtube_comment,"Come on, man...how could a ""backpack fall on an accelerator pedal""?? That's so irrational to even suggest such a thing. Dr. Know-nothing.",neutral,0.4975
+youtube_comment,Could the crash be intentional?,neutral,0.5434
+youtube_comment,Vai de noite kkk😂😂😂,neutral,0.8917
+youtube_comment,Vai de noite que vc vai ver,neutral,0.8505
+youtube_comment,Thiago Reys fez esse deste no cemitério apareceu 😮😮,neutral,0.8263
+youtube_comment,KKKKKKKKKKKKKKKKK   OS CARA  FOI NO ÇEMITERIO  HAHAHAHAHHA,neutral,0.9047
+youtube_comment,"Imagina se o senhorzinho entra na brincadeira e fala,quando eu era vivo eu tinha medo😂😂😂😂",neutral,0.5504
+youtube_comment,"Faz esse vídeo de novo e leva a Márcia sensitiva, se o carro não vê assombração, ela vê!!!!     Kkkkkkkkkkkkkkk",positive,0.7133
+youtube_comment,baita sujeira atráz do volante heim parece maquiangem,neutral,0.7066
+youtube_comment,"Tcar errou em ir de dia no cemitério, pois os portais estão fechados",positive,0.5244
+youtube_comment,TCAR desvendando mitos kkk ele mó cagão kkkkkkk,neutral,0.9009
+youtube_comment,Eitaa kkk,neutral,0.9139
+youtube_comment,"Compra painel solar em poem em cima do teto, ai já faz o próprio carregamento 😂😂😂😂",neutral,0.6987
+youtube_comment,"Moro aqui na formosa ,perto do cemitério.",neutral,0.8259
+youtube_comment,"Kkkkkkkkkkkkkkkk ver espírito ou ispírito? Kkkkkkk
+Espírito - vem de aventura sentar o pé na máquina.
+Ispírito - de morto mesmo kkkkkkkkkkkn",neutral,0.8929
+youtube_comment,Nossa até no cemitério o pessoal cobra pra entrar tá Loko,neutral,0.5541
+youtube_comment,Ufa conteúdo diferente assim e dahora MN 8:17,neutral,0.8985
+youtube_comment,O melhor horário pra fazer esda experiência é 03:00,neutral,0.8746
+youtube_comment,Só falta o TCar tentar vender um carro para um fantasma rico!!!! Kkkkkkkkk,positive,0.5845
+youtube_comment,Vamos estourar o casa das Kombe TMB 😏😂,neutral,0.7606
+youtube_comment,Cemitério com as lápide sem cruz o tesla não identificou que é um cemitério,positive,0.712
+youtube_comment,Vai Corinthians 🦅,neutral,0.926
+youtube_comment,"He was flooring,,,,,unless something really did occur with the computer system",neutral,0.6021
+youtube_comment,Tesla going to blame the driver,neutral,0.6375
+youtube_comment,"Defamation lawsuit incoming for falsely reporting it is not clear what happened, it's been reported it was driver error, you are intentionally steering Tesla.",negative,0.888
+youtube_comment,"Lousy reporting! No specific information about driver i.e. age, under the influence, etc. I suspect Tesla has access to vehicle’s operating profile during accident.",neutral,0.848
+youtube_comment,"Regardless of what is claimed about Full Self Driving, the driver is responsible for supervising and ultimate control of the vehicle.",neutral,0.936
+youtube_comment,Not buying the story at all. FSD does not do this and you can always override the system with the faintest tap on the brake pedal.,neutral,0.894
+youtube_comment,"STOP with the FUD.  Once again, it's HUMAN error.  
+Tesla is NOT responsible for this crash...FSD and Autopilot do NOT drive in this manner. 
+Anyone who uses FSD knew instantly it was HUMAN error.",negative,0.4887
+youtube_comment,"At the end of the day, the operation of the vehicle is 100% the responsibility of the driver. Regardless of whether or not a driver-assist mode is engaged.",neutral,0.9401
+youtube_comment,That guy literally killed that lady.,negative,0.6766
+youtube_comment,stupidity at it's finest... rip Martha Avila😔,negative,0.6012
+youtube_comment,"I can tell you my own experience with my Tesla. A couple times it would see the speed limit signe for 25 but change it on the screen to 55 and start accelerating. During a free trial of FSD, it would see a route five Sign and slow all the way down to 5 miles an hour instead of being 35.",neutral,0.8722
+youtube_comment,"bro, that thing was FLYING doesn’t take a genius to know it wasn’t the autopilots fault",neutral,0.9128
+youtube_comment,"What a joke, drive the vehicle yourself, allowing a computer to steer. Don’t be lazy",neutral,0.8074
+youtube_comment,I'd rather drive myself then let a computer do it for me. To do otherwise is just lazy. The only benefit of such a thing is for people who or handicap. Even so I would not want to be hacked or let ai decide on my fate.,neutral,0.7051
+youtube_comment,"Although a tragic indecent and loss of life, at least the Tesla didn't self ignite into a ball of fire and burn the whole house down! Hopefully the Pyro fuses blew instead.",neutral,0.5311
+youtube_comment,"He's totally lying, even if you used FSD, if the speed went that fast in a residential area and you saw it was dangerous, you would've taken over, at least hit the brake, or it would cancel the FSD then let it fly over...😅",neutral,0.625
+youtube_comment,"In order of irrelevance, 90% of the story is about Tesla....5% about the actual driver.  5% of the person who died.  Click bait at its finest.",neutral,0.9029
+youtube_comment,"This is beyond tragic, but preventable if those responsible were held accountable❗️The meteoric advances in technology and their rapid introduction and application to real-life conveniences are being undermined by the wealthy,  greedy, profit-driven individuals and organizations sponsoring the technology❗️🥺 Between AI and the recurring mindset that MORE 💰💰💰is better for the few at the expense of the less-well off‼️ And it’s all happening at a time when those in charge of technology, government, rule of law, justice, and general objectives to protect the common good are at the same time corrupt, incompetent, insensitive, and in cahoots with others of the same ilk❗️😡",negative,0.5121
+youtube_comment,"It wont matter, Musk owns the the US government so this story will quietly disappear.",neutral,0.7382
+youtube_comment,"Every Tesla logs everything going on in the car as well as 7 cameras , Will NBC bring the full story out of how the driver was drunk or asleep with the accelerator pedal fully pressed to the floor , i bet they will not , just another one sided exploitation story to slam Tesla . And Why the headline Driver assist crash , there is no way ,the car was speeding in a residential area that would never happen , just BS",neutral,0.9122
+youtube_comment,"WIN A LUXURY EV WHILE SUPPORTING PEOPLE IN NEED:
+Use code BESTINTESLA for $25 off 2 tickets or $500 off 15 tickets.
+https://ccraffle.com/?utm_source=bestintesla&utm_medium=youtube&utm_campaign=06.23.26",neutral,0.9092
+youtube_comment,Oh my Jerry everyhinge is going to say Kyle is rigged.,neutral,0.8026
+youtube_comment,"15:06 When politicians is showind odd behavior there is always money involved, time to ask them who are bribing them and insist on getting answers for their odd behavior",neutral,0.8149
+youtube_comment,"I do have a question. For someone with less than $100,000 to invest, How would you recommend we enter the market. I'm looking to study some traders and copy their strategy rather than investing myself and losing money emotionally. What's your take on this approach??",neutral,0.9253
+youtube_comment,"Why is Sweden anti Tesla?
 
-Meanwhile, those POOR FOLKS who are paying $30K–$50K are getting BETTER hardware than us.
+IF Metall",neutral,0.9207
+youtube_comment,"The professional activists could use jobs, now that the trees have been removed.",neutral,0.818
+youtube_comment,All of the dumb ass people saying Elon should be giving money to this and that and yet they dont have a clue that day he went over 1 trillion dollar net worth he didnt get one single dollar in his bank.   His companies went up in value STUPID,neutral,0.8036
+youtube_comment,I stopped watching Kyle because he was heavily biased towards Kia/Hyundai. I definitely need to rescribe now that he is giving FSD a chance.,neutral,0.8215
+youtube_comment,Satan the devil comes only to kill steal and destroy tells you why he opposes Tesla's FSD that saves lives and he does this by working though people.,neutral,0.8491
+youtube_comment,"I thought SpaceX created all their compute for themselves:  now they are renting it out, so did they over-order or have they solved the problem they were working on and no longer need all this compute?   Seems a little odd to me!",neutral,0.8546
+youtube_comment,Swedish unions are responsible for all the Tesla negativity and don't care how many people die on the highways!!!!!!!!!,negative,0.5899
+youtube_comment,Model Y is an SUWeeee!!,neutral,0.9292
+youtube_comment,You post videos daily but there isn’t enough posts about the expansion of the charger infrastructure hardly anything I think most people would like to know how that’s growing as that is a primary concern for many thinking about purchasing a Tesla,neutral,0.9221
+youtube_comment,Kyle 😮.,neutral,0.9241
+youtube_comment,Wouldn't you really rather have a Tesla? Ask the man that owns one!,neutral,0.9281
+youtube_comment,Citizens Should SUE  the Government about their Cavalier Attitudes.,negative,0.7489
+youtube_comment,"Of course, being the amateur engineer I am, I bought the Foundation edition Cyber truck for my daily driver and the Model Y  for my wife. I bought FSD, so got stuck having to get a 2026 model Y to upgrade the computer. (Some engineers told me I was the best engineer they ever met). I have solar and Cyber truck backup on my house. At 82, I still do most of my own work. I did have to add TPMS to my wife's new Tesla model Y, this is a safety necessity.",neutral,0.8883
+youtube_comment,"Its not political in sweden, it is swedish mafia, union IF metall..",neutral,0.9335
+youtube_comment,In sweden we will get speeding ticket if we can't get strict speed control,neutral,0.7345
+youtube_comment,@10:00 and since 99.9% of car buyers are not YouTube creators….,neutral,0.9251
+youtube_comment,"Utilisez mon code promo MAX100 pour une remise de 100 € sur votre borne de recharge. 
+https://partenariat.borneforyou.co/devis?ref=4f4100c2-b31b-4836-ba31-8121bc8197be
+Précision sur les options : 
+L'abonnement connectivité Premium Tesla est à 9,90 €/mois et la conduite entièrement automatisée à 99 €/mois comme je le dis à 13:30",positive,0.5122
+youtube_comment,Hello Maxime : le maintien de voie n'est plus en série.,neutral,0.8827
+youtube_comment,"tesla tout simplement. mais encore des progres a faire sur l'ergonomie, essuies glaces, mises a jours négatives...le retour manette clignotants est un début :)",neutral,0.8983
+youtube_comment,Dommage pas de ciel de toit noir comme sur le model Y,neutral,0.8463
+youtube_comment,"Merci pour ce bel essaie Maxime ! J’ai la chance de l’avoir depuis début mars, et déjà 10000km. Voiture incroyable pour 33k€. Y’a tout ce qu’il faut, sans superflus",neutral,0.5825
+youtube_comment,Excellent test. Merci,neutral,0.4982
+youtube_comment,"Ton calcul est mauvais à 40 centimes un plein ça fait 24€ et vu que tu fais trois fois moins de kilomètres ça fait 48€ 
+Ok il faut ajouter les pertes énergétiques 20 % donc 57,60 comparer à une voiture normale.
+ 45 litres  d'ethanol a 69cts  avec une consommation de 6 litres ça fait 29 €. 
+C'est 2 fois plus cher qu'une thermique.",positive,0.5441
+youtube_comment,10h pour aller à Saint-Raphaël c'est 4h de plus ça commence à faire beaucoup.,neutral,0.8417
+youtube_comment,"choix objectivement le meilleur quelle blague, en terme d'efficience peut etre mais en terme d'esthétisme, de confort on peut trouver largement mieux",positive,0.5149
+youtube_comment,Excellente vidéo,neutral,0.9169
+youtube_comment,"Chouette, mais pas pour tout le monde. 
 
-How does that make any sense?",neutral,0.8491
-youtube_comment,"Four, pineapple, 🦥",neutral,0.9264
-youtube_comment,"four, strawberry",neutral,0.9279
-youtube_comment,"Your bird's eye view, is unreal. I will really consider joining.",neutral,0.85
-youtube_comment,four,neutral,0.86
-youtube_comment,I really was hoping that the parking improvements mentioned in the notes were them finally allowing you to at least choose whether the car backs in or goes front in. I'm sad to see that it is just a minor improvement to convenience with the parking menu.,neutral,0.7469
-youtube_comment,Tesla should add waypoints if you prefer a route thats not included in the alternate route option,neutral,0.9198
-youtube_comment,I have 14.3.3 and it sometimes does strange navigation routes and not usually I would drive that same route.  There are times when FSD does some irrational navigation and goes around indirectly to my destination.,neutral,0.7781
-youtube_comment,"wow the nags are wayyyy less than before, I remember when 14.2 first came out it was a nightmare, I couldn't even change a song without risking a disengagement. massive improvement imo i hope they keep it that way and regulators dont bitch about it!",neutral,0.7808
-youtube_comment,How much is the ticket,neutral,0.9228
-youtube_comment,I don’t like that it gets to close to the car in front other thing that in hov keep changing to the right lane,neutral,0.781
-youtube_comment,Why the heck would they remove the ability to choose speed?!,neutral,0.6177
-youtube_comment,Are you still hearing late June or early July for the 14.0 lite for hardware 3?,neutral,0.9106
-youtube_comment,Mine went the wrong way during summon and I had to go chase it down.,negative,0.8694
-youtube_comment,Idk why i always fall for his captions 😡,neutral,0.825
-youtube_comment,Imagine being related to this guy in real life 💀,neutral,0.9305
-youtube_comment,"I think tesla should reward one free month for every time I have to intervene to avoid puddles, potholes, animals, idiot people, etc.  Or anytime I need to re adjust the navigation bc its not going where I want it to. OH! and its also telling me to pay attention to the road and penalizing me for looking at navigation bc it cant remember my everyday routes. I mean WTF am I paying for. Im about to cancel FSD. They SHOULD be giving it away for free.",negative,0.7246
-youtube_comment,"Summary:  You explained that Tesla is preparing to roll out FSD Version 14 Light to older Hardware 3 vehicles.  This will give them access to the latest Full Self-Driving features, including Auto Park, Smart Summon, and improved city street driving. Tesla is also expected to provide HW3 owners with a free FSD trial, allowing them to test the system at no cost, however, HW3 vehicles will not perform quite as well as newer Hardware 4 vehicles because of limitations.  Hardware 4 owners, the focus is on insurance discounts from companies like Tesla Insurance and Lemonade that may reduce costs enough to effectively offset the $100-per-month FSD subscription.  I am waiting for Lemonade to come to VA.",neutral,0.5292
-youtube_comment,Really ?,neutral,0.8754
-youtube_comment,Didn't Elon say FSD going to get more expensive not cheaper?,neutral,0.8248
-youtube_comment,"Telltale, people dont want it anymore 😂",neutral,0.6112
-youtube_comment,Don’t believe a word this guy says,neutral,0.8725
-youtube_comment,What about those of us apparently dumb enough to purchase FSD while you could? Where’s our free stuff??,neutral,0.8819
-youtube_comment,$380/mo is what I pay for 3 vehicles to be insured with full coverage in one of the highest insurance areas in the country.,neutral,0.6669
-youtube_comment,"Beware MiniRev is taking your order, but not delivering.",neutral,0.8959
-youtube_comment,Lemonade doesn't sound like a real insurance company.,neutral,0.9131
-youtube_comment,My model Y is very polite and lets everyone in if they turn on their blanker,neutral,0.9233
-youtube_comment,"I miss dumb summon on my 2015 P85D. In addition to the app, you could activate it with the keyfob without any internet. The current dumb summon can only be activated with the app and both phone and car have to have an internet connection and it takes 30 seconds to connect and doesn't work half the time. The old dumb summon activated by pressing the top of the keyfob was instant and always worked. We have a vacation home in the mountains where I have to manually open and close a gate. I always loved how I could get out, open the gate, summon the car through it, and then close the gate. That no longer works even with the app on my 2024 MSP.",neutral,0.9158
-youtube_comment,You gotta stop lying in your clickbaits,neutral,0.8458
-youtube_comment,"👉 Grab your free seat to the 2-Day AI Mastermind: 
-https://links.outskill.com/TESJUNE
-🔐 100% Discount for the first 1000 people 💥 Dive deep into AI and Learn Automations, Build AI Agents, Make videos & images – all for free!
-🎁  Bonuses worth $5100+ if you join and attend",neutral,0.8725
-youtube_comment,Goodbye NOKIAs! 3:),neutral,0.8961
-youtube_comment,"So humans are allowed to make non safety critical mistakes, but the software not and it has to be perfect (what will never happen). I hope the aspect that it is morally questionable to hold back a safety feature that safes lives by avoiding fatal road accidents.",neutral,0.7297
-youtube_comment,FSD 🤖🪫🔁🔋🏁,neutral,0.9371
-youtube_comment,"Thanks Lars- sorry to hear about the airbag. That’s frustrating! Oh well, another week will go quickly. 
-And yeah, we love ❤️ FSD on our Y here in Australia 🇦🇺, and also at long last getting very close to getting version 14 dot something.",positive,0.7669
-youtube_comment,"FSD is lvl2++ (even if it is the most advanced one), FSD is a hands ON system (Tesla clearly says it, even if everyone is driving with hovering or no hands), the driver is always responsible, it is NOT (yet) a Robotaxi
-It is not that hard...",neutral,0.9284
-youtube_comment,"I will purchase the best PREEV available. My grandson has a Chevy Volt. It’s the best setup ever. Let’s get on the PREEV stick Tesla, Mazda etc. GM, you did it with the 2017 gen 2 Chevy Volt. Let’s give China a run for the money; and I believe it provides the best travel experience ever and no charging stations needed. In addition, it can become an emergency generator. Now that’s a lot of bang for the buck.",neutral,0.757
-youtube_comment,"I don't understand why countries have given up their sovereignty to the UNELECTED  EU Commission. So, an EU committee says no to FSD; now your government has to give up the FSD approval. WHY? It makes no sense. Are you available sovereign country or not?",neutral,0.7656
-youtube_comment,"Hydrogen is so stupid, only a hydrogen salesman see's anything positive.",neutral,0.9155
-youtube_comment,👍👍👍,neutral,0.9052
-youtube_comment,The endless rambling about hydrogen gets very boring to listen to Spend more time talking about optimus Or spacex Tesla merger,neutral,0.6093
-youtube_comment,the netherlands data showing 3x safer with 15x fewer emergency braking events is wild 🤔 curious if those gains are universal or if most of that advantage comes from highway/city driving rather than quiet neighborhoods tho,neutral,0.7367
-youtube_comment,"NO, Lars neither CHYNA or BYD is targeting LEVEL 4 autonomy, only L3.",neutral,0.9107
-youtube_comment,Electric charging station never blow up,neutral,0.9415
-youtube_comment,It's sadly obvious that the whole hydrogen silliness is the OEMs desperate effort to find a way to keep building on their old gasoline platforms.,neutral,0.6042
-youtube_comment,Nu mangler vi bare forsikringsselskaber giver rabat når man vælger at forsikre en Tesla med fsd 👍,neutral,0.8158
-youtube_comment,"Legacy car executives in Europe are COMPLETELY INCOMPETENT! But let’s not just stop there, so are all of the politicians!",negative,0.6649
-youtube_comment,"Waymo 562 Wh/Mi that is hilarious per GROK:My CyberBeast gets
-At 400 Wh/mi: ~307 miles of range on a full ~123 kWh battery.
-At 450 Wh/mi: ~273 miles.
-Them whirly things are thirsty.",neutral,0.9087
-youtube_comment,"1.2 Million EV charging stations and hundreds of millions of homes all of which are capable of charging the owners BEV overnight. Ask your neighbors, local fire department if they would be ok with you adding a Hydrogen refueling station in your garage.",neutral,0.9314
-youtube_comment,Great that your country Denmark has approved something that you helped pave the way for world wide!❤,positive,0.8258
-youtube_comment,"Hey,
+""Le meilleur choix"" - oui pour un usage urbain, périurbain ou autoroutier en plaine. Le cas d'usage montagnard est le grand oublié de cette équation.
 
-Kennst du schon GELD FÜR eAUTO? Auf der Plattform kannst du dein eAuto anmelden, um deine THG-Prämie zu kassieren. 380 Euro garantiert! 
+J'aimerai bien une berline vraiment polyvalente, comme on les avait avant. Je suis gros rouleur et je roule aussi en montagne: conséquences, toues les propulsions sont limite-limite pour moi, voir inutiles. C'est traction, ou intégrale. Et là, on passe sur du quasi 50k car premium obligatoire. C'est une différence absurde, +13k juste pour pouvoir être tranquille en hiver (et qu'on ne me dise pas propulsion + batterie ça passe crème, c'est faux. Il y a des endroits ou les petties montées sont rudes même pour mon 4x4 - cf video de simplement julien qui compare deux polestar intégrale et propulsion). Pour le modèle Y, même punition, 13K de différence entre la version de base et la première version intégrale disponible. Quel dommage.
 
-Du musst nichts weiter tun, als dir ein Profil anzulegen und deinen Fahrzeugschein hochzuladen, alles Weitere übernimmt das Team.
+Au passage, chez Polestar par exemple, c'est exactement la même punition : modèle de base 40900€, modèle dual motor + long range 53200€. Boum +13k.
 
-Schau am besten selbst einmal vorbei:
+Sur un TDI, la différence entre 4x4 et traction (sigh, le bon temps...), elle est de moins de 3000€. Exemple Kodiaq 2.0 tdi vs 4x4, 47k vs 50k, pour un truc certes moins performant mais qui roule allégrement plus de 1000km, y compris à 130, et y compris en hiver.
 
-https://geld-fuer-eauto.de/ref/edriver
+Mais dans les deux cas, avec le poids ou l'origine, c'est coup de massue. bye-bye la prime, ou carrément malus jusqu'à 7000 euros pour le kodiaq de mon exemple.
 
-Viele Grüße
-sascha",neutral,0.8796
-youtube_comment,"Geld für eAuto gibts aber nur als 2 Jahresvertrag. Etwas irreführend, dass du sowas nicht erwähnst.",neutral,0.7998
-youtube_comment,Das klingt alles ziemlich gut !,neutral,0.8881
-youtube_comment,Ervaar Full Self-Driving (Supervised) belgie  heute,neutral,0.9233
-youtube_comment,"""sorry, I didn't get that!""",neutral,0.4711
-youtube_comment,"Not a fan of the current Mercedes , but I'll still take the Mercedes over the Tesla.",neutral,0.9034
-youtube_comment,Doesn’t the Tesla boot just open if you stand by it?,neutral,0.9248
-youtube_comment,Now do which car has a better start up noise,neutral,0.8998
-youtube_comment,Grande bosta,neutral,0.9165
-youtube_comment,Cool ❤❤❤❤❤😊😢🎉,neutral,0.8611
-youtube_comment,Well in an Android guy so guys im fucked... Does it work with grock,neutral,0.924
-youtube_comment,😂😂,neutral,0.9052
-youtube_comment,So anyone can swipe their boot? Help yourselves to the boots or trunk  content 😅,neutral,0.9389
-youtube_comment,🎉🎉🎉💪💪,neutral,0.9052
-youtube_comment,That's more of an ad for the MB...,neutral,0.9157
-youtube_comment,Tesla is a good car,neutral,0.7067
-youtube_comment,"Tesla is ugly 
-Mercedes is the best 😊",neutral,0.8874
-youtube_comment,"Siri: ""here's a video i found on how to untie your shoelaces""",neutral,0.9166
-youtube_comment,I open it on the app before I even get off the couch,neutral,0.9354
-youtube_comment,"Hey Siri, open the boot.
+Les EV c'est bien, mais ce cas d'usage n'est pas du tout couvert et j'en ai marre d'être l'éternel oublié sur qui on tape a tout va (poids, malus diesel)... Je m'en tape de faire le 0-100 plus vite qu'une Porsche, je veux juste pouvoir rentrer chez moi le soir quand il neige et que les chasse-neige sont déjà couchés. 
 
-Siri - you need to unlock your iPhone first.",neutral,0.9321
-youtube_comment,i love teslas!,neutral,0.9101
-youtube_comment,My sister GLE I have to press the logo before opening the boot,neutral,0.9262
-youtube_comment,tesla is the best,neutral,0.9382
-youtube_comment,"Me with my 76 Cadillac: I put the move the badge to the side, put the key in, and the trunk pops open. No need for electronics that can and ill fail.",neutral,0.9304
-youtube_comment,"👋 If you’re watching on mobile and enjoyed this, please tap the “Hype” button - it really helps the video reach more people 🙏 thank you!",neutral,0.5089
-youtube_comment,I have watched numerous Tesla videos for beginners and this is the best one I have seen. I subscribed.,neutral,0.8695
-youtube_comment,Stop buying Tesla cars and stock! This company has become a military-industrial complex! Buying their cars is like handing them bullets to kill others.,neutral,0.7487
-youtube_comment,"Great vid !
+Les EV n'ont de sens que si l'infrastructure, les tarifs ET la fiscalité suivent, comme en Norvège.",neutral,0.803
+youtube_comment,"Ta conclusion est celle que j’ai faite il y a 3 ans et demi lorsque j’ai acheté ma model 3. J’aimerai bien acheter une française et j’accepterai même quelques défauts, ou un prix plus cher. Mais la, il n’y a que très peu d’aspects ou la model 3 est moins bonne : garde au sol, rayon de braquage, filtration des suspensions, autopilot… Pour tout le reste et ce qui compte vraiment ( prix, consommation, autonomie, fiabilité, durabilité batterie, entretien, tenue des route, accélération, agrément de conduite, équipement, connectivité, sono, réseau de recharge…) elle m’a fait changer d’epoque par rapport à mes anciennes voitures. Et bien des constructeurs actuels, 10 ans après sa sortie, n’arrivent pas à l’egaler… Assurément un compromis toujours inégalé .",neutral,0.8369
+youtube_comment,Faut la faire tester à tata deudeu,neutral,0.8966
+youtube_comment,"Je voudrais voir une comparaison sérieuse des consommations avec la MG4 Urban 54kwh, après un gallop d’essais elle consomme très peu aussi, 12.2kwh/100 en moyenne mesurée. Non, ce n'est pas si déséquilibré que cela, l'habitabilité des deux autos est très comparable.",neutral,0.681
+youtube_comment,Toujours au top Max 🎉,neutral,0.8718
+youtube_comment,"Top, Merci pour cet essais 👍🏻",neutral,0.8282
+youtube_comment,Merci Sam,neutral,0.901
+youtube_comment,Pour être complet et objectif il aurait fallu préciser que sans l'option très coûteuse à 99 € par mois l'auto pilote de base est devenu très désagréable à l'usage,positive,0.5876
+youtube_comment,"direction Mandelieu par le mont Vinaigre? 
+Cette voiture semble quasi parfaite et donc se vend bien, mais au delà d'un look désormais terriblement vu et revu, quelle tristesse à l'intérieur.",neutral,0.5698
+youtube_comment,"Achetée en janvier avec la promotion de 3500€. Payée 33100€ avec les aides. Du bonheur 
+C'est notre deuxième Model 3 et le niveau de finition a été amélioré par rapport au M3 de 2020 made in USA
+Consommation dérisoire pour une voiture d'un tel gabarit. On a gagné presque 2kW en moyenne par rapport au modèle propulsion de 2020
+Aucun défaut 
+En accord parfait avec Maxime 
+Bravo pour tout ces essais détaillés et objectifs",neutral,0.7445
+youtube_comment,respect to elon musk,neutral,0.9345
+youtube_comment,https://www.youtube.com/watch?v=9KRr9Of46MM,neutral,0.9308
+youtube_comment,That’s my Tesla,neutral,0.8686
+youtube_comment,Ai,neutral,0.9028
+youtube_comment,"the tesla chose that 1 guy tripping out on the road, driving head first into another car with 2x impact speed. which could easily resullt in killing an entire family. im not convinced this is good enough. not even close.",negative,0.6978
+youtube_comment,so who pay for the Audi ?,neutral,0.9208
+youtube_comment,So AI can make the hard choice. Will Smith was wrong.,neutral,0.7905
+youtube_comment,That was NEVER EVER the autopilot.,neutral,0.906
+youtube_comment,"iSeeCars Study: ""Most Dangerous Cars"" (Fatal Crash Rate)
 
+​This report measures fatal accidents per billion miles driven. It focuses on the severity of outcomes (deaths) based on NHTSA fatality data. 
 
+​Rank 1: Tesla (5.6 deaths per billion miles)
 
-May I suggest you work a little on your cuts or the way you blankly stare at the camera at the end of what you say ? It look a bit weird, you should have more natural flow like look away and move a bit or smth I'm no theater/movie pro maybe take advices from some, it's not THAT important it just something I noted lol.",neutral,0.8818
-youtube_comment,does it have Waze?,neutral,0.9002
-youtube_comment,I read today that driving over 55 mph really drains the battery and wont give you that much mileage. Now i drive 42 miles round trip to work and back home. 21 miles one way. So for would a tesla still be a good option for me? I was thinking of getting a standard model 3 since its the cheapest but the range is that great to begin with and knowing that driving over 55 miles impacts your range in double thinking it. Any suggestions from tesla owners?,neutral,0.8969
-youtube_comment,such bullshits!,negative,0.5826
-youtube_comment,"The 80% recommendation does not apply to Teslas with LFP batteries. Good video, thanks.",neutral,0.6137
-youtube_comment,We live in Saskatoon Saskatchewan which’s we have-40 weather in winter.. I’m curious if the ev works okay in this condition extreme cold weather? 😢😢 I love to have ev car ❤❤,neutral,0.9152
-youtube_comment,We test drive this today! In Singapore car prices and petrol here is just crazy 😢. I decided to go for model Y after 6 yrs with X3. Im looking forward!,neutral,0.8865
-youtube_comment,🔥🔥🔥🔥,neutral,0.9052
-youtube_comment,"I'm getting my Tesla soon & have been very freaked out about no buttons or dials, but this has helped allot. Thanks!",neutral,0.6299
-youtube_comment,Your explain is very helpful for me. Thank you.,neutral,0.6493
-youtube_comment,runescape,neutral,0.9391
-youtube_comment,I don’t have a Tesla but watched the whole thing,neutral,0.9147
-youtube_comment,Wow! Your videos are so awesome! Very easy to understand.  Could you just come to my house and set up all these fancy features in the Model 3 2023 I bought yesterday?  Lol. Just kidding.,neutral,0.9177
-youtube_comment,Lfp batteries like to be fully charged,neutral,0.9341
-youtube_comment,And where is the emergency release for the rear doors?,neutral,0.8171
-youtube_comment,I just get my phone fixed 🎉🎉🎉,neutral,0.8911
-youtube_comment,Excellent explanations. Thank you!,positive,0.8153
+​Rank 2: Kia (5.5 deaths per billion miles)
+
+​Rank 3: Buick (4.8 deaths per billion miles)
+
+Interesting read. Note United States figures.",neutral,0.8199
+youtube_comment,It’s Romania. That was definitely some sort of scam,neutral,0.6389
+youtube_comment,AMAZING,neutral,0.8584
+youtube_comment,Idk if I'd opt for a head on collision over hitting someone. That seems a bit suicidal...,negative,0.6931
+youtube_comment,Deaths funny😂😂😂😂😂😂😂😂😂😂😂😂,negative,0.6181
+youtube_comment,That wasn’t autopilot. Romania doesn’t  have FSD live yet as at May 2026. The driver simply swerved into on coming traffic 😊,negative,0.6892
+youtube_comment,That’s why I love teslas,neutral,0.9072
+youtube_comment,My dad got a Tesla today. I never thought tesla’s were actually this interesting,neutral,0.9176
+youtube_comment,How does one person trip that badly do they not look where they walk,neutral,0.5348
+youtube_comment,Good luck hitting that  RS6 😂😂,positive,0.6391
+youtube_comment,Highland First and Crash Foto old Model. Nice Video 😂,neutral,0.91
+youtube_comment,"You had 45% chance of survival, the driver of the other car had 11% of survival",neutral,0.8962
+youtube_comment,"The car I drive, the Xpeng G6 - https://youtu.be/IcniwO8NfQQ
+
+RESINC Solar installed my battery and solar system. Get a free quote from them here: https://www.resinc.com.au/electricviking",neutral,0.9389
+youtube_comment,"Tesla Model Y L....  The Rivian and Lucid killer.   I bought a Tesla Model Y Juniper August, 2025, and love it with FSD.  Looked at Rivian and Lucid but no FSD.  Now going to get the Tesla Model Y L that seats six when it comes out and also get FSD.",neutral,0.9142
+youtube_comment,I've already told my Tesla ealership to let me know when the Model Y L is available.,neutral,0.9132
+youtube_comment,I will definitely be buying a YL.  Just waiting for Tesla to open the Robotaxi network to owner cars.,neutral,0.8493
+youtube_comment,"All the bells and whistles notwithstanding, it is a three-row Model Y? I take it is not selling well in countries with low birth rates like China and other East Asian countries and much of Europe, but it will sell well in the US where people are churning out kids? 😅 I for one don’t like these big-ass SUVs. If I want a three-row car I would have bought a van…",neutral,0.8775
+youtube_comment,A YL with AI 5 would be perfect.  Large and future proof.,neutral,0.5194
+youtube_comment,With that many passengers the range isn't the problem it's the bladder capacity of occupants,neutral,0.8883
+youtube_comment,"Love the idea and agree that it will be successful - but that third row is still heavily compromised with a side intrusion from the wheel arch :-(
+Two model Y’s (base and performance) and an Odyssey - no hat-trick in-sight, yet.",neutral,0.6554
+youtube_comment,I live in the us I see the price tag being 63k,neutral,0.9124
+youtube_comment,I’m waiting for the YL. I’m very excited.,neutral,0.8561
+youtube_comment,"I don't think tons of promotional videos benefit the material. 
+I'm watching the same unrelated videos all the time on this channel and already sick of them. This even stops me from watching lately",negative,0.8296
+youtube_comment,Trust the Electric Viking - extra 8 inch is a game-changer! 😂📏,neutral,0.9158
+youtube_comment,The length will be an issue for us.  Our garage has been cut down slightly to make additional room in a remodel that was done.  I’ll have to definitely consider just how much tighter this added length will be compared to a regular length Y.,negative,0.7692
+youtube_comment,The Kia EV9 looks bigger and is a more true 3 row SUV EV for 54K.,neutral,0.7255
+youtube_comment,Y LR premium has 15 speakers. The YL has 18 I believe,neutral,0.9418
+youtube_comment,Ive been wanting a model Y this would be a no brainer as a growing family,neutral,0.9039
+youtube_comment,Performance version?  That would be dope.,neutral,0.694
+youtube_comment,American here…The YL will be my first Telsa. It will sell like hot cakes over here,neutral,0.8796
+youtube_comment,will these be manufactured in US?  will there be tariff on these?,neutral,0.9209
+youtube_comment,I was super excited about this car a year ago. Now I can’t wait for the Kia PV5. This industry moves fast.,neutral,0.8174
