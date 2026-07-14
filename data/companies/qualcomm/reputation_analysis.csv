@@ -1,0 +1,85 @@
+source,text,sentiment,confidence
+news,The Road To $380 For Qualcomm Stock,positive,0.6776
+news,"Motorola Edge 70 Max India launch set for July 15 with 7100mAh battery, 90W charging and AI features",neutral,0.8377
+news,Micron or Qualcomm: Bank of America Picks One AI Chip Stock to Buy,neutral,0.9276
+news,Samsung wants to put its own chip in your next PC and it's all about speeding up AI chores,neutral,0.923
+news,"AI Catapulted Samsung’s Memory Business To New Heights; Now, It’s Pushing The Development Of A 4nm AI Accelerator SoC For PCs To Take On Qualcomm",positive,0.8724
+news,"Samsung Going Full Throttle With Exynos SoC Development, As Company Has Three Generations Of Releases Planned To Rid Itself Of Qualcomm",positive,0.7342
+news,Qualcomm's Edge AI Push Could Fuel the Next Leg Higher for Semiconductor ETFs,positive,0.9437
+news,Qualcomm: A Desperate Shift That Won’t Change The Sentiment (NASDAQ:QCOM),neutral,0.8668
+news,How Qualcomm's CIO is placing big bets on AI to support the chip company's diversification push,neutral,0.8351
+news,Qualcomm’s Preferential Treatment Of Samsung Means The Galaxy Z Fold 8 Lineup Will Feature An Upgraded Snapdragon 8 Elite Gen 5 With Better AI Performance,positive,0.9394
+youtube_video,Livestream: Qualcomm Investor Day 2026,neutral,0.9443
+youtube_video,Qualcomm CEO Teases Deal with Large Hyperscaler,negative,0.8283
+youtube_video,QUALCOMM VS MEDIATEK Siapa yang menang #qualcomm #mediatek #bisnis #strategi,neutral,0.9349
+youtube_video,"Qualcomm CEO: Issue for Handsets Is Memory, Not Demand",neutral,0.9315
+youtube_video,Qualcomm Jumps on $15B Data Center Sales Projection,positive,0.8262
+youtube_video,Qualcomm to Supply Chips to TikTok Owner ByteDance,neutral,0.8611
+youtube_video,Qualcomm Hyderabad Commerzone Office #shorts #qualcomm #officetour,neutral,0.9407
+youtube_video,Qualcomm shares fall on fourth quarter earnings,negative,0.9683
+youtube_video,Qualcomm pushes deeper into AI with new product roadmap,positive,0.8808
+youtube_video,"Stellantis, Qualcomm Expand Partnership for Vehicle Tech",positive,0.8708
+youtube_comment,"I believe theres maximum point demands for nvidia kindda gpu, unlike the software giants Apple, Microsoft,  google. Etc. 
+
+Consumers doesn't actually care or love a gpu on their laptops,  its the softwares they have to love to. 
+
+The gpu venue is driven by the softwares, in history,  no hardwares are un-replicatable, its a matter of time some others get even with nvidia",neutral,0.9182
+youtube_comment,"will be 500 before end of year, and new leader in the game, ai will live on the edge, nvidia n qcom are the best",neutral,0.6396
+youtube_comment,Does he Humain in Saudi Arabia? The news was already out on this one.,neutral,0.9206
+youtube_comment,Make 1nm chip,neutral,0.9367
+youtube_comment,Bluff is carved into gene of this company.,neutral,0.9314
+youtube_comment,500 dollar stock,neutral,0.9268
+youtube_comment,"It will move from agents to physical AI very soon.. So, this ASIC fluff needs redesigning very soon..",neutral,0.9197
+youtube_comment,Most likely Meta since all other hyper scalers have their own known good AI chips.,neutral,0.8619
+youtube_comment,Google it is.,neutral,0.9361
+youtube_comment,The problem with companies like Qualcomm is that they don't make anything.  They are totally reliant on a third party with fabs.  If China invades Taiwan their main source is shut down.,negative,0.7522
+youtube_comment,Qualcomm pe is very undervalued,neutral,0.6214
+youtube_comment,who else thought it was Andrew Huberman??,neutral,0.8187
+youtube_comment,"So the hyperscaler is ONE OF THE BIG 3
+
+And MATERIAL REVENUE FOR QCOM IN FY27 IS MULTIPLE BILLIONS
+
+Bazooka",neutral,0.8922
+youtube_comment,Saya yg dulu exynos terus pindah ke mediatek dan sekarang ke snapdragon harus kuakui snapdragon itu mahal sesuai dgn performanya terutama utk gaming asli snapdragon lebih enak dan stabil serta graphicsnya juga lebih tajam,neutral,0.9109
+youtube_comment,"Qualcomm itu sebenarnya bukan jualan chipset melainkan jualan paten. Hampir semua paten Qualcomm yg pegang 
+Wireless communication system 51.282 patent 
+Semikonduktor dan sirkuitnya 40.842
+Jadi ketika ada sebuah perusahaan bikin HP mereka harus nego kepada Qualcomm supaya HP nya bisa jalan dan dijual. Sebagai perbandingan Mediatek punya 40.603 paten dan 16.425 paten",neutral,0.938
+youtube_comment,"Lagi teknologi 3g,4g,5g itu punya Qualcom, otomatis yang mau make teknologi nya harus bayar lisensi",neutral,0.9161
+youtube_comment,"Hp flagship kebanyakan emng pake si naga sih, hp gaming kek redmagic sama Rog juga lebih sering pake si naga",neutral,0.9026
+youtube_comment,"2025 masih aja ada mediatek, harusnya punah aja, gaada apa2 dibanding snapdragon & bionic😂",neutral,0.8895
+youtube_comment,Klo mau bandingin keuntungan jngan ratio lah tp sklian aja langsung nominalnya d sebutin.,neutral,0.9397
+youtube_comment,Kalo merk Oppo rata-rata pakai Snapdragon,neutral,0.9433
+youtube_comment,Saya dari dulu sampai sekarang selalu Qualcomm,neutral,0.925
+youtube_comment,"Info dong, emang bener ya hp yang pake mediatek itu gampang panas dan ngga stabil, sedangkan snapdragon itu lebih stabil dan ngga gampang overheat?",neutral,0.9245
+youtube_comment,"Beli Infinix Hot 60 Pro pake Mediatek G200 tapi ada keterangan ""License by Qualcomm""",neutral,0.9269
+youtube_comment,Jelas untung mediatek kecil ...Krena paten modemnya itu wajib beli di Qualcomm...gak cuma mediatek tapi seluruh modem mau itu Apple sekalupun,neutral,0.897
+youtube_comment,"Selain di chip smartphone, nih chip sering dipakai di produk jaringan internet kek router dan wifi, Qualcomm atheros juara sih karena komunitas dan dukungan nya open source. Mediatek masih banyak firmware atau software yang belum support. Paling di hindari ya RealTek menang murah di driver PC tapi busuk di router",neutral,0.8808
+youtube_comment,"""We don't need HBM""?? How are you addressing bandwidth? SRAM like Cerebrus?",neutral,0.9307
+youtube_comment,ליטאי אפל תיצור שבב בלוטוף' קטן וחזק בהרבה לאייפון 18 אייפד ואפל ווטש וAirPods פרו וגאדג'טים לאייפון ומקבוק.וחסכוני בסוללה. שכולל GPS לחיסכון פי 2 בסוללה ועלויות בייצור TSMC וסמסונג גם לAirPods. ויותר מקום לסוללה.,neutral,0.8086
+youtube_comment,"Data center processor WITHOUT HBM?? AI200 and AI250 gonna be killer, me thinks.
+
+Good job Cristiano! Much love. <3",neutral,0.5523
+youtube_comment,"Hey, Is your job role related to VLSI ??🤔",neutral,0.9199
+youtube_comment,North Indian?,neutral,0.8858
+youtube_comment,❤❤❤,neutral,0.9052
+youtube_comment,Work:-0 ; Aesthetics:-100,neutral,0.8988
+youtube_comment,"Mai khud yaha kaam kar chuka hu, yaha ka dinner best hota hai 😂",neutral,0.8095
+youtube_comment,"Hello..
+I recently completed my BTech from computer science stream and I want to work here. Can you plz tell what I have to do to work here. 😊",neutral,0.9178
+youtube_comment,Do they hire freshers,neutral,0.8615
+youtube_comment,Daily routine of Qualcommers 😎,neutral,0.9313
+youtube_comment,"Hey I'll be joining in sept, is the food free? How is the culture there? If you don't mind answering 😊",neutral,0.9149
+youtube_comment,❤❤,neutral,0.9052
+youtube_comment,❤,neutral,0.9052
+youtube_comment,Enjoy ur life and may success more and more,neutral,0.8934
+youtube_comment,Cool❤❤,neutral,0.9052
+youtube_comment,Sarah❤,neutral,0.9052
+youtube_comment,Weak. They have a strong team of ASIC developers and they go out and buy a small startup? WTF? Fire the management,neutral,0.5968
+youtube_comment,Greattttt,neutral,0.8697
+youtube_comment,GREAT OPPORTUNITY TO ACCUMULATE GRO66M❤,positive,0.561
+youtube_comment,Institutional rotation from stablecoins to Caduun is officially happening.,neutral,0.922
+youtube_comment,Caduun is the redo. Grab your bag before the retail stampede hits,neutral,0.9299
+youtube_comment,No.... Teslas new Chip Manufacturing will push the others out...... its called being handed your hat gentlemen...... the smart money is with Musk,neutral,0.8832
+youtube_comment,Why is the thumbnail so…spicy 🌶️,neutral,0.6318
+youtube_comment,"So full of garbage. Take your AI and fly it to mars. I want a car that’s reliable, durable and mechanical not some hallucinating sycophantic subscription.",neutral,0.8982

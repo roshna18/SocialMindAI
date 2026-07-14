@@ -276,221 +276,1030 @@ def memo_html(score, grade, risk, top_issue, company):
 
 # ── COMPETITORS — full redesign ───────────────────────────────
 # Each competitor entry now includes dimension scores + strength reasons
+# Grade bands: 80+ Excellent, 65-79 Good, 50-64 Fair, <50 Weak
 COMPETITOR_DB = {
-    "tesla": {
-        "peers": [
-            {
-                "name": "Tesla", "score": 72, "grade": "Good", "risk": "Low",
-                "dims": {"Brand":85,"Innovation":90,"Leadership":48,"ESG":60,"Customer":65},
-                "strengths": ["First-mover EV brand recognition", "Supercharger network moat", "FSD technology lead"],
-                "weaknesses": ["CEO controversy drags leadership score","Inconsistent build quality complaints"],
-            },
-            {
-                "name": "Rivian", "score": 58, "grade": "Fair", "risk": "Medium",
-                "dims": {"Brand":55,"Innovation":70,"Leadership":65,"ESG":75,"Customer":50},
-                "strengths": ["Strong ESG narrative","Adventure/outdoor brand appeal","Amazon partnership"],
-                "weaknesses": ["Production ramp struggles","Limited charging network","Burning cash"],
-            },
-            {
-                "name": "Lucid", "score": 49, "grade": "Fair", "risk": "Medium",
-                "dims": {"Brand":45,"Innovation":72,"Leadership":52,"ESG":60,"Customer":42},
-                "strengths": ["Best-in-class range specs","Luxury positioning","Saudi Aramco backing"],
-                "weaknesses": ["Very low production volumes","Low brand awareness","Profitability concerns"],
-            },
-            {
-                "name": "Ford EV", "score": 54, "grade": "Fair", "risk": "Medium",
-                "dims": {"Brand":70,"Innovation":55,"Leadership":60,"ESG":55,"Customer":58},
-                "strengths": ["F-150 Lightning brand trust","Established dealer network","Manufacturing scale"],
-                "weaknesses": ["Late EV entrant","Software experience behind Tesla","EV division losses"],
-            },
-        ]
-    },
+
+    # ────────────────────────────── AI LABS ──────────────────────────────
     "openai": {
         "peers": [
-            {
-                "name": "OpenAI", "score": 68, "grade": "Good", "risk": "Medium",
-                "dims": {"Brand":90,"Innovation":88,"Leadership":55,"ESG":50,"Customer":65},
-                "strengths": ["ChatGPT — world's most recognised AI product","GPT-4 benchmark leader","Enterprise API dominance"],
-                "weaknesses": ["Leadership instability (Altman saga)","Safety criticism from researchers","Profit vs mission tension"],
-            },
-            {
-                "name": "Anthropic", "score": 74, "grade": "Good", "risk": "Low",
-                "dims": {"Brand":65,"Innovation":82,"Leadership":85,"ESG":80,"Customer":68},
-                "strengths": ["Claude scores highest on safety benchmarks","Strong Constitutional AI research","Trusted by regulated industries"],
-                "weaknesses": ["Lower brand recognition vs ChatGPT","Smaller developer ecosystem","Less media presence"],
-            },
-            {
-                "name": "Google DeepMind", "score": 65, "grade": "Good", "risk": "Medium",
-                "dims": {"Brand":80,"Innovation":85,"Leadership":70,"ESG":65,"Customer":55},
-                "strengths": ["Gemini integrated across Google products","Massive research budget","AlphaFold credibility"],
-                "weaknesses": ["Gemini launch perception issues","Privacy concerns tied to Google","Slow enterprise adoption"],
-            },
-            {
-                "name": "Mistral", "score": 60, "grade": "Fair", "risk": "Medium",
-                "dims": {"Brand":45,"Innovation":75,"Leadership":72,"ESG":60,"Customer":50},
-                "strengths": ["Open-source model reputation","European AI champion narrative","Lean & efficient models"],
-                "weaknesses": ["Much smaller scale than US rivals","Limited enterprise support","Brand still building"],
-            },
+            {"name": "OpenAI", "score": 68, "grade": "Good", "risk": "Medium",
+             "dims": {"Brand": 90, "Innovation": 88, "Leadership": 55, "ESG": 50, "Customer": 65},
+             "strengths": ["ChatGPT — world's most recognised AI product", "GPT-4 benchmark leader", "Enterprise API dominance"],
+             "weaknesses": ["Leadership instability (Altman saga)", "Safety criticism from researchers", "Profit vs mission tension"]},
+            {"name": "Anthropic", "score": 74, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 65, "Innovation": 82, "Leadership": 85, "ESG": 80, "Customer": 68},
+             "strengths": ["Claude scores highest on safety benchmarks", "Strong Constitutional AI research", "Trusted by regulated industries"],
+             "weaknesses": ["Lower brand recognition vs ChatGPT", "Smaller developer ecosystem", "Less media presence"]},
+            {"name": "Google DeepMind", "score": 65, "grade": "Good", "risk": "Medium",
+             "dims": {"Brand": 80, "Innovation": 85, "Leadership": 70, "ESG": 65, "Customer": 55},
+             "strengths": ["Gemini integrated across Google products", "Massive research budget", "AlphaFold credibility"],
+             "weaknesses": ["Gemini launch perception issues", "Privacy concerns tied to Google", "Slow enterprise adoption"]},
+            {"name": "Mistral", "score": 60, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 45, "Innovation": 75, "Leadership": 72, "ESG": 60, "Customer": 50},
+             "strengths": ["Open-source model reputation", "European AI champion narrative", "Lean & efficient models"],
+             "weaknesses": ["Much smaller scale than US rivals", "Limited enterprise support", "Brand still building"]},
         ]
     },
     "anthropic": {
         "peers": [
-            {
-                "name": "Anthropic", "score": 74, "grade": "Good", "risk": "Low",
-                "dims": {"Brand":65,"Innovation":82,"Leadership":85,"ESG":80,"Customer":68},
-                "strengths": ["Claude rated most trustworthy AI assistant","Constitutional AI safety leadership","Preferred in healthcare & legal sectors"],
-                "weaknesses": ["ChatGPT has 10x more brand recognition","Smaller plugin/integration ecosystem","Lower consumer awareness"],
-            },
-            {
-                "name": "OpenAI", "score": 68, "grade": "Good", "risk": "Medium",
-                "dims": {"Brand":90,"Innovation":88,"Leadership":55,"ESG":50,"Customer":65},
-                "strengths": ["ChatGPT brand is synonymous with AI","Largest developer community","Most 3rd-party integrations"],
-                "weaknesses": ["Safety controversy hurts trust score","CEO drama hurt leadership perception","Microsoft dependency"],
-            },
-            {
-                "name": "Google DeepMind", "score": 65, "grade": "Good", "risk": "Medium",
-                "dims": {"Brand":80,"Innovation":85,"Leadership":70,"ESG":65,"Customer":55},
-                "strengths": ["Distribution via Google Search & Workspace","Best multimodal research","Unlimited compute budget"],
-                "weaknesses": ["Privacy baggage from Google brand","Slower product iteration","Gemini launch credibility gap"],
-            },
+            {"name": "Anthropic", "score": 74, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 65, "Innovation": 82, "Leadership": 85, "ESG": 80, "Customer": 68},
+             "strengths": ["Claude rated most trustworthy AI assistant", "Constitutional AI safety leadership", "Preferred in healthcare & legal sectors"],
+             "weaknesses": ["ChatGPT has 10x more brand recognition", "Smaller plugin/integration ecosystem", "Lower consumer awareness"]},
+            {"name": "OpenAI", "score": 68, "grade": "Good", "risk": "Medium",
+             "dims": {"Brand": 90, "Innovation": 88, "Leadership": 55, "ESG": 50, "Customer": 65},
+             "strengths": ["ChatGPT brand is synonymous with AI", "Largest developer community", "Most 3rd-party integrations"],
+             "weaknesses": ["Safety controversy hurts trust score", "CEO drama hurt leadership perception", "Microsoft dependency"]},
+            {"name": "Google DeepMind", "score": 65, "grade": "Good", "risk": "Medium",
+             "dims": {"Brand": 80, "Innovation": 85, "Leadership": 70, "ESG": 65, "Customer": 55},
+             "strengths": ["Distribution via Google Search & Workspace", "Best multimodal research", "Unlimited compute budget"],
+             "weaknesses": ["Privacy baggage from Google brand", "Slower product iteration", "Gemini launch credibility gap"]},
         ]
     },
-    "nvidia": {
+    "perplexity": {
         "peers": [
-            {
-                "name": "Nvidia", "score": 80, "grade": "Excellent", "risk": "Low",
-                "dims": {"Brand":85,"Innovation":92,"Leadership":88,"ESG":65,"Customer":78},
-                "strengths": ["H100/H200 GPU monopoly for AI training","CUDA ecosystem lock-in","Jensen Huang seen as visionary CEO"],
-                "weaknesses": ["Export control risks to China","Single-product revenue concentration","Supply constraints"],
-            },
-            {
-                "name": "AMD", "score": 67, "grade": "Good", "risk": "Low",
-                "dims": {"Brand":72,"Innovation":78,"Leadership":74,"ESG":68,"Customer":70},
-                "strengths": ["ROCm open-source alternative to CUDA","Strong CPU+GPU combined roadmap","MI300X competitive on price"],
-                "weaknesses": ["Software ecosystem trails Nvidia","Lower AI mindshare","Smaller data centre footprint"],
-            },
-            {
-                "name": "Intel", "score": 54, "grade": "Fair", "risk": "Medium",
-                "dims": {"Brand":70,"Innovation":58,"Leadership":55,"ESG":65,"Customer":55},
-                "strengths": ["Gaudi3 AI accelerator gaining traction","x86 installed base advantage","US manufacturing credibility"],
-                "weaknesses": ["Years behind in GPU performance","Gaudi ecosystem very early","Multiple execution stumbles"],
-            },
+            {"name": "Perplexity", "score": 61, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 58, "Innovation": 75, "Leadership": 68, "ESG": 60, "Customer": 70},
+             "strengths": ["Answer-engine UX praised by power users", "Fast citation-based search differentiation", "Strong app-store ratings"],
+             "weaknesses": ["Tiny scale vs OpenAI/Google", "Dependent on third-party foundation models", "Monetization model still unproven"]},
+            {"name": "OpenAI", "score": 68, "grade": "Good", "risk": "Medium",
+             "dims": {"Brand": 90, "Innovation": 88, "Leadership": 55, "ESG": 50, "Customer": 65},
+             "strengths": ["ChatGPT search feature reaches huge user base", "Deep model R&D advantage", "Enterprise distribution via API"],
+             "weaknesses": ["Search still secondary to chat product", "Leadership instability", "Safety criticism"]},
+            {"name": "Google", "score": 78, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 85, "Innovation": 88, "Leadership": 78, "ESG": 72, "Customer": 68},
+             "strengths": ["Search + AI Overviews reach billions", "Unmatched index & infrastructure", "Gemini integration across products"],
+             "weaknesses": ["Slower to innovate on answer-engine UX", "Antitrust scrutiny", "Legacy ad-model tension with AI answers"]},
+            {"name": "Anthropic", "score": 74, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 65, "Innovation": 82, "Leadership": 85, "ESG": 80, "Customer": 68},
+             "strengths": ["Model quality trusted for research tasks", "Strong safety reputation", "Growing enterprise trust"],
+             "weaknesses": ["No dedicated consumer search product", "Smaller brand than Google/OpenAI", "Limited real-time web integration"]},
         ]
     },
+    "google_deepmind": {
+        "peers": [
+            {"name": "Google DeepMind", "score": 65, "grade": "Good", "risk": "Medium",
+             "dims": {"Brand": 80, "Innovation": 85, "Leadership": 70, "ESG": 65, "Customer": 55},
+             "strengths": ["AlphaFold and scientific research credibility", "Distribution via Google's entire product suite", "Massive TPU compute budget"],
+             "weaknesses": ["Gemini launch perception issues", "Slower enterprise-facing product iteration", "Privacy baggage from Google brand"]},
+            {"name": "OpenAI", "score": 68, "grade": "Good", "risk": "Medium",
+             "dims": {"Brand": 90, "Innovation": 88, "Leadership": 55, "ESG": 50, "Customer": 65},
+             "strengths": ["ChatGPT brand dominance", "First-mover consumer AI habit", "Largest developer ecosystem"],
+             "weaknesses": ["Leadership instability", "Safety criticism", "Heavy Microsoft dependency"]},
+            {"name": "Anthropic", "score": 74, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 65, "Innovation": 82, "Leadership": 85, "ESG": 80, "Customer": 68},
+             "strengths": ["Safety-first research reputation", "Strong enterprise trust in regulated sectors", "Consistent leadership stability"],
+             "weaknesses": ["Smaller brand recognition", "Less consumer product surface area", "Smaller compute footprint than Google"]},
+        ]
+    },
+    "meta_ai": {
+        "peers": [
+            {"name": "Meta AI", "score": 58, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 65, "Innovation": 78, "Leadership": 50, "ESG": 45, "Customer": 55},
+             "strengths": ["Llama open-source developer adoption", "Distribution via Instagram/WhatsApp/Facebook", "Free access drives usage volume"],
+             "weaknesses": ["No standalone consumer brand identity", "Safety/misinformation criticism", "Monetization path still unclear"]},
+            {"name": "OpenAI", "score": 68, "grade": "Good", "risk": "Medium",
+             "dims": {"Brand": 90, "Innovation": 88, "Leadership": 55, "ESG": 50, "Customer": 65},
+             "strengths": ["Standalone product with dedicated brand loyalty", "Strongest closed-model benchmarks", "Enterprise API revenue engine"],
+             "weaknesses": ["Leadership instability", "Safety criticism", "Compute cost pressure"]},
+            {"name": "Google DeepMind", "score": 65, "grade": "Good", "risk": "Medium",
+             "dims": {"Brand": 80, "Innovation": 85, "Leadership": 70, "ESG": 65, "Customer": 55},
+             "strengths": ["Broad multimodal research base", "Deep product integration across Google", "Long research track record"],
+             "weaknesses": ["Gemini launch credibility gap", "Slower iteration cadence", "Privacy scrutiny"]},
+            {"name": "Anthropic", "score": 74, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 65, "Innovation": 82, "Leadership": 85, "ESG": 80, "Customer": 68},
+             "strengths": ["Strong safety reputation", "Enterprise trust in regulated industries", "Stable leadership"],
+             "weaknesses": ["No open-weight strategy to match Llama's reach", "Smaller consumer footprint", "Limited ad-supported distribution"]},
+        ]
+    },
+    "xai": {
+        "peers": [
+            {"name": "xAI", "score": 55, "grade": "Fair", "risk": "High",
+             "dims": {"Brand": 60, "Innovation": 72, "Leadership": 45, "ESG": 35, "Customer": 48},
+             "strengths": ["Grok integrated directly into X (Twitter)", "Elon Musk drives outsized media attention", "Access to X real-time data feed"],
+             "weaknesses": ["Leadership controversy around content moderation", "Smaller research team than rivals", "ESG concerns over content policies"]},
+            {"name": "OpenAI", "score": 68, "grade": "Good", "risk": "Medium",
+             "dims": {"Brand": 90, "Innovation": 88, "Leadership": 55, "ESG": 50, "Customer": 65},
+             "strengths": ["Far larger user base and brand trust", "Deeper enterprise partnerships", "More mature safety processes"],
+             "weaknesses": ["Leadership instability", "Safety criticism", "Profit vs mission tension"]},
+            {"name": "Anthropic", "score": 74, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 65, "Innovation": 82, "Leadership": 85, "ESG": 80, "Customer": 68},
+             "strengths": ["Strongest safety and trust reputation", "Stable, low-controversy leadership", "Preferred by regulated enterprises"],
+             "weaknesses": ["Smaller brand recognition", "No social-platform distribution channel", "Slower consumer growth"]},
+            {"name": "Google DeepMind", "score": 65, "grade": "Good", "risk": "Medium",
+             "dims": {"Brand": 80, "Innovation": 85, "Leadership": 70, "ESG": 65, "Customer": 55},
+             "strengths": ["Massive compute and research scale", "Broad product distribution", "Long-established research credibility"],
+             "weaknesses": ["Gemini launch perception issues", "Slower iteration than nimble rivals", "Privacy scrutiny"]},
+        ]
+    },
+    "mistral": {
+        "peers": [
+            {"name": "Mistral AI", "score": 60, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 45, "Innovation": 75, "Leadership": 72, "ESG": 60, "Customer": 50},
+             "strengths": ["Open-source model reputation", "European AI champion narrative", "Lean & efficient models"],
+             "weaknesses": ["Much smaller scale than US rivals", "Limited enterprise support", "Brand still building"]},
+            {"name": "OpenAI", "score": 68, "grade": "Good", "risk": "Medium",
+             "dims": {"Brand": 90, "Innovation": 88, "Leadership": 55, "ESG": 50, "Customer": 65},
+             "strengths": ["Global brand dominance", "Largest developer ecosystem", "Frontier benchmark leadership"],
+             "weaknesses": ["Leadership instability", "Safety criticism", "Heavy compute costs"]},
+            {"name": "Meta AI", "score": 58, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 65, "Innovation": 78, "Leadership": 50, "ESG": 45, "Customer": 55},
+             "strengths": ["Llama open-weight ecosystem scale", "Massive built-in distribution", "Free-to-use developer goodwill"],
+             "weaknesses": ["No standalone brand identity", "Misinformation/safety criticism", "Unclear monetization"]},
+            {"name": "Anthropic", "score": 74, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 65, "Innovation": 82, "Leadership": 85, "ESG": 80, "Customer": 68},
+             "strengths": ["Strongest safety reputation", "Deep enterprise trust", "Stable leadership"],
+             "weaknesses": ["Closed-weight strategy limits developer reach", "Smaller brand than OpenAI", "Higher price point for SMBs"]},
+        ]
+    },
+    "cohere": {
+        "peers": [
+            {"name": "Cohere", "score": 56, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 38, "Innovation": 68, "Leadership": 65, "ESG": 58, "Customer": 60},
+             "strengths": ["Enterprise-focused RAG/retrieval strength", "Strong North American enterprise partnerships", "Data-privacy positioning for regulated clients"],
+             "weaknesses": ["Low consumer brand awareness", "Smaller model scale than frontier labs", "Limited marketing budget"]},
+            {"name": "OpenAI", "score": 68, "grade": "Good", "risk": "Medium",
+             "dims": {"Brand": 90, "Innovation": 88, "Leadership": 55, "ESG": 50, "Customer": 65},
+             "strengths": ["Vastly larger brand and developer base", "Broader model capability range", "Faster product iteration"],
+             "weaknesses": ["Leadership instability", "Safety criticism", "Less specialised for enterprise search"]},
+            {"name": "Anthropic", "score": 74, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 65, "Innovation": 82, "Leadership": 85, "ESG": 80, "Customer": 68},
+             "strengths": ["Strong enterprise trust and safety record", "Stable leadership", "Growing regulated-industry adoption"],
+             "weaknesses": ["Smaller brand than OpenAI", "Fewer enterprise search-specific tools", "Premium pricing"]},
+            {"name": "Mistral AI", "score": 60, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 45, "Innovation": 75, "Leadership": 72, "ESG": 60, "Customer": 50},
+             "strengths": ["Open-source model credibility", "European data-sovereignty appeal", "Efficient, lower-cost models"],
+             "weaknesses": ["Small enterprise sales team", "Limited North American presence", "Brand still building"]},
+        ]
+    },
+    "character_ai": {
+        "peers": [
+            {"name": "Character.AI", "score": 48, "grade": "Weak", "risk": "High",
+             "dims": {"Brand": 50, "Innovation": 62, "Leadership": 42, "ESG": 35, "Customer": 65},
+             "strengths": ["High engagement among Gen Z users", "Novel companion-chat product category", "Strong daily session times"],
+             "weaknesses": ["Child-safety and wellbeing scrutiny", "Thin monetization model", "Acquihire uncertainty after Google deal"]},
+            {"name": "OpenAI", "score": 68, "grade": "Good", "risk": "Medium",
+             "dims": {"Brand": 90, "Innovation": 88, "Leadership": 55, "ESG": 50, "Customer": 65},
+             "strengths": ["Far larger and more diversified user base", "Stronger safety infrastructure", "Broader brand trust"],
+             "weaknesses": ["Leadership instability", "Less focused on companion-chat niche", "Safety criticism of its own"]},
+            {"name": "Meta AI", "score": 58, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 65, "Innovation": 78, "Leadership": 50, "ESG": 45, "Customer": 55},
+             "strengths": ["Built-in distribution across Instagram/WhatsApp", "AI persona features rolling out at scale", "Large existing user relationships"],
+             "weaknesses": ["Teen-safety controversy of its own", "No standalone AI brand", "Monetization path unclear"]},
+            {"name": "xAI", "score": 55, "grade": "Fair", "risk": "High",
+             "dims": {"Brand": 60, "Innovation": 72, "Leadership": 45, "ESG": 35, "Customer": 48},
+             "strengths": ["Companion-style Grok personas gaining attention", "High media visibility", "Direct X platform distribution"],
+             "weaknesses": ["Leadership/content controversy", "Smaller research team", "ESG concerns"]},
+        ]
+    },
+    "huggingface": {
+        "peers": [
+            {"name": "Hugging Face", "score": 63, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 55, "Innovation": 78, "Leadership": 70, "ESG": 70, "Customer": 72},
+             "strengths": ["De facto hub for open-source model hosting", "Trusted neutral platform across the developer community", "Strong ties with every major AI lab"],
+             "weaknesses": ["Limited proprietary frontier models", "Revenue model less proven than cloud rivals", "Smaller compute resources than Big Tech"]},
+            {"name": "OpenAI", "score": 68, "grade": "Good", "risk": "Medium",
+             "dims": {"Brand": 90, "Innovation": 88, "Leadership": 55, "ESG": 50, "Customer": 65},
+             "strengths": ["Frontier closed-model performance lead", "Massive brand recognition", "Enterprise API revenue scale"],
+             "weaknesses": ["Leadership instability", "Less open/community-oriented model", "Safety criticism"]},
+            {"name": "Meta AI", "score": 58, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 65, "Innovation": 78, "Leadership": 50, "ESG": 45, "Customer": 55},
+             "strengths": ["Llama models widely hosted and used", "Deep pockets to subsidize open weights", "Massive distribution reach"],
+             "weaknesses": ["No dedicated hosting/tooling platform brand", "Safety/misinformation criticism", "Unclear monetization"]},
+            {"name": "Mistral AI", "score": 60, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 45, "Innovation": 75, "Leadership": 72, "ESG": 60, "Customer": 50},
+             "strengths": ["Open-weight model releases align with HF's mission", "European AI champion narrative", "Efficient, lean models"],
+             "weaknesses": ["Much smaller scale than US labs", "Limited enterprise support", "Brand still building"]},
+        ]
+    },
+
+    # ─────────────────────────── CONSUMER ELECTRONICS ───────────────────────────
     "apple": {
         "peers": [
-            {
-                "name": "Apple", "score": 85, "grade": "Excellent", "risk": "Low",
-                "dims": {"Brand":98,"Innovation":82,"Leadership":88,"ESG":80,"Customer":90},
-                "strengths": ["Strongest consumer brand on earth","iPhone ecosystem lock-in","Premium pricing power"],
-                "weaknesses": ["AI features perceived as behind Google/OpenAI","China manufacturing dependency","App Store antitrust pressure"],
-            },
-            {
-                "name": "Samsung", "score": 72, "grade": "Good", "risk": "Low",
-                "dims": {"Brand":78,"Innovation":80,"Leadership":70,"ESG":68,"Customer":72},
-                "strengths": ["Galaxy AI features ahead in Android space","Semiconductor vertical integration","#1 display technology"],
-                "weaknesses": ["Software experience trails Apple","Brand less premium in West","Foldable reliability concerns"],
-            },
-            {
-                "name": "Google", "score": 78, "grade": "Good", "risk": "Low",
-                "dims": {"Brand":85,"Innovation":88,"Leadership":78,"ESG":72,"Customer":68},
-                "strengths": ["Android controls 72% of global smartphones","Tensor chip AI integration","Google Assistant + Gemini"],
-                "weaknesses": ["Pixel hardware brand still niche","Privacy perception issues","Hardware profitability low"],
-            },
-            {
-                "name": "Microsoft", "score": 82, "grade": "Excellent", "risk": "Low",
-                "dims": {"Brand":88,"Innovation":84,"Leadership":90,"ESG":82,"Customer":75},
-                "strengths": ["Satya Nadella seen as best Big Tech CEO","Copilot AI integration across Office","Azure cloud dominance"],
-                "weaknesses": ["Consumer brand less exciting than Apple","Teams still trails Slack in NPS","Gaming strategy mixed"],
-            },
+            {"name": "Apple", "score": 85, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 98, "Innovation": 82, "Leadership": 88, "ESG": 80, "Customer": 90},
+             "strengths": ["Strongest consumer brand on earth", "iPhone ecosystem lock-in", "Premium pricing power"],
+             "weaknesses": ["AI features perceived as behind Google/OpenAI", "China manufacturing dependency", "App Store antitrust pressure"]},
+            {"name": "Samsung", "score": 72, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 78, "Innovation": 80, "Leadership": 70, "ESG": 68, "Customer": 72},
+             "strengths": ["Galaxy AI features ahead in Android space", "Semiconductor vertical integration", "#1 display technology"],
+             "weaknesses": ["Software experience trails Apple", "Brand less premium in West", "Foldable reliability concerns"]},
+            {"name": "Google", "score": 78, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 85, "Innovation": 88, "Leadership": 78, "ESG": 72, "Customer": 68},
+             "strengths": ["Android controls majority of global smartphones", "Tensor chip AI integration", "Google Assistant + Gemini"],
+             "weaknesses": ["Pixel hardware brand still niche", "Privacy perception issues", "Hardware profitability low"]},
+            {"name": "Microsoft", "score": 82, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 88, "Innovation": 84, "Leadership": 90, "ESG": 82, "Customer": 75},
+             "strengths": ["Satya Nadella seen as best Big Tech CEO", "Copilot AI integration across Office", "Azure cloud dominance"],
+             "weaknesses": ["Consumer brand less exciting than Apple", "Teams still trails Slack in NPS", "Gaming strategy mixed"]},
         ]
     },
+    "samsung": {
+        "peers": [
+            {"name": "Samsung", "score": 72, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 78, "Innovation": 80, "Leadership": 70, "ESG": 68, "Customer": 72},
+             "strengths": ["Broadest product range from chips to foldables", "Vertical integration (memory, displays, foundry)", "Galaxy AI ahead in Android space"],
+             "weaknesses": ["Brand seen as less premium than Apple in the West", "Software experience trails Apple", "Foldable reliability concerns"]},
+            {"name": "Apple", "score": 85, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 98, "Innovation": 82, "Leadership": 88, "ESG": 80, "Customer": 90},
+             "strengths": ["Strongest consumer brand loyalty on earth", "Tight hardware-software integration", "Premium pricing power"],
+             "weaknesses": ["AI features perceived as behind Google/Samsung", "China manufacturing dependency", "App Store antitrust pressure"]},
+            {"name": "Xiaomi", "score": 62, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 60, "Innovation": 75, "Leadership": 65, "ESG": 58, "Customer": 68},
+             "strengths": ["Best value-for-money positioning globally", "Fast-growing EV + IoT ecosystem", "#3 global smartphone shipments"],
+             "weaknesses": ["Thinner margins than premium rivals", "Brand seen as budget outside home market", "Regulatory scrutiny in some markets"]},
+            {"name": "Huawei", "score": 57, "grade": "Fair", "risk": "High",
+             "dims": {"Brand": 65, "Innovation": 80, "Leadership": 55, "ESG": 45, "Customer": 55},
+             "strengths": ["Vertical chip design resilience under sanctions", "Strong domestic China loyalty", "5G/telecom infrastructure leadership"],
+             "weaknesses": ["US export ban restricts global growth", "Limited Google services access", "Geopolitical trust concerns in West"]},
+        ]
+    },
+    "sony": {
+        "peers": [
+            {"name": "Sony", "score": 68, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 75, "Innovation": 74, "Leadership": 70, "ESG": 68, "Customer": 70},
+             "strengths": ["PlayStation ecosystem loyalty", "Best-in-class camera sensor technology", "Strong brand trust in imaging/audio"],
+             "weaknesses": ["Mobile division niche outside Japan", "Slower AI feature rollout", "Complex conglomerate structure"]},
+            {"name": "Apple", "score": 85, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 98, "Innovation": 82, "Leadership": 88, "ESG": 80, "Customer": 90},
+             "strengths": ["Ecosystem lock-in across hardware categories", "Premium brand and pricing power", "Deep AI/software investment"],
+             "weaknesses": ["No dedicated gaming console business", "China manufacturing dependency", "App Store antitrust pressure"]},
+            {"name": "Samsung", "score": 72, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 78, "Innovation": 80, "Leadership": 70, "ESG": 68, "Customer": 72},
+             "strengths": ["Display and sensor vertical integration rivals Sony", "Broader consumer electronics portfolio", "Galaxy AI momentum"],
+             "weaknesses": ["Camera brand prestige trails Sony in imaging", "Software experience seen as weaker", "Foldable reliability concerns"]},
+            {"name": "Xiaomi", "score": 62, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 60, "Innovation": 75, "Leadership": 65, "ESG": 58, "Customer": 68},
+             "strengths": ["Aggressive value pricing across categories", "Fast-growing ecosystem of connected devices", "Rapid global expansion"],
+             "weaknesses": ["Lower brand prestige than Sony in imaging/audio", "Thinner margins", "Regulatory scrutiny in some markets"]},
+        ]
+    },
+    "xiaomi": {
+        "peers": [
+            {"name": "Xiaomi", "score": 62, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 60, "Innovation": 75, "Leadership": 65, "ESG": 58, "Customer": 68},
+             "strengths": ["Best value-for-money positioning globally", "Fast-growing EV + IoT ecosystem", "#3 global smartphone shipments"],
+             "weaknesses": ["Thinner margins than premium rivals", "Brand seen as budget outside home market", "Regulatory scrutiny in some markets"]},
+            {"name": "Samsung", "score": 72, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 78, "Innovation": 80, "Leadership": 70, "ESG": 68, "Customer": 72},
+             "strengths": ["Stronger premium brand perception", "Deep vertical integration", "Broader global retail presence"],
+             "weaknesses": ["Higher price points limit value-segment reach", "Software experience trails Apple", "Foldable reliability concerns"]},
+            {"name": "Apple", "score": 85, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 98, "Innovation": 82, "Leadership": 88, "ESG": 80, "Customer": 90},
+             "strengths": ["Unmatched premium brand loyalty", "Ecosystem lock-in", "Highest margins in the industry"],
+             "weaknesses": ["No budget-tier products to compete with Xiaomi", "China manufacturing dependency", "App Store antitrust pressure"]},
+            {"name": "Huawei", "score": 57, "grade": "Fair", "risk": "High",
+             "dims": {"Brand": 65, "Innovation": 80, "Leadership": 55, "ESG": 45, "Customer": 55},
+             "strengths": ["Strong domestic China loyalty", "Vertical chip design resilience", "5G/telecom infrastructure leadership"],
+             "weaknesses": ["US export ban restricts global growth", "Limited Google services access", "Geopolitical trust concerns in West"]},
+        ]
+    },
+    "huawei": {
+        "peers": [
+            {"name": "Huawei", "score": 57, "grade": "Fair", "risk": "High",
+             "dims": {"Brand": 65, "Innovation": 80, "Leadership": 55, "ESG": 45, "Customer": 55},
+             "strengths": ["Vertical chip design resilience under sanctions", "Strong domestic China loyalty", "5G/telecom infrastructure leadership"],
+             "weaknesses": ["US export ban restricts global growth", "Limited Google services access", "Geopolitical trust concerns in West"]},
+            {"name": "Xiaomi", "score": 62, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 60, "Innovation": 75, "Leadership": 65, "ESG": 58, "Customer": 68},
+             "strengths": ["Full global market access (no sanctions)", "Best value-for-money positioning", "Fast-growing IoT ecosystem"],
+             "weaknesses": ["Thinner margins than premium rivals", "Brand seen as budget outside home market", "Regulatory scrutiny in some markets"]},
+            {"name": "Samsung", "score": 72, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 78, "Innovation": 80, "Leadership": 70, "ESG": 68, "Customer": 72},
+             "strengths": ["Unrestricted global distribution", "Full Google services access", "Deep semiconductor vertical integration"],
+             "weaknesses": ["Software experience trails Apple", "Brand less premium in West", "Foldable reliability concerns"]},
+            {"name": "Apple", "score": 85, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 98, "Innovation": 82, "Leadership": 88, "ESG": 80, "Customer": 90},
+             "strengths": ["Strongest global consumer brand", "Premium ecosystem lock-in", "No geopolitical export bans"],
+             "weaknesses": ["China manufacturing dependency", "AI features perceived as behind rivals", "App Store antitrust pressure"]},
+        ]
+    },
+    "oneplus": {
+        "peers": [
+            {"name": "OnePlus", "score": 55, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 50, "Innovation": 68, "Leadership": 58, "ESG": 55, "Customer": 65},
+             "strengths": ["Enthusiast community brand loyalty", "Fast software update cadence", "Strong price-to-performance flagship specs"],
+             "weaknesses": ["Small global market share", "Parent company (BBK) brand overlap confusion", "Limited carrier partnerships in US"]},
+            {"name": "Xiaomi", "score": 62, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 60, "Innovation": 75, "Leadership": 65, "ESG": 58, "Customer": 68},
+             "strengths": ["Broader product ecosystem beyond phones", "Larger global scale", "Faster international expansion"],
+             "weaknesses": ["Thinner margins than premium rivals", "Brand seen as budget outside home market", "Regulatory scrutiny in some markets"]},
+            {"name": "Samsung", "score": 72, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 78, "Innovation": 80, "Leadership": 70, "ESG": 68, "Customer": 72},
+             "strengths": ["Vastly larger global retail and carrier presence", "Deep vertical integration", "Broader premium/foldable lineup"],
+             "weaknesses": ["Software experience trails Apple", "Brand less premium in West", "Foldable reliability concerns"]},
+            {"name": "Apple", "score": 85, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 98, "Innovation": 82, "Leadership": 88, "ESG": 80, "Customer": 90},
+             "strengths": ["Unmatched premium brand loyalty", "Ecosystem lock-in", "Highest margins and retail presence"],
+             "weaknesses": ["AI features perceived as behind rivals", "China manufacturing dependency", "App Store antitrust pressure"]},
+        ]
+    },
+
+    # ─────────────────────────────── SEMICONDUCTORS ───────────────────────────────
+    "nvidia": {
+        "peers": [
+            {"name": "Nvidia", "score": 80, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 85, "Innovation": 92, "Leadership": 88, "ESG": 65, "Customer": 78},
+             "strengths": ["H100/H200 GPU monopoly for AI training", "CUDA ecosystem lock-in", "Jensen Huang seen as visionary CEO"],
+             "weaknesses": ["Export control risks to China", "Single-product revenue concentration", "Supply constraints"]},
+            {"name": "AMD", "score": 67, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 72, "Innovation": 78, "Leadership": 74, "ESG": 68, "Customer": 70},
+             "strengths": ["ROCm open-source alternative to CUDA", "Strong CPU+GPU combined roadmap", "MI300X competitive on price"],
+             "weaknesses": ["Software ecosystem trails Nvidia", "Lower AI mindshare", "Smaller data centre footprint"]},
+            {"name": "Intel", "score": 54, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 70, "Innovation": 58, "Leadership": 55, "ESG": 65, "Customer": 55},
+             "strengths": ["Gaudi3 AI accelerator gaining traction", "x86 installed base advantage", "US manufacturing credibility"],
+             "weaknesses": ["Years behind in GPU performance", "Gaudi ecosystem very early", "Multiple execution stumbles"]},
+        ]
+    },
+    "amd": {
+        "peers": [
+            {"name": "AMD", "score": 67, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 72, "Innovation": 78, "Leadership": 74, "ESG": 68, "Customer": 70},
+             "strengths": ["ROCm open-source alternative to CUDA", "Strong CPU+GPU combined roadmap", "MI300X competitive on price"],
+             "weaknesses": ["Software ecosystem trails Nvidia", "Lower AI mindshare", "Smaller data centre footprint"]},
+            {"name": "Nvidia", "score": 80, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 85, "Innovation": 92, "Leadership": 88, "ESG": 65, "Customer": 78},
+             "strengths": ["Dominant CUDA software moat", "Category-defining AI training GPUs", "Visionary CEO leadership"],
+             "weaknesses": ["Export control risks to China", "Single-product revenue concentration", "Supply constraints"]},
+            {"name": "Intel", "score": 54, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 70, "Innovation": 58, "Leadership": 55, "ESG": 65, "Customer": 55},
+             "strengths": ["x86 installed base advantage", "US manufacturing/CHIPS Act credibility", "Broad product portfolio"],
+             "weaknesses": ["Years behind in GPU performance", "Gaudi ecosystem very early", "Multiple execution stumbles"]},
+            {"name": "Qualcomm", "score": 71, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 70, "Innovation": 80, "Leadership": 72, "ESG": 65, "Customer": 68},
+             "strengths": ["Snapdragon dominant in premium Android", "Modem/connectivity IP licensing moat", "Growing automotive & PC chip push"],
+             "weaknesses": ["Heavy dependence on smartphone cycles", "Limited data-centre GPU presence", "China market regulatory exposure"]},
+        ]
+    },
+    "intel": {
+        "peers": [
+            {"name": "Intel", "score": 54, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 70, "Innovation": 58, "Leadership": 55, "ESG": 65, "Customer": 55},
+             "strengths": ["Gaudi3 AI accelerator gaining traction", "x86 installed base advantage", "US manufacturing credibility"],
+             "weaknesses": ["Years behind in GPU performance", "Gaudi ecosystem very early", "Multiple execution stumbles"]},
+            {"name": "TSMC", "score": 84, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 75, "Innovation": 92, "Leadership": 85, "ESG": 70, "Customer": 80},
+             "strengths": ["Unmatched leading-edge foundry process yields", "Manufactures for nearly every major chip designer", "Deep customer trust and capacity commitments"],
+             "weaknesses": ["Geopolitical risk concentrated in Taiwan", "Capital intensity limits flexibility", "US/Japan expansion execution risk"]},
+            {"name": "Nvidia", "score": 80, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 85, "Innovation": 92, "Leadership": 88, "ESG": 65, "Customer": 78},
+             "strengths": ["Dominant AI GPU market share", "CUDA software moat", "Visionary CEO leadership"],
+             "weaknesses": ["Export control risks to China", "Single-product revenue concentration", "Supply constraints"]},
+            {"name": "AMD", "score": 67, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 72, "Innovation": 78, "Leadership": 74, "ESG": 68, "Customer": 70},
+             "strengths": ["Competitive CPU roadmap gaining server share", "MI300X price-competitive AI accelerator", "Improving execution track record"],
+             "weaknesses": ["Software ecosystem trails Nvidia", "Lower AI mindshare", "Smaller data centre footprint"]},
+        ]
+    },
+    "qualcomm": {
+        "peers": [
+            {"name": "Qualcomm", "score": 71, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 70, "Innovation": 80, "Leadership": 72, "ESG": 65, "Customer": 68},
+             "strengths": ["Snapdragon dominant in premium Android", "Modem/connectivity IP licensing moat", "Growing automotive & PC chip push"],
+             "weaknesses": ["Heavy dependence on smartphone cycles", "Apple modem business at risk", "China market regulatory exposure"]},
+            {"name": "MediaTek", "score": 65, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 52, "Innovation": 74, "Leadership": 68, "ESG": 60, "Customer": 65},
+             "strengths": ["Dominant in mid-range/budget smartphone chips", "Fast-growing share in flagship tier", "Diversified into smart TV & IoT chips"],
+             "weaknesses": ["Lower brand prestige than Qualcomm", "Thinner margins on volume chips", "Heavy China market dependence"]},
+            {"name": "Broadcom", "score": 76, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 65, "Innovation": 80, "Leadership": 82, "ESG": 62, "Customer": 70},
+             "strengths": ["Custom AI ASIC partnerships with hyperscalers", "Networking chip market leadership", "Strong free cash flow and M&A track record"],
+             "weaknesses": ["Complex conglomerate perception", "VMware acquisition integration risk", "Customer concentration in a few hyperscalers"]},
+            {"name": "Nvidia", "score": 80, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 85, "Innovation": 92, "Leadership": 88, "ESG": 65, "Customer": 78},
+             "strengths": ["Dominant AI training/inference GPU share", "CUDA ecosystem lock-in", "Visionary CEO leadership"],
+             "weaknesses": ["Export control risks to China", "Single-product revenue concentration", "Supply constraints"]},
+        ]
+    },
+    "broadcom": {
+        "peers": [
+            {"name": "Broadcom", "score": 76, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 65, "Innovation": 80, "Leadership": 82, "ESG": 62, "Customer": 70},
+             "strengths": ["Custom AI ASIC partnerships with hyperscalers", "Networking chip market leadership", "Strong free cash flow and M&A track record"],
+             "weaknesses": ["Complex conglomerate perception", "VMware acquisition integration risk", "Customer concentration in a few hyperscalers"]},
+            {"name": "Nvidia", "score": 80, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 85, "Innovation": 92, "Leadership": 88, "ESG": 65, "Customer": 78},
+             "strengths": ["Dominant merchant AI GPU market", "CUDA ecosystem lock-in", "Broadest AI developer mindshare"],
+             "weaknesses": ["Export control risks to China", "Single-product revenue concentration", "Supply constraints"]},
+            {"name": "Qualcomm", "score": 71, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 70, "Innovation": 80, "Leadership": 72, "ESG": 65, "Customer": 68},
+             "strengths": ["Snapdragon dominant in premium Android", "Strong IP licensing moat", "Growing automotive & PC chip push"],
+             "weaknesses": ["Heavy dependence on smartphone cycles", "Smaller custom-silicon business than Broadcom", "China market regulatory exposure"]},
+            {"name": "Marvell", "score": 66, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 48, "Innovation": 78, "Leadership": 70, "ESG": 60, "Customer": 62},
+             "strengths": ["Custom AI silicon design wins with hyperscalers", "Strong networking/data infrastructure portfolio", "Growing optical interconnect business"],
+             "weaknesses": ["Smaller scale than Broadcom/Nvidia", "Revenue concentration in few large customers", "Lower consumer brand recognition"]},
+        ]
+    },
+    "arm": {
+        "peers": [
+            {"name": "ARM", "score": 74, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 62, "Innovation": 85, "Leadership": 75, "ESG": 68, "Customer": 65},
+             "strengths": ["Architecture licensed in nearly all mobile chips", "Expanding into data centre & AI compute", "Neutral IP licensing model favored broadly"],
+             "weaknesses": ["Revenue tied to royalty rates, not hardware margins", "SoftBank ownership overhang", "Nvidia acquisition attempt created uncertainty"]},
+            {"name": "Qualcomm", "score": 71, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 70, "Innovation": 80, "Leadership": 72, "ESG": 65, "Customer": 68},
+             "strengths": ["Largest single licensee/customer of ARM architecture", "Strong modem/connectivity IP moat", "Growing PC/automotive chip push"],
+             "weaknesses": ["Dependent on ARM's licensing terms", "Heavy dependence on smartphone cycles", "China market regulatory exposure"]},
+            {"name": "Intel", "score": 54, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 70, "Innovation": 58, "Leadership": 55, "ESG": 65, "Customer": 55},
+             "strengths": ["x86 architecture still dominant in PCs/servers", "US manufacturing credibility", "Broad product portfolio"],
+             "weaknesses": ["Losing share to ARM-based designs (Apple Silicon)", "Years behind in GPU performance", "Multiple execution stumbles"]},
+            {"name": "Nvidia", "score": 80, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 85, "Innovation": 92, "Leadership": 88, "ESG": 65, "Customer": 78},
+             "strengths": ["Increasingly builds ARM-based data-centre CPUs", "Dominant AI compute ecosystem", "Visionary CEO leadership"],
+             "weaknesses": ["Failed acquisition of ARM drew regulatory scrutiny", "Export control risks to China", "Single-product revenue concentration"]},
+        ]
+    },
+    "tsmc": {
+        "peers": [
+            {"name": "TSMC", "score": 84, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 75, "Innovation": 92, "Leadership": 85, "ESG": 70, "Customer": 80},
+             "strengths": ["Unmatched leading-edge foundry process yields", "Manufactures for nearly every major chip designer", "Deep customer trust and capacity commitments"],
+             "weaknesses": ["Geopolitical risk concentrated in Taiwan", "Capital intensity limits flexibility", "US/Japan expansion execution risk"]},
+            {"name": "Samsung", "score": 72, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 78, "Innovation": 80, "Leadership": 70, "ESG": 68, "Customer": 72},
+             "strengths": ["Only other foundry at leading-edge nodes", "Vertical integration with memory business", "Diversified beyond pure foundry"],
+             "weaknesses": ["Trails TSMC in yield and customer trust", "Foundry business unit less profitable", "Geopolitical exposure lower but growing"]},
+            {"name": "Intel", "score": 54, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 70, "Innovation": 58, "Leadership": 55, "ESG": 65, "Customer": 55},
+             "strengths": ["US-based manufacturing pitched as geopolitical hedge", "CHIPS Act government support", "Foundry ambitions (Intel Foundry)"],
+             "weaknesses": ["Years behind TSMC in process leadership", "Foundry customer trust still nascent", "Multiple execution stumbles"]},
+            {"name": "Micron", "score": 63, "grade": "Good", "risk": "Medium",
+             "dims": {"Brand": 55, "Innovation": 75, "Leadership": 65, "ESG": 62, "Customer": 60},
+             "strengths": ["Leading US-based memory manufacturer", "HBM demand surge from AI datacenters", "Government CHIPS Act support"],
+             "weaknesses": ["Memory pricing highly cyclical", "Behind SK Hynix in HBM market share", "China export restrictions exposure"]},
+        ]
+    },
+    "mediatek": {
+        "peers": [
+            {"name": "MediaTek", "score": 65, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 52, "Innovation": 74, "Leadership": 68, "ESG": 60, "Customer": 65},
+             "strengths": ["Dominant in mid-range/budget smartphone chips", "Fast-growing share in flagship tier", "Diversified into smart TV & IoT chips"],
+             "weaknesses": ["Lower brand prestige than Qualcomm", "Thinner margins on volume chips", "Heavy China market dependence"]},
+            {"name": "Qualcomm", "score": 71, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 70, "Innovation": 80, "Leadership": 72, "ESG": 65, "Customer": 68},
+             "strengths": ["Stronger flagship/premium Snapdragon brand", "Deep modem/connectivity IP moat", "Growing automotive & PC chip push"],
+             "weaknesses": ["Heavy dependence on smartphone cycles", "Apple modem business at risk", "China market regulatory exposure"]},
+            {"name": "Broadcom", "score": 76, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 65, "Innovation": 80, "Leadership": 82, "ESG": 62, "Customer": 70},
+             "strengths": ["Custom AI ASIC partnerships with hyperscalers", "Diversified enterprise networking portfolio", "Strong free cash flow"],
+             "weaknesses": ["Complex conglomerate perception", "Not focused on mobile SoCs", "Customer concentration risk"]},
+            {"name": "Samsung", "score": 72, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 78, "Innovation": 80, "Leadership": 70, "ESG": 68, "Customer": 72},
+             "strengths": ["Exynos chips plus broader semiconductor scale", "Vertical integration advantage", "Strong global brand"],
+             "weaknesses": ["Exynos trails Qualcomm/MediaTek in adoption", "Software experience trails Apple", "Foldable reliability concerns"]},
+        ]
+    },
+    "micron": {
+        "peers": [
+            {"name": "Micron", "score": 63, "grade": "Good", "risk": "Medium",
+             "dims": {"Brand": 55, "Innovation": 75, "Leadership": 65, "ESG": 62, "Customer": 60},
+             "strengths": ["Leading US-based memory manufacturer", "HBM demand surge from AI datacenters", "Government CHIPS Act support"],
+             "weaknesses": ["Memory pricing highly cyclical", "Behind SK Hynix in HBM market share", "China export restrictions exposure"]},
+            {"name": "Samsung", "score": 72, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 78, "Innovation": 80, "Leadership": 70, "ESG": 68, "Customer": 72},
+             "strengths": ["Largest global memory manufacturer by volume", "Deep vertical integration", "Broad diversification beyond memory"],
+             "weaknesses": ["Memory pricing highly cyclical for all players", "Foundry business unit less profitable", "Software experience trails Apple"]},
+            {"name": "TSMC", "score": 84, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 75, "Innovation": 92, "Leadership": 85, "ESG": 70, "Customer": 80},
+             "strengths": ["Unmatched logic foundry process leadership", "Manufactures for nearly every major chip designer", "Deep customer trust"],
+             "weaknesses": ["Not a memory manufacturer directly", "Geopolitical risk concentrated in Taiwan", "Capital intensity limits flexibility"]},
+            {"name": "Marvell", "score": 66, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 48, "Innovation": 78, "Leadership": 70, "ESG": 60, "Customer": 62},
+             "strengths": ["Custom AI silicon design wins with hyperscalers", "Growing optical interconnect business", "Strong networking portfolio"],
+             "weaknesses": ["Not a memory manufacturer", "Smaller scale than Micron", "Revenue concentration in few large customers"]},
+        ]
+    },
+    "marvell": {
+        "peers": [
+            {"name": "Marvell", "score": 66, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 48, "Innovation": 78, "Leadership": 70, "ESG": 60, "Customer": 62},
+             "strengths": ["Custom AI silicon design wins with hyperscalers", "Strong networking/data infrastructure portfolio", "Growing optical interconnect business"],
+             "weaknesses": ["Smaller scale than Broadcom/Nvidia", "Revenue concentration in few large customers", "Lower consumer brand recognition"]},
+            {"name": "Broadcom", "score": 76, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 65, "Innovation": 80, "Leadership": 82, "ESG": 62, "Customer": 70},
+             "strengths": ["Larger scale custom AI ASIC business", "Networking chip market leadership", "Strong free cash flow and M&A track record"],
+             "weaknesses": ["Complex conglomerate perception", "VMware acquisition integration risk", "Customer concentration in a few hyperscalers"]},
+            {"name": "Nvidia", "score": 80, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 85, "Innovation": 92, "Leadership": 88, "ESG": 65, "Customer": 78},
+             "strengths": ["Dominant merchant AI GPU market share", "CUDA ecosystem lock-in", "Broadest AI developer mindshare"],
+             "weaknesses": ["Export control risks to China", "Single-product revenue concentration", "Supply constraints"]},
+            {"name": "Qualcomm", "score": 71, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 70, "Innovation": 80, "Leadership": 72, "ESG": 65, "Customer": 68},
+             "strengths": ["Larger scale and stronger consumer brand", "Deep modem/connectivity IP moat", "Growing automotive & PC chip push"],
+             "weaknesses": ["Heavy dependence on smartphone cycles", "Less focused on data-centre custom silicon", "China market regulatory exposure"]},
+        ]
+    },
+
+    # ─────────────────────────────────── EVs ───────────────────────────────────
+    "tesla": {
+        "peers": [
+            {"name": "Tesla", "score": 72, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 85, "Innovation": 90, "Leadership": 48, "ESG": 60, "Customer": 65},
+             "strengths": ["First-mover EV brand recognition", "Supercharger network moat", "FSD technology lead"],
+             "weaknesses": ["CEO controversy drags leadership score", "Inconsistent build quality complaints"]},
+            {"name": "Rivian", "score": 58, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 55, "Innovation": 70, "Leadership": 65, "ESG": 75, "Customer": 50},
+             "strengths": ["Strong ESG narrative", "Adventure/outdoor brand appeal", "Amazon partnership"],
+             "weaknesses": ["Production ramp struggles", "Limited charging network", "Burning cash"]},
+            {"name": "Lucid", "score": 49, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 45, "Innovation": 72, "Leadership": 52, "ESG": 60, "Customer": 42},
+             "strengths": ["Best-in-class range specs", "Luxury positioning", "Saudi Aramco backing"],
+             "weaknesses": ["Very low production volumes", "Low brand awareness", "Profitability concerns"]},
+            {"name": "Ford EV", "score": 54, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 70, "Innovation": 55, "Leadership": 60, "ESG": 55, "Customer": 58},
+             "strengths": ["F-150 Lightning brand trust", "Established dealer network", "Manufacturing scale"],
+             "weaknesses": ["Late EV entrant", "Software experience behind Tesla", "EV division losses"]},
+        ]
+    },
+    "byd": {
+        "peers": [
+            {"name": "BYD", "score": 75, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 68, "Innovation": 80, "Leadership": 75, "ESG": 70, "Customer": 72},
+             "strengths": ["World's largest EV/PHEV seller by volume", "Vertically integrated battery production", "Aggressive international expansion"],
+             "weaknesses": ["Brand perception still building outside China", "Tariff barriers in US/EU markets", "Margin pressure from price wars"]},
+            {"name": "Tesla", "score": 72, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 85, "Innovation": 90, "Leadership": 48, "ESG": 60, "Customer": 65},
+             "strengths": ["Stronger global brand recognition", "Supercharger network moat", "FSD technology lead"],
+             "weaknesses": ["CEO controversy drags leadership score", "Smaller PHEV/hybrid lineup", "Higher price points than BYD"]},
+            {"name": "NIO", "score": 52, "grade": "Fair", "risk": "High",
+             "dims": {"Brand": 55, "Innovation": 72, "Leadership": 55, "ESG": 65, "Customer": 68},
+             "strengths": ["Battery-swap infrastructure differentiation", "Premium brand positioning in China", "Strong owner community loyalty"],
+             "weaknesses": ["Persistent cash burn and losses", "Limited presence outside China", "Execution risk on new sub-brands"]},
+            {"name": "XPeng", "score": 54, "grade": "Fair", "risk": "High",
+             "dims": {"Brand": 48, "Innovation": 78, "Leadership": 58, "ESG": 62, "Customer": 60},
+             "strengths": ["Advanced ADAS/autonomous driving tech", "Strong smart-cockpit software experience", "Volkswagen strategic partnership"],
+             "weaknesses": ["Smaller sales volume than BYD/Tesla", "Continued profitability challenges", "Brand awareness low outside China"]},
+        ]
+    },
+    "rivian": {
+        "peers": [
+            {"name": "Rivian", "score": 58, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 55, "Innovation": 70, "Leadership": 65, "ESG": 75, "Customer": 50},
+             "strengths": ["Strong ESG narrative", "Adventure/outdoor brand appeal", "Amazon partnership"],
+             "weaknesses": ["Production ramp struggles", "Limited charging network", "Burning cash"]},
+            {"name": "Tesla", "score": 72, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 85, "Innovation": 90, "Leadership": 48, "ESG": 60, "Customer": 65},
+             "strengths": ["First-mover EV brand recognition", "Supercharger network moat", "FSD technology lead"],
+             "weaknesses": ["CEO controversy drags leadership score", "Inconsistent build quality complaints"]},
+            {"name": "Lucid", "score": 49, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 45, "Innovation": 72, "Leadership": 52, "ESG": 60, "Customer": 42},
+             "strengths": ["Best-in-class range specs", "Luxury positioning", "Saudi Aramco backing"],
+             "weaknesses": ["Very low production volumes", "Low brand awareness", "Profitability concerns"]},
+            {"name": "Ford EV", "score": 54, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 70, "Innovation": 55, "Leadership": 60, "ESG": 55, "Customer": 58},
+             "strengths": ["F-150 Lightning brand trust", "Established dealer network", "Manufacturing scale"],
+             "weaknesses": ["Late EV entrant", "Software experience behind Tesla", "EV division losses"]},
+        ]
+    },
+    "lucid": {
+        "peers": [
+            {"name": "Lucid", "score": 49, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 45, "Innovation": 72, "Leadership": 52, "ESG": 60, "Customer": 42},
+             "strengths": ["Best-in-class range specs", "Luxury positioning", "Saudi Aramco backing"],
+             "weaknesses": ["Very low production volumes", "Low brand awareness", "Profitability concerns"]},
+            {"name": "Tesla", "score": 72, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 85, "Innovation": 90, "Leadership": 48, "ESG": 60, "Customer": 65},
+             "strengths": ["First-mover EV brand recognition", "Supercharger network moat", "FSD technology lead"],
+             "weaknesses": ["CEO controversy drags leadership score", "Inconsistent build quality complaints"]},
+            {"name": "Rivian", "score": 58, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 55, "Innovation": 70, "Leadership": 65, "ESG": 75, "Customer": 50},
+             "strengths": ["Strong ESG narrative", "Adventure/outdoor brand appeal", "Amazon partnership"],
+             "weaknesses": ["Production ramp struggles", "Limited charging network", "Burning cash"]},
+            {"name": "NIO", "score": 52, "grade": "Fair", "risk": "High",
+             "dims": {"Brand": 55, "Innovation": 72, "Leadership": 55, "ESG": 65, "Customer": 68},
+             "strengths": ["Battery-swap infrastructure differentiation", "Premium brand positioning in China", "Strong owner community loyalty"],
+             "weaknesses": ["Persistent cash burn and losses", "Limited presence outside China", "Execution risk on new sub-brands"]},
+        ]
+    },
+    "nio": {
+        "peers": [
+            {"name": "NIO", "score": 52, "grade": "Fair", "risk": "High",
+             "dims": {"Brand": 55, "Innovation": 72, "Leadership": 55, "ESG": 65, "Customer": 68},
+             "strengths": ["Battery-swap infrastructure differentiation", "Premium brand positioning in China", "Strong owner community loyalty"],
+             "weaknesses": ["Persistent cash burn and losses", "Limited presence outside China", "Execution risk on new sub-brands"]},
+            {"name": "BYD", "score": 75, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 68, "Innovation": 80, "Leadership": 75, "ESG": 70, "Customer": 72},
+             "strengths": ["World's largest EV/PHEV seller by volume", "Vertically integrated battery production", "Aggressive international expansion"],
+             "weaknesses": ["Brand perception still building outside China", "Tariff barriers in US/EU markets", "Margin pressure from price wars"]},
+            {"name": "Tesla", "score": 72, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 85, "Innovation": 90, "Leadership": 48, "ESG": 60, "Customer": 65},
+             "strengths": ["Global brand recognition far exceeds NIO", "Supercharger network moat", "FSD technology lead"],
+             "weaknesses": ["CEO controversy drags leadership score", "Inconsistent build quality complaints"]},
+            {"name": "XPeng", "score": 54, "grade": "Fair", "risk": "High",
+             "dims": {"Brand": 48, "Innovation": 78, "Leadership": 58, "ESG": 62, "Customer": 60},
+             "strengths": ["Advanced ADAS/autonomous driving tech", "Strong smart-cockpit software experience", "Volkswagen strategic partnership"],
+             "weaknesses": ["Smaller sales volume than NIO/BYD", "Continued profitability challenges", "Brand awareness low outside China"]},
+        ]
+    },
+    "xpeng": {
+        "peers": [
+            {"name": "XPeng", "score": 54, "grade": "Fair", "risk": "High",
+             "dims": {"Brand": 48, "Innovation": 78, "Leadership": 58, "ESG": 62, "Customer": 60},
+             "strengths": ["Advanced ADAS/autonomous driving tech", "Strong smart-cockpit software experience", "Volkswagen strategic partnership"],
+             "weaknesses": ["Smaller sales volume than BYD/Tesla", "Continued profitability challenges", "Brand awareness low outside China"]},
+            {"name": "NIO", "score": 52, "grade": "Fair", "risk": "High",
+             "dims": {"Brand": 55, "Innovation": 72, "Leadership": 55, "ESG": 65, "Customer": 68},
+             "strengths": ["Battery-swap infrastructure differentiation", "Premium brand positioning in China", "Strong owner community loyalty"],
+             "weaknesses": ["Persistent cash burn and losses", "Limited presence outside China", "Execution risk on new sub-brands"]},
+            {"name": "BYD", "score": 75, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 68, "Innovation": 80, "Leadership": 75, "ESG": 70, "Customer": 72},
+             "strengths": ["World's largest EV/PHEV seller by volume", "Vertically integrated battery production", "Aggressive international expansion"],
+             "weaknesses": ["Brand perception still building outside China", "Tariff barriers in US/EU markets", "Margin pressure from price wars"]},
+            {"name": "Tesla", "score": 72, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 85, "Innovation": 90, "Leadership": 48, "ESG": 60, "Customer": 65},
+             "strengths": ["Global brand recognition far exceeds XPeng", "Supercharger network moat", "FSD technology lead"],
+             "weaknesses": ["CEO controversy drags leadership score", "Inconsistent build quality complaints"]},
+        ]
+    },
+
+    # ─────────────────────────────── BIG TECH ───────────────────────────────
     "microsoft": {
         "peers": [
-            {
-                "name": "Microsoft", "score": 82, "grade": "Excellent", "risk": "Low",
-                "dims": {"Brand":88,"Innovation":84,"Leadership":90,"ESG":82,"Customer":75},
-                "strengths": ["Satya Nadella rated best Big Tech CEO","Copilot AI across entire product suite","Azure is #2 cloud with fastest growth"],
-                "weaknesses": ["Activision integration still uncertain","Teams NPS trails Slack","Windows update frustration a perennial issue"],
-            },
-            {
-                "name": "Google", "score": 78, "grade": "Good", "risk": "Low",
-                "dims": {"Brand":85,"Innovation":88,"Leadership":78,"ESG":72,"Customer":68},
-                "strengths": ["Workspace dominant in education","Gemini AI integration speed","Search monopoly cash engine"],
-                "weaknesses": ["Cloud trails Azure & AWS","Antitrust pressure mounting","Workspace enterprise sales complex"],
-            },
-            {
-                "name": "Amazon", "score": 69, "grade": "Good", "risk": "Low",
-                "dims": {"Brand":80,"Innovation":75,"Leadership":70,"ESG":58,"Customer":72},
-                "strengths": ["AWS is #1 cloud provider by revenue","Prime ecosystem loyalty","Bedrock AI platform growing fast"],
-                "weaknesses": ["ESG/worker treatment controversy","Alexa AI behind competitors","Retail margins thin"],
-            },
+            {"name": "Microsoft", "score": 82, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 88, "Innovation": 84, "Leadership": 90, "ESG": 82, "Customer": 75},
+             "strengths": ["Satya Nadella rated best Big Tech CEO", "Copilot AI across entire product suite", "Azure is #2 cloud with fastest growth"],
+             "weaknesses": ["Activision integration still uncertain", "Teams NPS trails Slack", "Windows update frustration a perennial issue"]},
+            {"name": "Google", "score": 78, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 85, "Innovation": 88, "Leadership": 78, "ESG": 72, "Customer": 68},
+             "strengths": ["Workspace dominant in education", "Gemini AI integration speed", "Search monopoly cash engine"],
+             "weaknesses": ["Cloud trails Azure & AWS", "Antitrust pressure mounting", "Workspace enterprise sales complex"]},
+            {"name": "Amazon", "score": 69, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 80, "Innovation": 75, "Leadership": 70, "ESG": 58, "Customer": 72},
+             "strengths": ["AWS is #1 cloud provider by revenue", "Prime ecosystem loyalty", "Bedrock AI platform growing fast"],
+             "weaknesses": ["ESG/worker treatment controversy", "Alexa AI behind competitors", "Retail margins thin"]},
         ]
     },
     "google": {
         "peers": [
-            {
-                "name": "Google", "score": 78, "grade": "Good", "risk": "Low",
-                "dims": {"Brand":85,"Innovation":88,"Leadership":78,"ESG":72,"Customer":68},
-                "strengths": ["Search + YouTube = unmatched distribution","Gemini Ultra leading multimodal","DeepMind research credibility"],
-                "weaknesses": ["Privacy concerns persistent","Antitrust cases in US & EU","Gemini launch optics hurt AI narrative"],
-            },
-            {
-                "name": "Microsoft", "score": 82, "grade": "Excellent", "risk": "Low",
-                "dims": {"Brand":88,"Innovation":84,"Leadership":90,"ESG":82,"Customer":75},
-                "strengths": ["CEO perception best in Big Tech","OpenAI investment first-mover","Enterprise AI rollout fastest"],
-                "weaknesses": ["Bing AI market share still small","Consumer excitement lower","Gaming bet uncertain"],
-            },
-            {
-                "name": "Meta", "score": 55, "grade": "Fair", "risk": "Medium",
-                "dims": {"Brand":60,"Innovation":75,"Leadership":55,"ESG":42,"Customer":50},
-                "strengths": ["Llama open-source AI developer love","WhatsApp 2B+ users","Threads growing fast"],
-                "weaknesses": ["Privacy scandal legacy still hurts","Metaverse pivot scepticism","Youth trust deficit"],
-            },
-        ]
-    },
-    "meta": {
-        "peers": [
-            {
-                "name": "Meta", "score": 55, "grade": "Fair", "risk": "Medium",
-                "dims": {"Brand":60,"Innovation":75,"Leadership":55,"ESG":42,"Customer":50},
-                "strengths": ["3B+ daily users across apps","Llama 3 best open-source model","Instagram Reels monetisation"],
-                "weaknesses": ["Zuckerberg trust score lowest in Big Tech","Teen mental health controversy","Metaverse $40B write-off perception"],
-            },
-            {
-                "name": "Snap", "score": 50, "grade": "Fair", "risk": "High",
-                "dims": {"Brand":55,"Innovation":65,"Leadership":48,"ESG":55,"Customer":52},
-                "strengths": ["AR lenses innovation leader","Gen Z engagement strong","Spotlight growing"],
-                "weaknesses": ["Revenue growth stalled","Advertiser confidence low","Daily active user plateau"],
-            },
-            {
-                "name": "TikTok", "score": 52, "grade": "Fair", "risk": "High",
-                "dims": {"Brand":72,"Innovation":80,"Leadership":40,"ESG":38,"Customer":65},
-                "strengths": ["Highest engagement rates of any platform","Algorithm best in class","Creator economy leader"],
-                "weaknesses": ["US/EU ban risk (ByteDance)","Data privacy controversy","Brand safety concerns for advertisers"],
-            },
+            {"name": "Google", "score": 78, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 85, "Innovation": 88, "Leadership": 78, "ESG": 72, "Customer": 68},
+             "strengths": ["Search + YouTube = unmatched distribution", "Gemini Ultra leading multimodal", "DeepMind research credibility"],
+             "weaknesses": ["Privacy concerns persistent", "Antitrust cases in US & EU", "Gemini launch optics hurt AI narrative"]},
+            {"name": "Microsoft", "score": 82, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 88, "Innovation": 84, "Leadership": 90, "ESG": 82, "Customer": 75},
+             "strengths": ["CEO perception best in Big Tech", "OpenAI investment first-mover", "Enterprise AI rollout fastest"],
+             "weaknesses": ["Bing AI market share still small", "Consumer excitement lower", "Gaming bet uncertain"]},
+            {"name": "Meta", "score": 55, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 60, "Innovation": 75, "Leadership": 55, "ESG": 42, "Customer": 50},
+             "strengths": ["Llama open-source AI developer love", "WhatsApp 2B+ users", "Threads growing fast"],
+             "weaknesses": ["Privacy scandal legacy still hurts", "Metaverse pivot scepticism", "Youth trust deficit"]},
         ]
     },
     "amazon": {
         "peers": [
-            {
-                "name": "Amazon", "score": 69, "grade": "Good", "risk": "Low",
-                "dims": {"Brand":82,"Innovation":78,"Leadership":70,"ESG":55,"Customer":72},
-                "strengths": ["AWS #1 cloud by revenue & mindshare","Prime loyalty unmatched in e-commerce","Bedrock AI growing enterprise traction"],
-                "weaknesses": ["Worker treatment ESG controversy","Alexa falling behind in AI race","Retail business margin pressure"],
-            },
-            {
-                "name": "Microsoft", "score": 82, "grade": "Excellent", "risk": "Low",
-                "dims": {"Brand":88,"Innovation":84,"Leadership":90,"ESG":82,"Customer":75},
-                "strengths": ["Azure AI fastest enterprise rollout","CEO trusted most in Big Tech","GitHub Copilot developer love"],
-                "weaknesses": ["Cloud #2 behind AWS in revenue","Consumer product excitement lower","Activision ROI uncertain"],
-            },
-            {
-                "name": "Shopify", "score": 65, "grade": "Good", "risk": "Low",
-                "dims": {"Brand":65,"Innovation":72,"Leadership":75,"ESG":65,"Customer":80},
-                "strengths": ["Merchant NPS highest in e-commerce","SMB brand champion","AI commerce tools leading"],
-                "weaknesses": ["Much smaller scale than Amazon","Enterprise tier still building","Logistics network nascent"],
-            },
+            {"name": "Amazon", "score": 69, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 82, "Innovation": 78, "Leadership": 70, "ESG": 55, "Customer": 72},
+             "strengths": ["AWS #1 cloud by revenue & mindshare", "Prime loyalty unmatched in e-commerce", "Bedrock AI growing enterprise traction"],
+             "weaknesses": ["Worker treatment ESG controversy", "Alexa falling behind in AI race", "Retail business margin pressure"]},
+            {"name": "Microsoft", "score": 82, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 88, "Innovation": 84, "Leadership": 90, "ESG": 82, "Customer": 75},
+             "strengths": ["Azure AI fastest enterprise rollout", "CEO trusted most in Big Tech", "GitHub Copilot developer love"],
+             "weaknesses": ["Cloud #2 behind AWS in revenue", "Consumer product excitement lower", "Activision ROI uncertain"]},
+            {"name": "Shopify", "score": 65, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 65, "Innovation": 72, "Leadership": 75, "ESG": 65, "Customer": 80},
+             "strengths": ["Merchant NPS highest in e-commerce", "SMB brand champion", "AI commerce tools leading"],
+             "weaknesses": ["Much smaller scale than Amazon", "Enterprise tier still building", "Logistics network nascent"]},
+        ]
+    },
+    "meta": {
+        "peers": [
+            {"name": "Meta", "score": 55, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 60, "Innovation": 75, "Leadership": 55, "ESG": 42, "Customer": 50},
+             "strengths": ["3B+ daily users across apps", "Llama 3 best open-source model", "Instagram Reels monetisation"],
+             "weaknesses": ["Zuckerberg trust score lowest in Big Tech", "Teen mental health controversy", "Metaverse write-off perception"]},
+            {"name": "Snap", "score": 50, "grade": "Fair", "risk": "High",
+             "dims": {"Brand": 55, "Innovation": 65, "Leadership": 48, "ESG": 55, "Customer": 52},
+             "strengths": ["AR lenses innovation leader", "Gen Z engagement strong", "Spotlight growing"],
+             "weaknesses": ["Revenue growth stalled", "Advertiser confidence low", "Daily active user plateau"]},
+            {"name": "TikTok", "score": 52, "grade": "Fair", "risk": "High",
+             "dims": {"Brand": 72, "Innovation": 80, "Leadership": 40, "ESG": 38, "Customer": 65},
+             "strengths": ["Highest engagement rates of any platform", "Algorithm best in class", "Creator economy leader"],
+             "weaknesses": ["US/EU ban risk (ByteDance)", "Data privacy controversy", "Brand safety concerns for advertisers"]},
+        ]
+    },
+
+    # ─────────────────────────────── ENTERPRISE SAAS ───────────────────────────────
+    "oracle": {
+        "peers": [
+            {"name": "Oracle", "score": 70, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 68, "Innovation": 70, "Leadership": 72, "ESG": 60, "Customer": 62},
+             "strengths": ["OCI cloud growing fast on AI training demand", "Deep enterprise database entrenchment", "Large-scale AI infrastructure deals"],
+             "weaknesses": ["Legacy licensing model seen as outdated", "Customer satisfaction trails newer cloud rivals", "Complex, sales-heavy go-to-market"]},
+            {"name": "Microsoft", "score": 82, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 88, "Innovation": 84, "Leadership": 90, "ESG": 82, "Customer": 75},
+             "strengths": ["Azure AI fastest enterprise rollout", "CEO trusted most in Big Tech", "Broadest enterprise software suite"],
+             "weaknesses": ["Cloud pricing complexity criticized", "Teams NPS trails Slack", "Windows update frustration"]},
+            {"name": "Salesforce", "score": 72, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 75, "Innovation": 74, "Leadership": 70, "ESG": 75, "Customer": 68},
+             "strengths": ["#1 CRM market share globally", "Agentforce AI agent push", "Strong ESG/Trailhead community reputation"],
+             "weaknesses": ["Growth deceleration vs earlier years", "Product sprawl complexity for buyers", "Pricing seen as high by SMBs"]},
+            {"name": "SAP", "score": 68, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 65, "Innovation": 65, "Leadership": 70, "ESG": 68, "Customer": 60},
+             "strengths": ["Dominant ERP incumbent in large enterprises", "Deep vertical industry expertise", "Strong European enterprise trust"],
+             "weaknesses": ["Cloud migration (RISE) slower than rivals", "Complex, costly implementations", "Innovation perception trails US rivals"]},
+        ]
+    },
+    "salesforce": {
+        "peers": [
+            {"name": "Salesforce", "score": 72, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 75, "Innovation": 74, "Leadership": 70, "ESG": 75, "Customer": 68},
+             "strengths": ["#1 CRM market share globally", "Agentforce AI agent push", "Strong ESG/Trailhead community reputation"],
+             "weaknesses": ["Growth deceleration vs earlier years", "Product sprawl complexity for buyers", "Pricing seen as high by SMBs"]},
+            {"name": "Microsoft", "score": 82, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 88, "Innovation": 84, "Leadership": 90, "ESG": 82, "Customer": 75},
+             "strengths": ["Dynamics 365 bundled with Office/Teams", "Copilot AI integration across suite", "CEO trusted most in Big Tech"],
+             "weaknesses": ["CRM historically secondary to core suite", "Teams NPS trails Slack", "Windows update frustration"]},
+            {"name": "Oracle", "score": 70, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 68, "Innovation": 70, "Leadership": 72, "ESG": 60, "Customer": 62},
+             "strengths": ["Deep enterprise database/ERP entrenchment", "Large-scale AI infrastructure investments", "Broad applications portfolio"],
+             "weaknesses": ["Legacy licensing model seen as outdated", "Customer satisfaction trails newer rivals", "Complex go-to-market"]},
+            {"name": "ServiceNow", "score": 71, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 60, "Innovation": 78, "Leadership": 75, "ESG": 68, "Customer": 72},
+             "strengths": ["Dominant workflow automation platform in IT", "Fast AI agent adoption in enterprise ops", "High customer retention and NPS"],
+             "weaknesses": ["Lower brand recognition outside enterprise IT", "Premium pricing limits SMB reach", "Narrower product scope than Salesforce"]},
+        ]
+    },
+    "adobe": {
+        "peers": [
+            {"name": "Adobe", "score": 73, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 82, "Innovation": 78, "Leadership": 75, "ESG": 70, "Customer": 65},
+             "strengths": ["Creative Cloud near-monopoly among professionals", "Firefly generative AI integrated across apps", "Strong subscription revenue retention"],
+             "weaknesses": ["Canva eroding entry-level creative market", "Figma acquisition blocked by regulators", "Pricing complaints from SMB creators"]},
+            {"name": "Microsoft", "score": 82, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 88, "Innovation": 84, "Leadership": 90, "ESG": 82, "Customer": 75},
+             "strengths": ["Designer/Copilot creative tools bundled with Office", "Massive existing enterprise distribution", "CEO trusted most in Big Tech"],
+             "weaknesses": ["Creative tools less specialized than Adobe's", "Professional creative mindshare still trails Adobe", "Design tool brand less iconic"]},
+            {"name": "Salesforce", "score": 72, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 75, "Innovation": 74, "Leadership": 70, "ESG": 75, "Customer": 68},
+             "strengths": ["Marketing Cloud competes at the CMO level", "Strong enterprise customer relationships", "Broad SaaS ecosystem"],
+             "weaknesses": ["No dedicated creative-tools product line", "Product sprawl complexity for buyers", "Pricing seen as high by SMBs"]},
+            {"name": "Canva", "score": 62, "grade": "Good", "risk": "Medium",
+             "dims": {"Brand": 60, "Innovation": 75, "Leadership": 70, "ESG": 65, "Customer": 78},
+             "strengths": ["Beloved by non-professional/SMB creators", "Freemium model drives massive adoption", "Fast AI feature rollout"],
+             "weaknesses": ["Less powerful for professional-grade work", "Smaller enterprise sales motion", "Still building brand trust at scale"]},
+        ]
+    },
+    "servicenow": {
+        "peers": [
+            {"name": "ServiceNow", "score": 71, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 60, "Innovation": 78, "Leadership": 75, "ESG": 68, "Customer": 72},
+             "strengths": ["Dominant workflow automation platform in IT", "Fast AI agent adoption in enterprise ops", "High customer retention and NPS"],
+             "weaknesses": ["Lower brand recognition outside enterprise IT", "Premium pricing limits SMB reach", "Reliant on continued enterprise IT spend"]},
+            {"name": "Salesforce", "score": 72, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 75, "Innovation": 74, "Leadership": 70, "ESG": 75, "Customer": 68},
+             "strengths": ["#1 CRM market share globally", "Broader product suite beyond IT workflows", "Strong ESG/Trailhead community reputation"],
+             "weaknesses": ["Growth deceleration vs earlier years", "Product sprawl complexity for buyers", "Pricing seen as high by SMBs"]},
+            {"name": "Microsoft", "score": 82, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 88, "Innovation": 84, "Leadership": 90, "ESG": 82, "Customer": 75},
+             "strengths": ["Copilot integration across IT/ops tools", "Massive existing enterprise distribution", "CEO trusted most in Big Tech"],
+             "weaknesses": ["IT workflow tools less specialized than ServiceNow's", "Teams NPS trails Slack", "Windows update frustration"]},
+            {"name": "Oracle", "score": 70, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 68, "Innovation": 70, "Leadership": 72, "ESG": 60, "Customer": 62},
+             "strengths": ["Deep enterprise database/ERP entrenchment", "Large-scale AI infrastructure investments", "Broad applications portfolio"],
+             "weaknesses": ["Legacy licensing model seen as outdated", "Customer satisfaction trails newer cloud rivals", "Complex, sales-heavy go-to-market"]},
+        ]
+    },
+    "snowflake": {
+        "peers": [
+            {"name": "Snowflake", "score": 66, "grade": "Good", "risk": "Medium",
+             "dims": {"Brand": 55, "Innovation": 76, "Leadership": 65, "ESG": 62, "Customer": 70},
+             "strengths": ["Cloud-agnostic data warehouse leader", "Strong developer/analyst community trust", "Expanding into AI/ML workloads (Cortex)"],
+             "weaknesses": ["Intensifying competition from Databricks", "Consumption pricing can spike unpredictably", "Leadership transition scrutiny"]},
+            {"name": "Databricks", "score": 69, "grade": "Good", "risk": "Medium",
+             "dims": {"Brand": 50, "Innovation": 82, "Leadership": 75, "ESG": 64, "Customer": 70},
+             "strengths": ["Lakehouse architecture popular with data teams", "Strong open-source roots (Spark, MLflow)", "High-profile AI/ML enterprise wins"],
+             "weaknesses": ["Still private, valuation scrutiny", "Smaller ecosystem than hyperscaler-native tools", "Competing directly with cloud providers' own tools"]},
+            {"name": "Microsoft", "score": 82, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 88, "Innovation": 84, "Leadership": 90, "ESG": 82, "Customer": 75},
+             "strengths": ["Fabric/Synapse bundled with Azure ecosystem", "CEO trusted most in Big Tech", "Broadest enterprise distribution"],
+             "weaknesses": ["Perceived as less cloud-agnostic", "Data platform seen as more complex", "Windows update frustration unrelated legacy issue"]},
+            {"name": "Oracle", "score": 70, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 68, "Innovation": 70, "Leadership": 72, "ESG": 60, "Customer": 62},
+             "strengths": ["Deep enterprise database entrenchment", "Large-scale AI infrastructure deals", "Broad applications portfolio"],
+             "weaknesses": ["Legacy licensing model seen as outdated", "Customer satisfaction trails newer cloud rivals", "Complex go-to-market"]},
+        ]
+    },
+    "databricks": {
+        "peers": [
+            {"name": "Databricks", "score": 69, "grade": "Good", "risk": "Medium",
+             "dims": {"Brand": 50, "Innovation": 82, "Leadership": 75, "ESG": 64, "Customer": 70},
+             "strengths": ["Lakehouse architecture popular with data teams", "Strong open-source roots (Spark, MLflow)", "High-profile AI/ML enterprise wins"],
+             "weaknesses": ["Still private, valuation scrutiny", "Smaller ecosystem than hyperscaler-native tools", "Competing directly with cloud providers' own tools"]},
+            {"name": "Snowflake", "score": 66, "grade": "Good", "risk": "Medium",
+             "dims": {"Brand": 55, "Innovation": 76, "Leadership": 65, "ESG": 62, "Customer": 70},
+             "strengths": ["Cloud-agnostic data warehouse leader", "Simpler SQL-first user experience", "Expanding into AI/ML workloads (Cortex)"],
+             "weaknesses": ["Intensifying competition from Databricks", "Consumption pricing can spike unpredictably", "Leadership transition scrutiny"]},
+            {"name": "Microsoft", "score": 82, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 88, "Innovation": 84, "Leadership": 90, "ESG": 82, "Customer": 75},
+             "strengths": ["Deep Azure partnership co-sells Databricks", "Fabric offers a competing native alternative", "CEO trusted most in Big Tech"],
+             "weaknesses": ["Fabric still maturing vs Databricks", "Perceived as less open-source friendly", "Complex multi-product overlap"]},
+            {"name": "Google", "score": 78, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 85, "Innovation": 88, "Leadership": 78, "ESG": 72, "Customer": 68},
+             "strengths": ["BigQuery a strong competing data platform", "Deep AI/ML research credibility", "Search monopoly cash engine"],
+             "weaknesses": ["Cloud trails Azure & AWS in enterprise share", "Antitrust pressure mounting", "Less lakehouse-native architecture"]},
+        ]
+    },
+
+    # ─────────────────────────────── SOCIAL / MEDIA ───────────────────────────────
+    "tiktok": {
+        "peers": [
+            {"name": "TikTok", "score": 52, "grade": "Fair", "risk": "High",
+             "dims": {"Brand": 72, "Innovation": 80, "Leadership": 40, "ESG": 38, "Customer": 65},
+             "strengths": ["Highest engagement rates of any platform", "Algorithm best in class", "Creator economy leader"],
+             "weaknesses": ["US/EU ban risk (ByteDance)", "Data privacy controversy", "Brand safety concerns for advertisers"]},
+            {"name": "Meta", "score": 55, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 60, "Innovation": 75, "Leadership": 55, "ESG": 42, "Customer": 50},
+             "strengths": ["Reels directly competes across Instagram/Facebook", "3B+ daily users across apps", "No comparable geopolitical ban risk"],
+             "weaknesses": ["Zuckerberg trust score lowest in Big Tech", "Teen mental health controversy", "Metaverse write-off perception"]},
+            {"name": "Snap", "score": 50, "grade": "Fair", "risk": "High",
+             "dims": {"Brand": 55, "Innovation": 65, "Leadership": 48, "ESG": 55, "Customer": 52},
+             "strengths": ["AR lenses innovation leader", "Gen Z engagement strong", "Spotlight growing"],
+             "weaknesses": ["Revenue growth stalled", "Advertiser confidence low", "Daily active user plateau"]},
+            {"name": "YouTube", "score": 76, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 82, "Innovation": 78, "Leadership": 75, "ESG": 65, "Customer": 72},
+             "strengths": ["Shorts scaled to rival TikTok's reach", "Owned by Google with deep AI integration", "Largest video-creator monetisation program"],
+             "weaknesses": ["Shorts still seen as less culturally dominant", "Content moderation criticism", "Ad-load complaints from viewers"]},
+        ]
+    },
+    "reddit": {
+        "peers": [
+            {"name": "Reddit", "score": 58, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 60, "Innovation": 60, "Leadership": 58, "ESG": 55, "Customer": 62},
+             "strengths": ["Highly engaged niche communities (subreddits)", "Valuable human-generated data for AI licensing deals", "Strong organic search/SEO presence"],
+             "weaknesses": ["Moderation and content quality inconsistency", "Ad revenue lags larger platforms", "API pricing controversy hurt developer trust"]},
+            {"name": "Meta", "score": 55, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 60, "Innovation": 75, "Leadership": 55, "ESG": 42, "Customer": 50},
+             "strengths": ["Vastly larger scale across Facebook Groups/Threads", "3B+ daily users across apps", "Stronger ad-tech infrastructure"],
+             "weaknesses": ["Community depth seen as shallower than Reddit's", "Teen mental health controversy", "Youth trust deficit"]},
+            {"name": "Discord", "score": 60, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 58, "Innovation": 68, "Leadership": 60, "ESG": 52, "Customer": 75},
+             "strengths": ["Deeply loyal gaming and creator communities", "Strong real-time voice/video engagement", "High customer satisfaction"],
+             "weaknesses": ["Monetization still developing (Nitro-dependent)", "Content moderation and safety scrutiny", "Not yet profitable at scale"]},
+            {"name": "TikTok", "score": 52, "grade": "Fair", "risk": "High",
+             "dims": {"Brand": 72, "Innovation": 80, "Leadership": 40, "ESG": 38, "Customer": 65},
+             "strengths": ["Far higher engagement and cultural relevance", "Best-in-class recommendation algorithm", "Creator economy leader"],
+             "weaknesses": ["US/EU ban risk (ByteDance)", "Data privacy controversy", "Brand safety concerns for advertisers"]},
+        ]
+    },
+    "linkedin": {
+        "peers": [
+            {"name": "LinkedIn", "score": 70, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 75, "Innovation": 65, "Leadership": 75, "ESG": 72, "Customer": 68},
+             "strengths": ["Dominant professional networking platform", "Owned by Microsoft with deep enterprise ties", "Strong recruiting/talent-solutions revenue"],
+             "weaknesses": ["Feed engagement lower than consumer social apps", "Perceived as less fun/casual by younger users", "Premium subscription value questioned by some"]},
+            {"name": "Meta", "score": 55, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 60, "Innovation": 75, "Leadership": 55, "ESG": 42, "Customer": 50},
+             "strengths": ["Vastly larger overall user base", "Stronger ad-tech and targeting", "Faster feature iteration"],
+             "weaknesses": ["No dedicated professional-networking product", "Teen mental health controversy", "Youth trust deficit"]},
+            {"name": "TikTok", "score": 52, "grade": "Fair", "risk": "High",
+             "dims": {"Brand": 72, "Innovation": 80, "Leadership": 40, "ESG": 38, "Customer": 65},
+             "strengths": ["Far higher engagement among younger professionals", "Best-in-class recommendation algorithm", "Creator economy leader"],
+             "weaknesses": ["US/EU ban risk (ByteDance)", "Not built for professional networking", "Brand safety concerns for advertisers"]},
+            {"name": "Reddit", "score": 58, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 60, "Innovation": 60, "Leadership": 58, "ESG": 55, "Customer": 62},
+             "strengths": ["Deep niche professional/industry communities", "Valuable data for AI licensing deals", "Strong organic search presence"],
+             "weaknesses": ["Not identity-verified/professional by design", "Ad revenue lags larger platforms", "API pricing controversy hurt developer trust"]},
+        ]
+    },
+    "discord": {
+        "peers": [
+            {"name": "Discord", "score": 60, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 58, "Innovation": 68, "Leadership": 60, "ESG": 52, "Customer": 75},
+             "strengths": ["Deeply loyal gaming and creator communities", "Strong real-time voice/video engagement", "Expanding beyond gaming into general community use"],
+             "weaknesses": ["Monetization still developing (Nitro-dependent)", "Content moderation and safety scrutiny", "Not yet profitable at scale"]},
+            {"name": "Reddit", "score": 58, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 60, "Innovation": 60, "Leadership": 58, "ESG": 55, "Customer": 62},
+             "strengths": ["Highly engaged niche communities (subreddits)", "Valuable human-generated data for AI licensing deals", "Strong organic search/SEO presence"],
+             "weaknesses": ["Moderation and content quality inconsistency", "Ad revenue lags larger platforms", "API pricing controversy hurt developer trust"]},
+            {"name": "TikTok", "score": 52, "grade": "Fair", "risk": "High",
+             "dims": {"Brand": 72, "Innovation": 80, "Leadership": 40, "ESG": 38, "Customer": 65},
+             "strengths": ["Far higher mainstream engagement", "Best-in-class recommendation algorithm", "Creator economy leader"],
+             "weaknesses": ["US/EU ban risk (ByteDance)", "Data privacy controversy", "Brand safety concerns for advertisers"]},
+            {"name": "Meta", "score": 55, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 60, "Innovation": 75, "Leadership": 55, "ESG": 42, "Customer": 50},
+             "strengths": ["Vastly larger scale via Messenger/WhatsApp", "Stronger ad-tech infrastructure", "3B+ daily users across apps"],
+             "weaknesses": ["Community depth seen as shallower than Discord's", "Teen mental health controversy", "Youth trust deficit"]},
+        ]
+    },
+    "spotify": {
+        "peers": [
+            {"name": "Spotify", "score": 71, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 78, "Innovation": 70, "Leadership": 75, "ESG": 65, "Customer": 75},
+             "strengths": ["#1 global music streaming market share", "Strong podcast ecosystem investment", "Personalization/algorithm engagement leader"],
+             "weaknesses": ["Thin margins on music licensing costs", "Increasing competition from Apple/Amazon bundles", "Artist payout criticism"]},
+            {"name": "Apple", "score": 85, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 98, "Innovation": 82, "Leadership": 88, "ESG": 80, "Customer": 90},
+             "strengths": ["Apple Music bundled into wider ecosystem", "Premium brand loyalty across hardware", "Strong device integration advantage"],
+             "weaknesses": ["Music discovery/personalization trails Spotify", "Smaller standalone music market share", "Less podcast-specific investment"]},
+            {"name": "Amazon", "score": 69, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 82, "Innovation": 78, "Leadership": 70, "ESG": 58, "Customer": 72},
+             "strengths": ["Music bundled free with Prime membership", "Massive existing subscriber base", "Alexa voice integration"],
+             "weaknesses": ["Music seen as a Prime perk, not standalone leader", "Alexa AI behind competitors", "Retail-first brand identity"]},
+            {"name": "YouTube", "score": 76, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 82, "Innovation": 78, "Leadership": 75, "ESG": 65, "Customer": 72},
+             "strengths": ["YouTube Music leverages massive video catalog", "Owned by Google with deep AI integration", "Strong free ad-supported tier"],
+             "weaknesses": ["Music app seen as secondary to video product", "Content moderation criticism", "Less curated music-discovery brand"]},
+        ]
+    },
+    "netflix": {
+        "peers": [
+            {"name": "Netflix", "score": 76, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 85, "Innovation": 75, "Leadership": 80, "ESG": 68, "Customer": 78},
+             "strengths": ["Largest global streaming subscriber base", "Strong original content production engine", "Ad-tier driving new subscriber growth"],
+             "weaknesses": ["Content costs remain very high", "Password-sharing crackdown backlash", "Intensifying competition fragmenting the market"]},
+            {"name": "Disney+", "score": 65, "grade": "Good", "risk": "Medium",
+             "dims": {"Brand": 88, "Innovation": 65, "Leadership": 68, "ESG": 65, "Customer": 68},
+             "strengths": ["Unmatched franchise IP library (Marvel, Star Wars, Pixar)", "Strong family-audience brand trust", "Bundling with Hulu/ESPN"],
+             "weaknesses": ["Streaming division profitability still uneven", "Content output smaller than Netflix's", "Subscriber growth slower than Netflix"]},
+            {"name": "Amazon", "score": 69, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 82, "Innovation": 78, "Leadership": 70, "ESG": 58, "Customer": 72},
+             "strengths": ["Prime Video bundled with broader Prime membership", "Massive existing subscriber base", "Growing live-sports rights portfolio"],
+             "weaknesses": ["Original content seen as less consistent than Netflix's", "Video seen as a Prime perk, not standalone leader", "Retail margins thin"]},
+            {"name": "YouTube", "score": 76, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 82, "Innovation": 78, "Leadership": 75, "ESG": 65, "Customer": 72},
+             "strengths": ["Largest free video library on earth", "Owned by Google with deep AI integration", "Strong creator-economy monetisation"],
+             "weaknesses": ["Less premium scripted-content brand than Netflix", "Content moderation criticism", "Ad-load complaints from viewers"]},
+        ]
+    },
+
+    # ─────────────────────────────── INDIA / IT SERVICES ───────────────────────────────
+    "reliance_jio": {
+        "peers": [
+            {"name": "Reliance Jio", "score": 74, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 75, "Innovation": 72, "Leadership": 78, "ESG": 60, "Customer": 70},
+             "strengths": ["#1 telecom operator in India by subscribers", "Aggressive 5G rollout and digital ecosystem", "Backed by Reliance Industries' scale"],
+             "weaknesses": ["Heavy capex burden on parent balance sheet", "ARPU still low versus global telecoms", "Regulatory environment complexity"]},
+            {"name": "TCS", "score": 73, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 70, "Innovation": 68, "Leadership": 78, "ESG": 70, "Customer": 72},
+             "strengths": ["Largest Indian IT services firm by revenue", "Strong long-term enterprise client relationships", "High employee retention vs industry"],
+             "weaknesses": ["Growth slowing amid global IT spending caution", "Perceived as less innovative than boutique AI firms", "Heavy reliance on US/UK client markets"]},
+            {"name": "Infosys", "score": 71, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 65, "Innovation": 70, "Leadership": 75, "ESG": 72, "Customer": 70},
+             "strengths": ["Strong digital transformation consulting reputation", "Topaz AI platform enterprise traction", "Consistent margin discipline"],
+             "weaknesses": ["Client concentration in BFSI/retail sectors", "Attrition volatility in past cycles", "Trails TCS in overall scale"]},
+        ]
+    },
+    "tcs": {
+        "peers": [
+            {"name": "TCS", "score": 73, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 70, "Innovation": 68, "Leadership": 78, "ESG": 70, "Customer": 72},
+             "strengths": ["Largest Indian IT services firm by revenue", "Strong long-term enterprise client relationships", "High employee retention vs industry"],
+             "weaknesses": ["Growth slowing amid global IT spending caution", "Perceived as less innovative than boutique AI firms", "Heavy reliance on US/UK client markets"]},
+            {"name": "Infosys", "score": 71, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 65, "Innovation": 70, "Leadership": 75, "ESG": 72, "Customer": 70},
+             "strengths": ["Strong digital transformation consulting reputation", "Topaz AI platform enterprise traction", "Consistent margin discipline"],
+             "weaknesses": ["Client concentration in BFSI/retail sectors", "Attrition volatility in past cycles", "Trails TCS in overall scale"]},
+            {"name": "Accenture", "score": 76, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 80, "Innovation": 78, "Leadership": 78, "ESG": 74, "Customer": 72},
+             "strengths": ["Broadest global consulting + tech brand", "Deep strategy-to-execution capabilities", "Large-scale AI transformation practice"],
+             "weaknesses": ["Higher price points than Indian IT peers", "Margins thinner on large complex projects", "Bench/utilization pressure in slow markets"]},
+            {"name": "Wipro", "score": 62, "grade": "Good", "risk": "Medium",
+             "dims": {"Brand": 55, "Innovation": 62, "Leadership": 65, "ESG": 68, "Customer": 60},
+             "strengths": ["Broad services portfolio across verticals", "Growing cloud & AI practice", "Long-standing client relationships"],
+             "weaknesses": ["Growth trails TCS/Infosys", "Brand recognition lower globally", "Margin pressure from pricing competition"]},
+        ]
+    },
+    "infosys": {
+        "peers": [
+            {"name": "Infosys", "score": 71, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 65, "Innovation": 70, "Leadership": 75, "ESG": 72, "Customer": 70},
+             "strengths": ["Strong digital transformation consulting reputation", "Topaz AI platform enterprise traction", "Consistent margin discipline"],
+             "weaknesses": ["Client concentration in BFSI/retail sectors", "Attrition volatility in past cycles", "Trails TCS in overall scale"]},
+            {"name": "TCS", "score": 73, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 70, "Innovation": 68, "Leadership": 78, "ESG": 70, "Customer": 72},
+             "strengths": ["Largest Indian IT services firm by revenue", "Strong long-term enterprise client relationships", "High employee retention vs industry"],
+             "weaknesses": ["Growth slowing amid global IT spending caution", "Perceived as less innovative than boutique AI firms", "Heavy reliance on US/UK client markets"]},
+            {"name": "Accenture", "score": 76, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 80, "Innovation": 78, "Leadership": 78, "ESG": 74, "Customer": 72},
+             "strengths": ["Broadest global consulting + tech brand", "Deep strategy-to-execution capabilities", "Large-scale AI transformation practice"],
+             "weaknesses": ["Higher price points than Indian IT peers", "Margins thinner on large complex projects", "Bench/utilization pressure in slow markets"]},
+            {"name": "Wipro", "score": 62, "grade": "Good", "risk": "Medium",
+             "dims": {"Brand": 55, "Innovation": 62, "Leadership": 65, "ESG": 68, "Customer": 60},
+             "strengths": ["Broad services portfolio across verticals", "Growing cloud & AI practice", "Long-standing client relationships"],
+             "weaknesses": ["Growth trails TCS/Infosys", "Brand recognition lower globally", "Margin pressure from pricing competition"]},
+        ]
+    },
+    "zoho": {
+        "peers": [
+            {"name": "Zoho", "score": 68, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 50, "Innovation": 70, "Leadership": 80, "ESG": 75, "Customer": 78},
+             "strengths": ["Profitable, bootstrapped business model rarity", "Broad SaaS suite at SMB-friendly pricing", "Strong founder-led long-term vision"],
+             "weaknesses": ["Lower global brand recognition than Salesforce", "Limited enterprise-scale marketing spend", "Smaller ecosystem/integration marketplace"]},
+            {"name": "Salesforce", "score": 72, "grade": "Good", "risk": "Low",
+             "dims": {"Brand": 75, "Innovation": 74, "Leadership": 70, "ESG": 75, "Customer": 68},
+             "strengths": ["#1 CRM market share globally", "Agentforce AI agent push", "Vastly larger marketing and sales reach"],
+             "weaknesses": ["Pricing seen as high by SMBs", "Product sprawl complexity for buyers", "Growth deceleration vs earlier years"]},
+            {"name": "Microsoft", "score": 82, "grade": "Excellent", "risk": "Low",
+             "dims": {"Brand": 88, "Innovation": 84, "Leadership": 90, "ESG": 82, "Customer": 75},
+             "strengths": ["Dynamics 365 bundled with Office/Teams", "Copilot AI integration across suite", "CEO trusted most in Big Tech"],
+             "weaknesses": ["Less SMB-friendly pricing than Zoho", "Complex licensing for smaller businesses", "Windows update frustration unrelated legacy issue"]},
+            {"name": "Freshworks", "score": 60, "grade": "Fair", "risk": "Medium",
+             "dims": {"Brand": 48, "Innovation": 68, "Leadership": 65, "ESG": 62, "Customer": 72},
+             "strengths": ["Strong SMB/mid-market customer support focus", "Simple, approachable product design", "Fast-growing AI-enabled helpdesk tools"],
+             "weaknesses": ["Smaller product suite than Zoho", "Less profitable growth profile", "Lower brand recognition than larger rivals"]},
         ]
     },
 }
@@ -988,6 +1797,22 @@ if not st.session_state.analyzed:
     """, unsafe_allow_html=True)
     st.markdown("""
     <div style="
+    text-align:center;
+    font-size:13px;
+    color:#64748B;
+    margin-top:-10px;
+    margin-bottom:28px;
+    ">
+
+    Designed for
+    <strong style="color:#9B8FEE;">
+    AI & LLM • Consumer Tech • SaaS • Semiconductor • EV • Social Media
+    </strong>
+
+    </div>
+""", unsafe_allow_html=True)
+    st.markdown("""
+    <div style="
     background:rgba(91,82,200,.08);
     border:1px solid rgba(91,82,200,.18);
     border-radius:16px;
@@ -996,7 +1821,7 @@ if not st.session_state.analyzed:
     max-width:780px;
     ">
 
-    <h3 style="color:#E8EEFF;margin-top:0;">🎯 Project Scope</h3>
+    <h3 style="color:#E8EEFF;margin-top:0;">🎯 Project </h3>
 
     <p style="color:#C9D4F5;">
     <b>SocialMind AI</b> is designed for <b>technology-driven companies</b>.
@@ -1034,7 +1859,8 @@ if analyze and company_input:
     else:
         bar  = st.progress(0)
         slot = st.empty()
-        slot.info("Fetching news & YouTube (searching product aliases too)...")
+        slot.info(
+        "Collecting news articles, YouTube videos, comments and generating reputation insights...")
         bar.progress(15)
         result = subprocess.run(["python","src/live_analysis/company_reputation.py"],
                                 input=f"{company_input}\nn\n", text=True, capture_output=True)
@@ -1185,8 +2011,42 @@ if st.session_state.analyzed and st.session_state.company_name:
     k2.metric("Grade", grade)
     k3.metric("Risk level", risk)
     k4.metric("Top issue", top_issue[:18]+("…" if len(top_issue)>18 else ""))
-    k5.metric("Total mentions", f"{total:,}")
-    st.markdown("<hr>", unsafe_allow_html=True)
+    with k5:
+        st.markdown(f"""
+    <div style="
+    border:2px solid #22C55E;
+    border-radius:16px;
+    background:rgba(34,197,94,.08);
+    padding:18px;
+    height:118px;
+    ">
+    <div style="
+    color:#6B7280;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    ">
+    TOTAL MENTIONS
+    </div>
+
+    <div style="
+    color:#22C55E;
+    font-size:42px;
+    font-weight:700;
+    margin-top:10px;
+    ">
+    {total:,}
+    </div>
+
+    <div style="
+    color:#6B7280;
+    font-size:12px;
+    margin-top:6px;
+    ">
+    Public discussions analyzed
+    </div>
+    </div>
+    """, unsafe_allow_html=True)
 
     # ── Tabs ──────────────────────────────────────────────────
     tab1,tab2,tab3,tab4,tab5,tab6 = st.tabs([
@@ -1377,11 +2237,6 @@ if st.session_state.analyzed and st.session_state.company_name:
         lbl("Mention velocity — 30 days")
         st.plotly_chart(anomaly_chart(velocity_df, col="mentions", line_color=vel_col),
                         use_container_width=True, key="crisis_velocity_chart")
-        if anomaly_events:
-            st.markdown(
-                f'<div style="font-size:12px;color:#E2504A;margin-top:-6px;margin-bottom:12px;">'
-                f'⚠ {len(anomaly_events)} volume anomal{"y" if len(anomaly_events)==1 else "ies"} detected '
-                f'— see Anomalies tab for statistical breakdown.</div>', unsafe_allow_html=True)
 
         st.markdown("<hr>", unsafe_allow_html=True)
         lbl("Issue severity classification")
@@ -1403,6 +2258,27 @@ if st.session_state.analyzed and st.session_state.company_name:
     with tab3:
         st.markdown("<br>", unsafe_allow_html=True)
         lbl("Reputation score — 90-day history")
+        st.markdown("""
+        <div style="
+        background:#0C1120;
+        border:1px solid #182030;
+        border-radius:12px;
+        padding:16px 20px;
+        margin-bottom:18px;
+        color:#C9D4F5;
+        line-height:1.7;
+        font-size:13px;
+        ">
+
+        <b style="color:#E8EEFF;">📈 Reputation Timeline</b><br>
+
+        This chart visualizes the company's <b>reputation score over time</b> based on
+        public discussions collected from news articles, YouTube videos, and YouTube
+        comments. It helps identify improvements, declines, and long-term reputation
+        trends.
+
+        </div>
+        """, unsafe_allow_html=True)
         st.plotly_chart(timeline_chart(timeline_df, timeline_events, company),
                         use_container_width=True, key="timeline_main_chart")
         st.markdown("<hr>", unsafe_allow_html=True)

@@ -6,3 +6,22 @@ Anthropic,34.62,Critical,HIGH
 Tesla,34.88,Critical,HIGH
 Apple,29.63,Critical,HIGH
 claude,76.92,Strong,LOW
+Perplexity,45.0,Weak,MEDIUM
+Amazon,42.86,Weak,MEDIUM
+Sony,13.64,Critical,HIGH
+Xiaomi,83.33,Excellent,LOW
+Huawei,62.5,Mixed,MEDIUM
+OnePlus,40.0,Weak,MEDIUM
+Nvidia,25.81,Critical,HIGH
+Qualcomm,75.0,Strong,LOW
+TikTok,16.67,Critical,HIGH
+reddit,4.0,Critical,HIGH
+LinkedIn,77.78,Strong,LOW
+Discord,16.67,Critical,HIGH
+Spotify,100.0,Excellent,LOW
+netflix,8.33,Critical,HIGH
+Oracle,14.81,Critical,HIGH
+Salesforce,32.14,Critical,HIGH
+Adobe,35.29,Weak,HIGH
+Rivian,28.57,Critical,HIGH
+Google DeepMind,36.36,Weak,HIGH
